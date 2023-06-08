@@ -11,8 +11,8 @@ module.exports = {
     },
     colors: {},
     fontFamily: {
-      sans: [],
-      serif: [],
+      sans: ["Graphik", "sans-serif"],
+      serif: ["Merriweather", "serif"],
     },
     extend: {
       spacing: {},

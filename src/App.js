@@ -1,9 +1,15 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
+import { Login } from "./Pages";
 
 function App() {
   return (
     <div>
-      <h1 className="text-5xl underline">Hello world</h1>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+      </Routes>
     </div>
   );
 }
