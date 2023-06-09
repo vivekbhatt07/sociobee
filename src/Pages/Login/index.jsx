@@ -7,7 +7,11 @@ import {
   SectionWrapper,
   TextInput,
   TextInputLabel,
+  ContainedActionBtn,
+  OutlinedActionBtn,
 } from "../../Components";
+
+import SocioBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
 
 const Login = () => {
   const [logInData, setLogInData] = useState({
@@ -22,13 +26,22 @@ const Login = () => {
     });
   };
 
+  const handleLogInFormSubmit = (event) => {
+    return event.preventDefault();
+  };
+
   return (
     <PageWrapper className="login_page flex-row">
       <SectionWrapper className="login_media_section basis-6/12"></SectionWrapper>
       <SectionWrapper className="login_form_section basis-6/12">
         <div>
-          <h1>SOCIOBEE</h1>
-          <form className="login_form flex flex-col">
+          <h1 className="login_form_head cursor-pointer" role="button">
+            <img className="mx-auto" src={SocioBeeImg} alt="logo" />
+          </h1>
+          <form
+            className="login_form_body flex flex-col gap-4"
+            onSubmit={handleLogInFormSubmit}
+          >
             <TextInputLabel
               className="login_form_username"
               labelText="Username"
@@ -53,8 +66,14 @@ const Login = () => {
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
-            <button>Log in</button>
-            <button>Log in as guest</button>
+            <div className="login_form_actions flex flex-col gap-2">
+              <ContainedActionBtn className="login_user_action">
+                Log in
+              </ContainedActionBtn>
+              <OutlinedActionBtn className="login_guest_action">
+                Log in as guest
+              </OutlinedActionBtn>
+            </div>
           </form>
         </div>
       </SectionWrapper>
