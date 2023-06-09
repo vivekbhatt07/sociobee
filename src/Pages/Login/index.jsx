@@ -41,7 +41,12 @@ const Login = () => {
         <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg xl:max-w-xl">
           <div className="login_form_wrap border border-stone-400 px-4 py-4 rounded w-full flex flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
-              <img className="mx-auto" src={SocioBeeImg} alt="logo" />
+              <img
+                className="mx-auto"
+                src={SocioBeeImg}
+                alt="logo"
+                style={{ width: "160px", objectFit: "cover" }}
+              />
             </h1>
             <form
               className="login_form_body flex flex-col gap-4"
@@ -72,10 +77,16 @@ const Login = () => {
                 />
               </TextInputLabel>
               <div className="login_form_actions flex flex-col gap-2">
-                <ContainedActionBtn className="login_user_action">
+                <ContainedActionBtn
+                  className="login_user_action"
+                  containBtnType="submit"
+                >
                   Log in
                 </ContainedActionBtn>
-                <OutlinedActionBtn className="login_guest_action">
+                <OutlinedActionBtn
+                  className="login_guest_action"
+                  outlineBtnType="submit"
+                >
                   Log in as guest
                 </OutlinedActionBtn>
               </div>
