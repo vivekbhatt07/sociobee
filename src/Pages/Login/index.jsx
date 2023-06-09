@@ -9,6 +9,7 @@ import {
   TextInputLabel,
   ContainedActionBtn,
   OutlinedActionBtn,
+  TextActionLink,
 } from "../../Components";
 
 import SocioBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
@@ -32,9 +33,9 @@ const Login = () => {
 
   return (
     <PageWrapper className="login_page flex-row">
-      <SectionWrapper className="login_media_section basis-6/12"></SectionWrapper>
-      <SectionWrapper className="login_form_section basis-6/12">
-        <div>
+      <SectionWrapper className="login_media_section bg-stone-400 hidden lg:block lg:basis-6/12"></SectionWrapper>
+      <SectionWrapper className="login_form_section bg-stone-500 lg:basis-6/12 flex flex-col gap-8">
+        <div className="login_form_wrap border px-4 py-4 rounded max-w-xs w-full mx-auto flex flex-col">
           <h1 className="login_form_head cursor-pointer" role="button">
             <img className="mx-auto" src={SocioBeeImg} alt="logo" />
           </h1>
@@ -75,6 +76,10 @@ const Login = () => {
               </OutlinedActionBtn>
             </div>
           </form>
+        </div>
+        <div className="login border px-4 py-4 rounded max-w-xs w-full mx-auto flex gap-2 justify-center">
+          <p>Don't have an account?</p>
+          <TextActionLink>Sign Up</TextActionLink>
         </div>
       </SectionWrapper>
     </PageWrapper>

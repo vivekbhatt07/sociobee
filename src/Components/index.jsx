@@ -1,7 +1,11 @@
 import { Header, Footer, Navbar, PageWrapper, SectionWrapper } from "./Layout";
 import { TextInput } from "./Inputs";
 import { TextInputLabel } from "./Labels";
-import { ContainedActionBtn, OutlinedActionBtn } from "./Actions";
+import {
+  ContainedActionBtn,
+  OutlinedActionBtn,
+  TextActionLink,
+} from "./Actions";
 
 export {
   Header,
@@ -13,4 +17,5 @@ export {
   TextInputLabel,
   ContainedActionBtn,
   OutlinedActionBtn,
+  TextActionLink,
 };
