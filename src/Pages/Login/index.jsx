@@ -2,7 +2,12 @@ import React, { useState } from "react";
 
 import "./Login.css";
 
-import { PageWrapper, SectionWrapper, TextInput } from "../../Components";
+import {
+  PageWrapper,
+  SectionWrapper,
+  TextInput,
+  TextInputLabel,
+} from "../../Components";
 
 const Login = () => {
   const [logInData, setLogInData] = useState({
@@ -24,8 +29,10 @@ const Login = () => {
         <div>
           <h1>SOCIOBEE</h1>
           <form className="login_form flex flex-col">
-            <label className="login_form_username">
-              <span>Username</span>
+            <TextInputLabel
+              className="login_form_username"
+              labelText="Username"
+            >
               <TextInput
                 inputName="logInName"
                 inputType="text"
@@ -33,8 +40,11 @@ const Login = () => {
                 inputPlaceholder="Enter username"
                 inputHandle={handleOnChange}
               />
-            </label>
-            <label className="login_form_password">
+            </TextInputLabel>
+            <TextInputLabel
+              className="login_form_password"
+              labelText="Password"
+            >
               <TextInput
                 inputName="logInPassword"
                 inputType="text"
@@ -42,7 +52,7 @@ const Login = () => {
                 inputPlaceholder="Enter password"
                 inputHandle={handleOnChange}
               />
-            </label>
+            </TextInputLabel>
             <button>Log in</button>
             <button>Log in as guest</button>
           </form>
