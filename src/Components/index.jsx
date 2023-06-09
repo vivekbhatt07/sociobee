@@ -6,6 +6,7 @@ import {
   OutlinedActionBtn,
   TextActionLink,
 } from "./Actions";
+import { PrimaryCarousel } from "./Carousels";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   ContainedActionBtn,
   OutlinedActionBtn,
   TextActionLink,
+  PrimaryCarousel,
 };

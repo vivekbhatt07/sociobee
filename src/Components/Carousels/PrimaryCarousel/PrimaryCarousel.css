@@ -1,0 +1,25 @@
+.primary_carousel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.primary_carousel_slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary_carousel_slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.primary_carousel_slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
