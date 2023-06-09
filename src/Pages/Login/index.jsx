@@ -38,8 +38,8 @@ const Login = () => {
         <PrimaryCarousel />
       </SectionWrapper>
       <SectionWrapper className="login_form_section flex lg:basis-6/12">
-        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8">
-          <div className="login_form_wrap border px-4 py-4 rounded w-full flex flex-col">
+        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg xl:max-w-xl">
+          <div className="login_form_wrap border border-stone-400 px-4 py-4 rounded w-full flex flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img className="mx-auto" src={SocioBeeImg} alt="logo" />
             </h1>
@@ -81,9 +81,9 @@ const Login = () => {
               </div>
             </form>
           </div>
-          <div className="login border px-4 py-4 rounded w-full flex gap-2 justify-center">
+          <div className="login border border-stone-400 px-4 py-4 rounded w-full flex items-center gap-2 justify-center">
             <p>Don't have an account?</p>
-            <TextActionLink>Sign Up</TextActionLink>
+            <TextActionLink reach="/signup">Sign Up</TextActionLink>
           </div>
         </div>
       </SectionWrapper>
