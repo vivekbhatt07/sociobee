@@ -11,9 +11,15 @@ import {
   TextActionLink,
   PrimaryContainer,
   ActionContainer,
+  PasswordToggler,
 } from "../../Components";
 
+import SocialBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
+
 const SignUp = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [isConfirmVisible, setIsConfirmVisible] = useState(true);
+
   const [signUpData, setSignUpData] = useState({
     signUpFirstName: "",
     signUpLastName: "",
@@ -32,9 +38,17 @@ const SignUp = () => {
 
   return (
     <PageWrapper className="signup_page">
-      <SectionWrapper className="signup_section flex">
-        <form className="signup_form max-w-xs m-auto">
-          <PrimaryContainer className="signup_form_container flex-col">
+      <SectionWrapper className="signup_section flex flex-col">
+        <img
+          src={SocialBeeImg}
+          alt="logo"
+          className="mx-auto w-40 object-cover"
+        />
+        <h3 className="signup_head mx-auto mb-4 font-bold bg-stone-700 text-stone-50 py-2 px-4">
+          SIGN UP FORM
+        </h3>
+        <form className="signup_form max-w-xs mx-auto mb-4 md:w-2/4">
+          <PrimaryContainer className="signup_form_container flex-col gap-4">
             {/* FIRST NAME */}
             <TextInputLabel labelText="First Name">
               <TextInput
@@ -66,36 +80,42 @@ const SignUp = () => {
               />
               {/* PASSWORD */}
               <TextInputLabel labelText="Password">
-                <TextInput
-                  inputName="signUpPassword"
-                  inputType="text"
-                  inputValue={signUpData.signUpPassword}
-                  inputPlaceholder="Password"
-                  inputHandle={handleOnChange}
-                />
+                <PasswordToggler
+                  isTypePassword={isPasswordVisible}
+                  handleVisibility={setIsPasswordVisible}
+                >
+                  <TextInput
+                    inputName="signUpPassword"
+                    inputType={isPasswordVisible ? "password" : "text"}
+                    inputValue={signUpData.signUpPassword}
+                    inputPlaceholder="Password"
+                    inputHandle={handleOnChange}
+                  />
+                </PasswordToggler>
               </TextInputLabel>
               {/* CONFIRM PASSWORD */}
               <TextInputLabel labelText="Confirm Password">
-                <TextInput
-                  inputName="signUpConfirm"
-                  inputType="text"
-                  inputValue={signUpData.signUpConfirm}
-                  inputPlaceholder="Confirm Password"
-                  inputHandle={handleOnChange}
-                />
+                <PasswordToggler
+                  isTypePassword={isConfirmVisible}
+                  handleVisibility={setIsConfirmVisible}
+                >
+                  <TextInput
+                    inputName="signUpConfirm"
+                    inputType={isConfirmVisible ? "password" : "text"}
+                    inputValue={signUpData.signUpConfirm}
+                    inputPlaceholder="Confirm Password"
+                    inputHandle={handleOnChange}
+                  />
+                </PasswordToggler>
               </TextInputLabel>
             </TextInputLabel>
-            <ActionContainer className="signup_actions flex-col">
-              <ContainedActionBtn type="submit">Sign up</ContainedActionBtn>
-              <OutlinedActionBtn
-                type="button"
-                handleClick={() => navigate("/")}
-              >
-                Log in
-              </OutlinedActionBtn>
-            </ActionContainer>
+            <ContainedActionBtn type="submit">Sign up</ContainedActionBtn>
           </PrimaryContainer>
         </form>
+        <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4">
+          <p>Have an account already?</p>
+          <TextActionLink reach="/">Log In</TextActionLink>
+        </PrimaryContainer>
       </SectionWrapper>
     </PageWrapper>
   );

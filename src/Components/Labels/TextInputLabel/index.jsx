@@ -5,7 +5,7 @@ const TextInputLabel = (props) => {
   const classes = className + " flex flex-col gap-2";
   return (
     <label className={classes}>
-      <span>{labelText}</span>
+      <span className="text-xs lg:text-sm">{labelText}</span>
       {children}
     </label>
   );

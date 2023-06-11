@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import "./Login.css";
-
 import {
   PageWrapper,
   SectionWrapper,
@@ -13,11 +11,14 @@ import {
   PrimaryCarousel,
   PrimaryContainer,
   ActionContainer,
+  PasswordToggler,
 } from "../../Components";
 
 import SocioBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
 
 const Login = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
   const [logInData, setLogInData] = useState({
     logInName: "",
     logInPassword: "",
@@ -44,10 +45,9 @@ const Login = () => {
           <PrimaryContainer className="login_form_wrap w-full flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
-                className="mx-auto"
+                className="mx-auto w-40 object-cover"
                 src={SocioBeeImg}
                 alt="logo"
-                style={{ width: "160px", objectFit: "cover" }}
               />
             </h1>
             <form
@@ -70,13 +70,18 @@ const Login = () => {
                 className="login_form_password"
                 labelText="Password"
               >
-                <TextInput
-                  inputName="logInPassword"
-                  inputType="text"
-                  inputValue={logInData.logInPassword}
-                  inputPlaceholder="Enter password"
-                  inputHandle={handleOnChange}
-                />
+                <PasswordToggler
+                  isTypePassword={isPasswordVisible}
+                  handleVisibility={setIsPasswordVisible}
+                >
+                  <TextInput
+                    inputName="logInPassword"
+                    inputType={isPasswordVisible ? "password" : "text"}
+                    inputValue={logInData.logInPassword}
+                    inputPlaceholder="Enter password"
+                    inputHandle={handleOnChange}
+                  />
+                </PasswordToggler>
               </TextInputLabel>
               <ActionContainer className="login_form_actions flex-col ">
                 <ContainedActionBtn

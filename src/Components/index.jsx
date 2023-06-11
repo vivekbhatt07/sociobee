@@ -13,6 +13,8 @@ import {
   ActionContainer,
 } from "./Container";
 
+import PasswordToggler from "./PasswordToggler";
+
 export {
   Header,
   Footer,
@@ -28,4 +30,5 @@ export {
   PrimaryContainer,
   SecondaryContainer,
   ActionContainer,
+  PasswordToggler,
 };

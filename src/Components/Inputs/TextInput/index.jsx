@@ -10,7 +10,7 @@ const TextInput = (props) => {
       value={inputValue}
       placeholder={inputPlaceholder}
       onChange={inputHandle}
-      className="border p-2 rounded"
+      className="border p-2 rounded w-full"
       required
     />
   );
