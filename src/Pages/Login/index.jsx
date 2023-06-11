@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   PageWrapper,
@@ -14,6 +14,8 @@ import {
   PasswordToggler,
 } from "../../Components";
 
+import { emailValidation, passwordValidation } from "../../Utility";
+
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme } from "../../Context";
@@ -28,6 +30,17 @@ const Login = () => {
     logInPassword: "",
   });
 
+  const [logInError, setLogInError] = useState({
+    logInName: "",
+    logInPassword: "",
+  });
+
+  const handleLogInError = (warningType, warningText) => {
+    setLogInError((prevLogInError) => {
+      return { ...prevLogInError, [warningType]: warningText };
+    });
+  };
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setLogInData((prevLogInData) => {
@@ -36,8 +49,33 @@ const Login = () => {
   };
 
   const handleLogInFormSubmit = (event) => {
-    return event.preventDefault();
+    event.preventDefault();
   };
+
+  useEffect(() => {
+    if (!emailValidation(logInData.logInName)) {
+      if (logInData.logInName === "") {
+        handleLogInError("logInName", "");
+      } else {
+        handleLogInError("logInName", "Email should be in correct format");
+      }
+    } else {
+      handleLogInError("logInName", "");
+    }
+
+    if (!passwordValidation(logInData.logInPassword)) {
+      if (logInData.logInPassword === "") {
+        handleLogInError("logInPassword", "");
+      } else {
+        handleLogInError(
+          "logInPassword",
+          "Atleast 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
+        );
+      }
+    } else {
+      handleLogInError("logInPassword", "");
+    }
+  }, [logInData]);
 
   return (
     <PageWrapper className="login_page flex-row">
@@ -66,10 +104,18 @@ const Login = () => {
                   inputName="logInName"
                   inputType="text"
                   inputValue={logInData.logInName}
-                  inputPlaceholder="Enter username"
-                  inputHandle={handleOnChange}
+                  inputPlaceholder="abc@gmail.com"
+                  isValid={emailValidation(logInData.logInName)}
+                  inputHandle={(event) => {
+                    handleOnChange(event);
+                  }}
                 />
               </TextInputLabel>
+              {logInError.logInName && (
+                <div className="rounded text-xs bg-stone-950 text-stone-50 px-2 py-2 text-center">
+                  {logInError.logInName}
+                </div>
+              )}
               <TextInputLabel
                 className="login_form_password"
                 labelText="Password"
@@ -87,6 +133,11 @@ const Login = () => {
                   />
                 </PasswordToggler>
               </TextInputLabel>
+              {logInError.logInPassword && (
+                <div className="rounded text-xs bg-stone-950 text-stone-50 px-2 py-2 text-center max-w-xs">
+                  {logInError.logInPassword}
+                </div>
+              )}
               <ActionContainer className="login_form_actions flex-col ">
                 <ContainedActionBtn
                   className="login_user_action"

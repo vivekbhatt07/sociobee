@@ -17,6 +17,7 @@ import {
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme } from "../../Context";
+import { emailValidation } from "../../Utility";
 
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
@@ -29,6 +30,13 @@ const SignUp = () => {
     signUpEmail: "",
     signUpPassword: "",
     signUpConfirm: "",
+  });
+
+  const [signUpErrorData, setSignUpErrorData] = useState({
+    signUpFirstName: "",
+    signUpLastName: "",
+    signUpEmail: "",
+    signUpPassword: "",
   });
 
   const navigate = useNavigate();
