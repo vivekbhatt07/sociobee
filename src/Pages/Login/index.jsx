@@ -14,9 +14,13 @@ import {
   PasswordToggler,
 } from "../../Components";
 
-import SocioBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
+import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
+import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
+import { useTheme } from "../../Context";
 
 const Login = () => {
+  const { isDarkTheme } = useTheme();
+
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
   const [logInData, setLogInData] = useState({
@@ -46,7 +50,7 @@ const Login = () => {
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
                 className="mx-auto w-40 object-cover"
-                src={SocioBeeImg}
+                src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
                 alt="logo"
               />
             </h1>

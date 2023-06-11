@@ -4,7 +4,6 @@ import { useTheme } from "../../../Context";
 
 const PageWrapper = (props) => {
   const { isDarkTheme, toggleTheme } = useTheme();
-  console.log(isDarkTheme);
 
   const { children, className } = props;
   const classes =
