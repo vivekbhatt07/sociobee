@@ -10,7 +10,7 @@ const TextInput = (props) => {
       value={inputValue}
       placeholder={inputPlaceholder}
       onChange={inputHandle}
-      className="border-2 border-stone-400 p-2 rounded w-full transition-colors duration-700 outline-0 focus:border-stone-950"
+      className="border-2 border-stone-400 p-2 rounded w-full transition-colors duration-700 outline-0 focus:border-stone-950 dark:text-stone-950"
       required
     />
   );

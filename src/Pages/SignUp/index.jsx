@@ -14,9 +14,12 @@ import {
   PasswordToggler,
 } from "../../Components";
 
-import SocialBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
+import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
+import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
+import { useTheme } from "../../Context";
 
 const SignUp = () => {
+  const { isDarkTheme } = useTheme();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const [isConfirmVisible, setIsConfirmVisible] = useState(true);
 
@@ -40,9 +43,9 @@ const SignUp = () => {
     <PageWrapper className="signup_page">
       <SectionWrapper className="signup_section flex flex-col">
         <img
-          src={SocialBeeImg}
-          alt="logo"
           className="mx-auto w-40 object-cover"
+          src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
+          alt="logo"
         />
         <h3 className="signup_head mx-auto mb-4 font-bold bg-stone-700 text-stone-50 py-2 px-4">
           SIGN UP FORM
