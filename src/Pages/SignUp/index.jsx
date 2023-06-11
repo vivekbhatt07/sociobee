@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -14,20 +14,33 @@ import {
 } from "../../Components";
 
 const SignUp = () => {
+  const [signUpData, setSignUpData] = useState({
+    signUpFirstName: "",
+    signUpLastName: "",
+    signUpEmail: "",
+    signUpPassword: "",
+    signUpConfirm: "",
+  });
+
   const navigate = useNavigate();
-  const handleOnChange = () => {};
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setSignUpData((prevSignUpData) => {
+      return { ...prevSignUpData, [name]: value };
+    });
+  };
 
   return (
     <PageWrapper className="signup_page">
       <SectionWrapper className="signup_section flex">
         <form className="signup_form max-w-xs m-auto">
-          <PrimaryContainer className="flex-col">
+          <PrimaryContainer className="signup_form_container flex-col">
             {/* FIRST NAME */}
             <TextInputLabel labelText="First Name">
               <TextInput
                 inputName="signUpFirstName"
                 inputType="text"
-                inputValue=""
+                inputValue={signUpData.signUpFirstName}
                 inputPlaceholder="First Name"
                 inputHandle={handleOnChange}
               />
@@ -37,7 +50,7 @@ const SignUp = () => {
               <TextInput
                 inputName="signUpLastName"
                 inputType="text"
-                inputValue=""
+                inputValue={signUpData.signUpLastName}
                 inputPlaceholder="Last Name"
                 inputHandle={handleOnChange}
               />
@@ -47,7 +60,7 @@ const SignUp = () => {
               <TextInput
                 inputName="signUpEmail"
                 inputType="email"
-                inputValue=""
+                inputValue={signUpData.signUpEmail}
                 inputPlaceholder="Email"
                 inputHandle={handleOnChange}
               />
@@ -56,7 +69,7 @@ const SignUp = () => {
                 <TextInput
                   inputName="signUpPassword"
                   inputType="text"
-                  inputValue=""
+                  inputValue={signUpData.signUpPassword}
                   inputPlaceholder="Password"
                   inputHandle={handleOnChange}
                 />
@@ -66,7 +79,7 @@ const SignUp = () => {
                 <TextInput
                   inputName="signUpConfirm"
                   inputType="text"
-                  inputValue=""
+                  inputValue={signUpData.signUpConfirm}
                   inputPlaceholder="Confirm Password"
                   inputHandle={handleOnChange}
                 />
