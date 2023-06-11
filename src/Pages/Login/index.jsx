@@ -11,6 +11,8 @@ import {
   OutlinedActionBtn,
   TextActionLink,
   PrimaryCarousel,
+  PrimaryContainer,
+  ActionContainer,
 } from "../../Components";
 
 import SocioBeeImg from "../../Assets/Logo/SocioBeeLight.svg";
@@ -39,7 +41,7 @@ const Login = () => {
       </SectionWrapper>
       <SectionWrapper className="login_form_section flex lg:basis-6/12">
         <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg xl:max-w-xl">
-          <div className="login_form_wrap border border-stone-400 px-4 py-4 rounded w-full flex flex-col">
+          <PrimaryContainer className="login_form_wrap w-full flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
                 className="mx-auto"
@@ -76,7 +78,7 @@ const Login = () => {
                   inputHandle={handleOnChange}
                 />
               </TextInputLabel>
-              <div className="login_form_actions flex flex-col gap-2">
+              <ActionContainer className="login_form_actions flex-col ">
                 <ContainedActionBtn
                   className="login_user_action"
                   containBtnType="submit"
@@ -89,13 +91,13 @@ const Login = () => {
                 >
                   Log in as guest
                 </OutlinedActionBtn>
-              </div>
+              </ActionContainer>
             </form>
-          </div>
-          <div className="login border border-stone-400 px-4 py-4 rounded w-full flex items-center gap-2 justify-center">
+          </PrimaryContainer>
+          <PrimaryContainer className="login w-full items-center gap-2 justify-center">
             <p>Don't have an account?</p>
             <TextActionLink reach="/signup">Sign Up</TextActionLink>
-          </div>
+          </PrimaryContainer>
         </div>
       </SectionWrapper>
     </PageWrapper>
