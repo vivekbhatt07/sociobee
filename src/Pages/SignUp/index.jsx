@@ -112,7 +112,7 @@ const SignUp = () => {
   };
 
   return (
-    <PageWrapper className="signup_page">
+    <PageWrapper className="signup_page min-h-screen">
       <SectionWrapper className="signup_section flex flex-col">
         <img
           className="mx-auto w-40 object-cover"

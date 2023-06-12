@@ -81,7 +81,7 @@ const Login = () => {
   }, [logInData]);
 
   return (
-    <PageWrapper className="login_page flex-row">
+    <PageWrapper className="login_page flex-row min-h-screen">
       <SectionWrapper className="login_media_section hidden lg:block lg:basis-6/12">
         <PrimaryCarousel />
       </SectionWrapper>
