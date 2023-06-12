@@ -1,18 +1,18 @@
 import axios from "axios";
 
 const signUpService = async (
-  email,
+  username,
   password,
+  email,
   firstName,
-  lastName,
-  userName
+  lastName
 ) => {
   return axios.post("/api/auth/signup", {
-    email,
+    username,
     password,
+    email,
     firstName,
     lastName,
-    userName,
   });
 };
 

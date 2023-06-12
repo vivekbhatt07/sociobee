@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const logInService = async (email, password) => {
-  return axios.post("/api/auth/login", { email, password });
+const logInService = async (username, password) => {
+  return axios.post("/api/auth/login", { username, password });
 };
 
 export default logInService;

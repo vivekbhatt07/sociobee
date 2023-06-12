@@ -20,10 +20,11 @@ import { passwordValidation, userNameValidation } from "../../Utility";
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme } from "../../Context";
+import { useAuth } from "../../Context";
 
 const Login = () => {
   const { isDarkTheme } = useTheme();
-
+  const { logInHandler } = useAuth();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
   const [logInData, setLogInData] = useState({
@@ -51,6 +52,8 @@ const Login = () => {
 
   const handleLogInFormSubmit = (event) => {
     event.preventDefault();
+    logInHandler(logInData.logInName, logInData.logInPassword);
+    console.log("logIn");
   };
 
   useEffect(() => {
