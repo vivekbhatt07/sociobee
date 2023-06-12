@@ -1,3 +1,7 @@
-import { emailValidation, passwordValidation } from "./FunctionalUtility";
+import {
+  emailValidation,
+  passwordValidation,
+  userNameValidation,
+} from "./FunctionalUtility";
 
-export { emailValidation, passwordValidation };
+export { emailValidation, passwordValidation, userNameValidation };

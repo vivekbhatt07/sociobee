@@ -15,7 +15,7 @@ import {
   ValidationContainer,
 } from "../../Components";
 
-import { emailValidation, passwordValidation } from "../../Utility";
+import { passwordValidation, userNameValidation } from "../../Utility";
 
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
@@ -54,11 +54,11 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!emailValidation(logInData.logInName)) {
+    if (!userNameValidation(logInData.logInName)) {
       if (logInData.logInName === "") {
         handleLogInError("logInName", "");
       } else {
-        handleLogInError("logInName", "Email should be in correct format");
+        handleLogInError("logInName", "UserName should be in correct format");
       }
     } else {
       handleLogInError("logInName", "");
@@ -84,7 +84,7 @@ const Login = () => {
         <PrimaryCarousel />
       </SectionWrapper>
       <SectionWrapper className="login_form_section flex lg:basis-6/12">
-        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg">
+        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:w-[24rem]">
           <PrimaryContainer className="login_form_wrap w-full flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
@@ -105,8 +105,7 @@ const Login = () => {
                   inputName="logInName"
                   inputType="text"
                   inputValue={logInData.logInName}
-                  inputPlaceholder="abc@gmail.com"
-                  isValid={emailValidation(logInData.logInName)}
+                  inputPlaceholder="vivekbhatt07"
                   inputHandle={(event) => {
                     handleOnChange(event);
                   }}
@@ -135,7 +134,7 @@ const Login = () => {
                 </PasswordToggler>
               </TextInputLabel>
               {logInError.logInPassword && (
-                <ValidationContainer className="login_password_validation max-w-xs">
+                <ValidationContainer className="login_password_validation">
                   {logInError.logInPassword}
                 </ValidationContainer>
               )}

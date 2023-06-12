@@ -18,7 +18,11 @@ import {
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme } from "../../Context";
-import { emailValidation, passwordValidation } from "../../Utility";
+import {
+  emailValidation,
+  passwordValidation,
+  userNameValidation,
+} from "../../Utility";
 
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
@@ -78,6 +82,19 @@ const SignUp = () => {
       }
     } else {
       handleSignUpError("signUpPassword", "");
+    }
+
+    if (!userNameValidation(signUpData.signUpUsername)) {
+      if (signUpData.signUpUsername === "") {
+        handleSignUpError("signUpUsername", "");
+      } else {
+        handleSignUpError(
+          "signUpUsername",
+          "Username should be in correct format"
+        );
+      }
+    } else {
+      handleSignUpError("signUpUsername", "");
     }
   }, [signUpData]);
 
@@ -139,6 +156,11 @@ const SignUp = () => {
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
+            {signUpErrorData.signUpUsername && (
+              <ValidationContainer className="signup_email_validation">
+                {signUpErrorData.signUpUsername}
+              </ValidationContainer>
+            )}
             {/* PASSWORD */}
             <TextInputLabel labelText="Password">
               <PasswordToggler
@@ -155,7 +177,7 @@ const SignUp = () => {
               </PasswordToggler>
             </TextInputLabel>
             {signUpErrorData.signUpPassword && (
-              <ValidationContainer className="signup_password_validation max-w-xs">
+              <ValidationContainer className="signup_password_validation">
                 {signUpErrorData.signUpPassword}
               </ValidationContainer>
             )}
