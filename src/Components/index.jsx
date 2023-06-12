@@ -15,6 +15,7 @@ import {
 } from "./Container";
 
 import PasswordToggler from "./PasswordToggler";
+import Tab from "./Tab";
 
 export {
   Header,
@@ -33,4 +34,5 @@ export {
   ActionContainer,
   PasswordToggler,
   ValidationContainer,
+  Tab,
 };

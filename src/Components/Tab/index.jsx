@@ -4,6 +4,7 @@ import "./Tab.css";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../Context/AuthContext";
+import { Header } from "../Layout";
 
 function Tab(props) {
   const [activeTab, setActiveTab] = useState(0);
@@ -12,6 +13,7 @@ function Tab(props) {
 
   return (
     <div className="tab">
+      <Header className="tab_header" />
       <ul className="tab_nav">
         {tabList.map((currentTab, i) => {
           const { name } = currentTab;
@@ -33,6 +35,7 @@ function Tab(props) {
         })}
       </ul>
       <div className="tab_outlet">{tabList[activeTab].component}</div>
+      <div className="tab_sidebar"></div>
     </div>
   );
 }

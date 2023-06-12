@@ -1,7 +1,7 @@
 import React from "react";
 
 const Bookmark = () => {
-  return <div></div>;
+  return <div>Bookmark</div>;
 };
 
 export default Bookmark;
