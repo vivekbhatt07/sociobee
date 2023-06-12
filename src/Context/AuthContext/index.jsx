@@ -13,14 +13,26 @@ const AuthProvider = ({ children }) => {
   );
 
   const logInHandler = async (username, password) => {
-    console.log(username, password);
     try {
-      console.log("Hello");
       const logInResponse = await logInService(username, password);
-      console.log(logInResponse);
+      if (logInResponse.status === 200) {
+        const { foundUser, encodedToken } = logInResponse.data;
+        localStorage.setItem(
+          "userCredentials",
+          JSON.stringify({ user: foundUser, token: encodedToken })
+        );
+        setActiveUser(foundUser);
+        setToken(encodedToken);
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const logOutHandler = () => {
+    localStorage.removeItem("userCredentials");
+    setActiveUser(null);
+    setToken(null);
   };
 
   const signUpHandler = async (
@@ -53,7 +65,7 @@ const AuthProvider = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ token, activeUser, logInHandler, signUpHandler }}
+      value={{ token, activeUser, logInHandler, logOutHandler, signUpHandler }}
     >
       {children}
     </AuthContext.Provider>

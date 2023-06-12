@@ -53,7 +53,6 @@ const Login = () => {
   const handleLogInFormSubmit = (event) => {
     event.preventDefault();
     logInHandler(logInData.logInName, logInData.logInPassword);
-    console.log("logIn");
   };
 
   useEffect(() => {
@@ -150,7 +149,7 @@ const Login = () => {
                 </ContainedActionBtn>
                 <OutlinedActionBtn
                   className="login_guest_action"
-                  outlineBtnType="submit"
+                  outlineBtnType="button"
                 >
                   Log in as guest
                 </OutlinedActionBtn>
