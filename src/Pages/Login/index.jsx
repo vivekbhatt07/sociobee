@@ -12,6 +12,7 @@ import {
   PrimaryContainer,
   ActionContainer,
   PasswordToggler,
+  ValidationContainer,
 } from "../../Components";
 
 import { emailValidation, passwordValidation } from "../../Utility";
@@ -69,7 +70,7 @@ const Login = () => {
       } else {
         handleLogInError(
           "logInPassword",
-          "Atleast 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
+          "Atleast 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character"
         );
       }
     } else {
@@ -83,7 +84,7 @@ const Login = () => {
         <PrimaryCarousel />
       </SectionWrapper>
       <SectionWrapper className="login_form_section flex lg:basis-6/12">
-        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg xl:max-w-xl">
+        <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:max-w-lg">
           <PrimaryContainer className="login_form_wrap w-full flex-col">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
@@ -112,9 +113,9 @@ const Login = () => {
                 />
               </TextInputLabel>
               {logInError.logInName && (
-                <div className="rounded text-xs bg-stone-950 text-stone-50 px-2 py-2 text-center">
+                <ValidationContainer className="login_email_validation">
                   {logInError.logInName}
-                </div>
+                </ValidationContainer>
               )}
               <TextInputLabel
                 className="login_form_password"
@@ -134,9 +135,9 @@ const Login = () => {
                 </PasswordToggler>
               </TextInputLabel>
               {logInError.logInPassword && (
-                <div className="rounded text-xs bg-stone-950 text-stone-50 px-2 py-2 text-center max-w-xs">
+                <ValidationContainer className="login_password_validation max-w-xs">
                   {logInError.logInPassword}
-                </div>
+                </ValidationContainer>
               )}
               <ActionContainer className="login_form_actions flex-col ">
                 <ContainedActionBtn

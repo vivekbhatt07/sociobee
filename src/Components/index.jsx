@@ -11,6 +11,7 @@ import {
   PrimaryContainer,
   SecondaryContainer,
   ActionContainer,
+  ValidationContainer,
 } from "./Container";
 
 import PasswordToggler from "./PasswordToggler";
@@ -31,4 +32,5 @@ export {
   SecondaryContainer,
   ActionContainer,
   PasswordToggler,
+  ValidationContainer,
 };

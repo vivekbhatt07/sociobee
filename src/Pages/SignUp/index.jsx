@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -12,12 +12,13 @@ import {
   PrimaryContainer,
   ActionContainer,
   PasswordToggler,
+  ValidationContainer,
 } from "../../Components";
 
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme } from "../../Context";
-import { emailValidation } from "../../Utility";
+import { emailValidation, passwordValidation } from "../../Utility";
 
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
@@ -28,6 +29,7 @@ const SignUp = () => {
     signUpFirstName: "",
     signUpLastName: "",
     signUpEmail: "",
+    signUpUsername: "",
     signUpPassword: "",
     signUpConfirm: "",
   });
@@ -36,6 +38,7 @@ const SignUp = () => {
     signUpFirstName: "",
     signUpLastName: "",
     signUpEmail: "",
+    signUpUsername: "",
     signUpPassword: "",
   });
 
@@ -46,6 +49,37 @@ const SignUp = () => {
       return { ...prevSignUpData, [name]: value };
     });
   };
+
+  const handleSignUpError = (warningType, warningText) => {
+    setSignUpErrorData((prevSignUpError) => {
+      return { ...prevSignUpError, [warningType]: warningText };
+    });
+  };
+
+  useEffect(() => {
+    if (!emailValidation(signUpData.signUpEmail)) {
+      if (signUpData.signUpEmail === "") {
+        handleSignUpError("signUpEmail", "");
+      } else {
+        handleSignUpError("signUpEmail", "Email should be in correct format");
+      }
+    } else {
+      handleSignUpError("signUpEmail", "");
+    }
+
+    if (!passwordValidation(signUpData.signUpPassword)) {
+      if (signUpData.signUpPassword === "") {
+        handleSignUpError("signUpPassword", "");
+      } else {
+        handleSignUpError(
+          "signUpPassword",
+          "Atleast 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character"
+        );
+      }
+    } else {
+      handleSignUpError("signUpPassword", "");
+    }
+  }, [signUpData]);
 
   return (
     <PageWrapper className="signup_page">
@@ -89,37 +123,58 @@ const SignUp = () => {
                 inputPlaceholder="Email"
                 inputHandle={handleOnChange}
               />
-              {/* PASSWORD */}
-              <TextInputLabel labelText="Password">
-                <PasswordToggler
-                  isTypePassword={isPasswordVisible}
-                  handleVisibility={setIsPasswordVisible}
-                >
-                  <TextInput
-                    inputName="signUpPassword"
-                    inputType={isPasswordVisible ? "password" : "text"}
-                    inputValue={signUpData.signUpPassword}
-                    inputPlaceholder="Password"
-                    inputHandle={handleOnChange}
-                  />
-                </PasswordToggler>
-              </TextInputLabel>
-              {/* CONFIRM PASSWORD */}
-              <TextInputLabel labelText="Confirm Password">
-                <PasswordToggler
-                  isTypePassword={isConfirmVisible}
-                  handleVisibility={setIsConfirmVisible}
-                >
-                  <TextInput
-                    inputName="signUpConfirm"
-                    inputType={isConfirmVisible ? "password" : "text"}
-                    inputValue={signUpData.signUpConfirm}
-                    inputPlaceholder="Confirm Password"
-                    inputHandle={handleOnChange}
-                  />
-                </PasswordToggler>
-              </TextInputLabel>
             </TextInputLabel>
+            {signUpErrorData.signUpEmail && (
+              <ValidationContainer className="signup_email_validation">
+                {signUpErrorData.signUpEmail}
+              </ValidationContainer>
+            )}
+            {/* USERNAME */}
+            <TextInputLabel labelText="Username">
+              <TextInput
+                inputName="signUpUsername"
+                inputType="text"
+                inputValue={signUpData.signUpUsername}
+                inputPlaceholder="Username"
+                inputHandle={handleOnChange}
+              />
+            </TextInputLabel>
+            {/* PASSWORD */}
+            <TextInputLabel labelText="Password">
+              <PasswordToggler
+                isTypePassword={isPasswordVisible}
+                handleVisibility={setIsPasswordVisible}
+              >
+                <TextInput
+                  inputName="signUpPassword"
+                  inputType={isPasswordVisible ? "password" : "text"}
+                  inputValue={signUpData.signUpPassword}
+                  inputPlaceholder="Password"
+                  inputHandle={handleOnChange}
+                />
+              </PasswordToggler>
+            </TextInputLabel>
+            {signUpErrorData.signUpPassword && (
+              <ValidationContainer className="signup_password_validation max-w-xs">
+                {signUpErrorData.signUpPassword}
+              </ValidationContainer>
+            )}
+            {/* CONFIRM PASSWORD */}
+            <TextInputLabel labelText="Confirm Password">
+              <PasswordToggler
+                isTypePassword={isConfirmVisible}
+                handleVisibility={setIsConfirmVisible}
+              >
+                <TextInput
+                  inputName="signUpConfirm"
+                  inputType={isConfirmVisible ? "password" : "text"}
+                  inputValue={signUpData.signUpConfirm}
+                  inputPlaceholder="Confirm Password"
+                  inputHandle={handleOnChange}
+                />
+              </PasswordToggler>
+            </TextInputLabel>
+
             <ContainedActionBtn type="submit">Sign up</ContainedActionBtn>
           </PrimaryContainer>
         </form>
