@@ -4,4 +4,12 @@ import {
   userNameValidation,
 } from "./ValidationUtility";
 
-export { emailValidation, passwordValidation, userNameValidation };
+import { logInService, signUpService } from "./ServicesUtility";
+
+export {
+  emailValidation,
+  passwordValidation,
+  userNameValidation,
+  signUpService,
+  logInService,
+};
