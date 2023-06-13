@@ -1,0 +1,44 @@
+.mode {
+  width: 80px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 24px;
+  background-color: #581c87;
+  justify-content: flex-start;
+}
+
+.mode:hover {
+  background: #581c87;
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.circle.dark-circle {
+  background-color: #fff;
+  transform: translateX(39px);
+  position: relative;
+}
+
+.circle.dark-circle::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  background: #581c87;
+  border-radius: 50%;
+  width: 75%;
+  height: 75%;
+  transition: 0.5s;
+}
+
+.circle.light-circle {
+  background-color: yellow;
+  transform: translateX(0);
+  transition: 0.5s;
+}

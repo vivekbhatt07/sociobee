@@ -5,6 +5,7 @@ import {
   ContainedActionBtn,
   OutlinedActionBtn,
   TextActionLink,
+  AvatarActionLink,
 } from "./Actions";
 import { PrimaryCarousel } from "./Carousels";
 import {
@@ -35,4 +36,5 @@ export {
   PasswordToggler,
   ValidationContainer,
   Tab,
+  AvatarActionLink,
 };
