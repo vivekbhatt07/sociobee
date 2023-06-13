@@ -14,21 +14,21 @@ function Tab(props) {
   return (
     <div className="tab">
       <Header className="tab_header" />
-      <ul className="tab_nav">
+      <ul className="tab_nav flex flex-col list-none bg-stone-400">
         {tabList.map((currentTab, i) => {
-          const { name } = currentTab;
+          const { name, logo, reach } = currentTab;
           return (
             <li className="tab_nav_item" key={i}>
               <Link
                 className="tab_btn"
                 onClick={() => setActiveTab(i)}
-                to={currentTab.reach}
+                to={reach}
                 style={{
-                  backgroundColor: activeTab == i ? "#fcaf17" : "transparent",
-                  color: activeTab == i ? "#000" : "#fff",
+                  backgroundColor: activeTab == i ? "#000" : "transparent",
+                  color: activeTab == i ? "#fff" : "#000",
                 }}
               >
-                {name}
+                {activeTab === i ? logo.filled : logo.outlined} {name}
               </Link>
             </li>
           );
