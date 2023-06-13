@@ -11,7 +11,7 @@ const Header = (props) => {
   const { className } = props;
   const classes =
     className +
-    " flex py-2 px-6 justify-between items-center bg-stone-50 dark:bg-stone-950";
+    " flex py-2 px-6 justify-between items-center bg-stone-50 border-b dark:bg-stone-950";
 
   return (
     <header className={classes}>
