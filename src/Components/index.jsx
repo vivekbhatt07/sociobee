@@ -6,6 +6,7 @@ import {
   OutlinedActionBtn,
   TextActionLink,
   AvatarActionLink,
+  IconActionBtn,
 } from "./Actions";
 import { PrimaryCarousel } from "./Carousels";
 import {
@@ -18,6 +19,8 @@ import {
 import PasswordToggler from "./PasswordToggler";
 import Tab from "./Tab";
 
+import { PrimaryCard, SecondaryCard, AddPostCard } from "./Cards";
+
 export {
   Header,
   Footer,
@@ -28,6 +31,7 @@ export {
   TextInputLabel,
   ContainedActionBtn,
   OutlinedActionBtn,
+  IconActionBtn,
   TextActionLink,
   PrimaryCarousel,
   PrimaryContainer,
@@ -37,4 +41,7 @@ export {
   ValidationContainer,
   Tab,
   AvatarActionLink,
+  PrimaryCard,
+  SecondaryCard,
+  AddPostCard,
 };
