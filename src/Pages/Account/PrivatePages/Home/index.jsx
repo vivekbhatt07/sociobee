@@ -1,10 +1,11 @@
 import React from "react";
-import { AddPostCard } from "../../../../Components";
+import { AddPostCard, PostCard } from "../../../../Components";
 
 const Home = () => {
   return (
     <div>
       <AddPostCard />
+      <PostCard />
     </div>
   );
 };

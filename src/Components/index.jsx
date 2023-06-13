@@ -19,7 +19,13 @@ import {
 import PasswordToggler from "./PasswordToggler";
 import Tab from "./Tab";
 
-import { PrimaryCard, SecondaryCard, AddPostCard } from "./Cards";
+import {
+  PrimaryCard,
+  SecondaryCard,
+  AddPostCard,
+  PostCard,
+  SuggestionCard,
+} from "./Cards";
 
 export {
   Header,
@@ -44,4 +50,6 @@ export {
   PrimaryCard,
   SecondaryCard,
   AddPostCard,
+  PostCard,
+  SuggestionCard,
 };

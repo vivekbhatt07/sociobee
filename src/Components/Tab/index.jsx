@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 
 import { Header } from "../Layout";
 import { useTheme } from "../../Context";
+import { OutlinedActionBtn } from "../Actions";
+import { Whatshot, SwapVert, Add } from "@mui/icons-material";
+import { SuggestionCard } from "../Cards";
 
 function Tab(props) {
   const [activeTab, setActiveTab] = useState(0);
@@ -39,7 +42,35 @@ function Tab(props) {
       <div className="tab_outlet border-l border-r bg-[#fff] dark:bg-stone-950">
         {tabList[activeTab].component}
       </div>
-      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950"></div>
+      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950">
+        <div className="flex flex-col gap-2 p-3">
+          <div className="flex w-full gap-2">
+            <OutlinedActionBtn
+              outlineBtnType="button"
+              className="basis-3/6 flex items-center justify-center"
+            >
+              <Whatshot /> <span>Trending</span>
+            </OutlinedActionBtn>
+            <OutlinedActionBtn
+              outlineBtnType="button"
+              className="basis-3/6 flex items-center justify-center"
+            >
+              <SwapVert />
+              <span>Latest</span>
+            </OutlinedActionBtn>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-lg">Suggestions for you</span>
+            <div className="flex flex-col gap-2">
+              <SuggestionCard />
+              <SuggestionCard />
+              <SuggestionCard />
+              <SuggestionCard />
+              <SuggestionCard />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
