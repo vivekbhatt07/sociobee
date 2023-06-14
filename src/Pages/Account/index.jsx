@@ -1,6 +1,6 @@
 import React from "react";
 import { Tab } from "../../Components";
-import { Home, Explore, Bookmark, Like } from "./PrivatePages";
+import { Home, Explore, Bookmark, Like, Profile } from "./PrivatePages";
 import {
   Home as HomeLogo,
   HomeOutlined as HomeOutlinedLogo,
@@ -10,6 +10,8 @@ import {
   BookmarkBorderOutlined as BookmarkOutlinedLogo,
   Favorite as FavoriteLogo,
   FavoriteBorderOutlined as FavoriteOutlinedLogo,
+  Person as PersonLogo,
+  PersonOutlined as PersonOutlinedLogo,
 } from "@mui/icons-material";
 
 const Account = () => {
@@ -44,6 +46,15 @@ const Account = () => {
           logo: {
             filled: <FavoriteLogo />,
             outlined: <FavoriteOutlinedLogo />,
+          },
+        },
+        {
+          name: "Profile",
+          component: <Profile />,
+          reach: "/profile",
+          logo: {
+            filled: <PersonLogo />,
+            outlined: <PersonOutlinedLogo />,
           },
         },
       ]}

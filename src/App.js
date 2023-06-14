@@ -3,7 +3,13 @@ import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { Login, SignUp, Account } from "./Pages";
-import { Home, Explore, Bookmark, Like } from "./Pages/Account/PrivatePages";
+import {
+  Home,
+  Explore,
+  Bookmark,
+  Like,
+  Profile,
+} from "./Pages/Account/PrivatePages";
 
 function App() {
   return (
@@ -16,6 +22,7 @@ function App() {
           <Route path="explore" element={<Explore />} />
           <Route path="bookmark" element={<Bookmark />} />
           <Route path="like" element={<Like />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route />
       </Routes>
