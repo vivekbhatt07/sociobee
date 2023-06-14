@@ -11,7 +11,7 @@ const Header = (props) => {
   const { className } = props;
   const classes =
     className +
-    " flex py-2 px-6 justify-between items-center bg-stone-50 border-b dark:bg-stone-950";
+    " flex py-2 px-6 justify-between items-center bg-stone-50 border-b dark:bg-stone-950 gap-4";
 
   return (
     <header className={classes}>
@@ -36,7 +36,10 @@ const Header = (props) => {
             class={`circle ${isDarkTheme ? "dark" : "light"}-circle`}
           ></span>
         </button>
-        <AvatarActionLink avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp" />
+        <AvatarActionLink
+          avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+          className="hidden"
+        />
       </div>
     </header>
   );

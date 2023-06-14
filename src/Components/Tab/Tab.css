@@ -1,11 +1,12 @@
 .tab {
-  min-height: 100vh;
   display: grid;
-  grid-template-rows: 10vh 90vh;
-  grid-template-columns: 20% 1fr 25%;
+  grid-template-rows: 10dvh 10dvh 70dvh 10dvh;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "header header header"
-    "sideLeft main sideRight";
+    "header"
+    "sideRight"
+    "main"
+    "sideLeft";
 }
 
 .tab_header {
@@ -26,4 +27,16 @@
 
 .tab_sidebar {
   grid-area: sideRight;
+}
+
+@media (min-width: 1280px) {
+  .tab {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+    grid-template-columns: 20% 1fr 25%;
+    grid-template-areas:
+      "header header header"
+      "sideLeft main sideRight";
+  }
 }
