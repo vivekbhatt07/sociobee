@@ -29,7 +29,19 @@
   grid-area: sideRight;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
+  .tab {
+    display: grid;
+    grid-template-rows: 10dvh 10dvh 80dvh;
+    grid-template-columns: 20% 1fr;
+    grid-template-areas:
+      "header header"
+      "sideRight sideRight"
+      "sideLeft main";
+  }
+}
+
+@media (min-width: 1000px) {
   .tab {
     min-height: 100vh;
     display: grid;
