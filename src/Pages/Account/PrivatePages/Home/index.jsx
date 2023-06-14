@@ -3,8 +3,9 @@ import { AddPostCard, PostCard } from "../../../../Components";
 
 const Home = () => {
   return (
-    <div>
+    <div className="overflow-y-scroll h-[90vh] scroll-smooth">
       <AddPostCard />
+      <PostCard />
       <PostCard />
     </div>
   );

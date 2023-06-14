@@ -1,6 +1,14 @@
 import React from "react";
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
-import { MoreHorizOutlined } from "@mui/icons-material";
+import {
+  MoreHorizOutlined,
+  FavoriteBorder,
+  Favorite,
+  Bookmark,
+  BookmarkBorder,
+  Comment,
+  Share,
+} from "@mui/icons-material";
 
 const PostCard = () => {
   return (
@@ -25,10 +33,40 @@ const PostCard = () => {
           Life has got all those twists and turns. You've got to hold on tight
           and off you go.
         </p>
+        <div>
+          <img
+            src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014336/ecommerce/chocolatecake4.webp"
+            alt="post_thumbnail"
+          />
+        </div>
         {/* <Video /> */}
         {/* <img /> */}
       </div>
-      <div className="postCard_footer"></div>
+      <div className="postCard_footer flex items-center gap-2 justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1 items-center">
+            <IconActionBtn>
+              <FavoriteBorder />
+            </IconActionBtn>
+            <span>1</span>
+          </div>
+          <div className="flex gap-1 items-center">
+            <IconActionBtn>
+              <BookmarkBorder />
+            </IconActionBtn>
+            <span>1</span>
+          </div>
+          <div className="flex gap-1 items-center">
+            <IconActionBtn>
+              <Comment />
+            </IconActionBtn>
+            <span>1</span>
+          </div>
+        </div>
+        <IconActionBtn>
+          <Share />
+        </IconActionBtn>
+      </div>
     </article>
   );
 };
