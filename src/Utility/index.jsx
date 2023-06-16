@@ -4,6 +4,9 @@ import {
   userNameValidation,
   logInService,
   signUpService,
+  getPostDetailService,
+  getPostService,
+  editUserService,
 } from "./FunctionalUtility";
 
 export {
@@ -12,4 +15,7 @@ export {
   userNameValidation,
   logInService,
   signUpService,
+  getPostDetailService,
+  getPostService,
+  editUserService,
 };

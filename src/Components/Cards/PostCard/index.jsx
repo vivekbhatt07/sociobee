@@ -10,7 +10,19 @@ import {
   Share,
 } from "@mui/icons-material";
 
-const PostCard = () => {
+const PostCard = (props) => {
+  // const {
+  //   _id,
+  //   content,
+  //   mediaURL,
+  //   mediaAlt,
+  //   likes,
+  //   username,
+  //   createdAt,
+  //   updatedAt,
+  //   comments,
+  // } = props;
+  console.log(props?._id);
   return (
     <article className="postCard border-b p-3 flex flex-col gap-4">
       <div className="postCard_head flex justify-between items-center">
@@ -28,19 +40,23 @@ const PostCard = () => {
           <MoreHorizOutlined />
         </IconActionBtn>
       </div>
-      <div className="postCard_body">
-        <p>
-          Life has got all those twists and turns. You've got to hold on tight
-          and off you go.
-        </p>
-        <div>
-          <img
-            src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1647014336/ecommerce/chocolatecake4.webp"
-            alt="post_thumbnail"
-          />
-        </div>
-        {/* <Video /> */}
-        {/* <img /> */}
+      <div className="postCard_body flex flex-col gap-2">
+        <p>{props?.content}</p>
+        {props?.mediaURL && (
+          <div>
+            {props?.mediaURL?.includes("mp4") ? (
+              <video controls>
+                <source src={props?.mediaURL} type="video/mp4"></source>
+              </video>
+            ) : (
+              <img
+                src={props?.mediaURL}
+                alt={props?.mediaAlt}
+                className="object-cover w-full h-full"
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className="postCard_footer flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
@@ -48,19 +64,19 @@ const PostCard = () => {
             <IconActionBtn>
               <FavoriteBorder />
             </IconActionBtn>
-            <span>1</span>
+            <span>{props?.likes?.likeCount}</span>
           </div>
           <div className="flex gap-1 items-center">
             <IconActionBtn>
               <BookmarkBorder />
             </IconActionBtn>
-            <span>1</span>
+            <span>3</span>
           </div>
           <div className="flex gap-1 items-center">
             <IconActionBtn>
               <Comment />
             </IconActionBtn>
-            <span>1</span>
+            <span>{props?.comments}</span>
           </div>
         </div>
         <IconActionBtn>
