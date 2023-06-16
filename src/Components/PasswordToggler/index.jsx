@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const PasswordToggler = (props) => {

@@ -4,7 +4,13 @@ import {
   userNameValidation,
 } from "./ValidationUtility";
 
-import { logInService, signUpService } from "./ServicesUtility";
+import {
+  logInService,
+  signUpService,
+  getPostDetailService,
+  getPostService,
+  editUserService,
+} from "./ServicesUtility";
 
 export {
   emailValidation,
@@ -12,4 +18,7 @@ export {
   userNameValidation,
   signUpService,
   logInService,
+  getPostDetailService,
+  getPostService,
+  editUserService,
 };
