@@ -9,6 +9,7 @@ import {
   Bookmark,
   Like,
   Profile,
+  PostDetail,
 } from "./Pages/Account/PrivatePages";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="like" element={<Like />} />
           <Route path="profile" element={<Profile />} />
         </Route>
+        <Route path="" element={<PostDetail />} />
         <Route />
       </Routes>
     </div>

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AvatarActionLink,
   IconActionBtn,
   OutlinedActionBtn,
+  ModalProvider,
 } from "../../../../Components";
 import { CalendarMonthOutlined, ExitToApp, Link } from "@mui/icons-material";
 
 const Profile = () => {
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const handleEditProfileOpen = () => setIsEditProfileOpen(true);
+  const handleEditProfileClose = () => setIsEditProfileOpen(false);
   return (
     <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
       <div className="w-full h-28 bg-stone-950 dark:bg-stone-900"></div>
@@ -27,9 +31,21 @@ const Profile = () => {
               </span>
             </div>
             <div className="userprofile_actions flex items-center gap-4">
-              <OutlinedActionBtn type="button" className="px-2 py-1">
-                Edit Profile
-              </OutlinedActionBtn>
+              <ModalProvider
+                isOpen={isEditProfileOpen}
+                closeModal={handleEditProfileClose}
+                modalBtnVariant={
+                  <OutlinedActionBtn
+                    type="button"
+                    className="px-2 py-1"
+                    handleClick={handleEditProfileOpen}
+                  >
+                    Edit Profile
+                  </OutlinedActionBtn>
+                }
+              >
+                Heelo I am under water too much raining.
+              </ModalProvider>
               <OutlinedActionBtn type="button" className="px-2 py-1">
                 Log Out
               </OutlinedActionBtn>

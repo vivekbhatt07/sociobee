@@ -27,6 +27,8 @@ import {
   SuggestionCard,
 } from "./Cards";
 
+import ModalProvider from "./ModalProvider";
+
 export {
   Header,
   Footer,
@@ -52,4 +54,5 @@ export {
   AddPostCard,
   PostCard,
   SuggestionCard,
+  ModalProvider,
 };

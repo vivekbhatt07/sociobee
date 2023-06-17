@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
 import {
   MoreHorizOutlined,
@@ -9,6 +10,8 @@ import {
   Comment,
   Share,
 } from "@mui/icons-material";
+
+import { getPostDetailService } from "../../../Utility";
 
 const PostCard = (props) => {
   // const {
@@ -22,9 +25,13 @@ const PostCard = (props) => {
   //   updatedAt,
   //   comments,
   // } = props;
-  console.log(props?._id);
+  const handlePostDetail = async () => {
+    const postDetailResponse = await getPostDetailService(props?._id);
+    console.log(postDetailResponse);
+  };
+
   return (
-    <article className="postCard border-b p-3 flex flex-col gap-4">
+    <Link className="postCard border-b p-3 flex flex-col gap-4" to={``}>
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
           <AvatarActionLink avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp" />
@@ -83,7 +90,7 @@ const PostCard = (props) => {
           <Share />
         </IconActionBtn>
       </div>
-    </article>
+    </Link>
   );
 };
 

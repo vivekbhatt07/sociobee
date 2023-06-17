@@ -10,8 +10,6 @@ const Home = () => {
       {state?.postList.map((currentPost) => {
         return <PostCard {...currentPost} key={currentPost?._id} />;
       })}
-      <PostCard />
-      <PostCard />
     </div>
   );
 };
