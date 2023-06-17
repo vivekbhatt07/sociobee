@@ -9,8 +9,11 @@ import { CalendarMonthOutlined, ExitToApp, Link } from "@mui/icons-material";
 
 const Profile = () => {
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [isLogOutOpen, setIsLogOutOpen] = useState(false);
   const handleEditProfileOpen = () => setIsEditProfileOpen(true);
   const handleEditProfileClose = () => setIsEditProfileOpen(false);
+  const handleLogOutOpen = () => setIsLogOutOpen(true);
+  const handleLogOutClose = () => setIsLogOutOpen(false);
   return (
     <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
       <div className="w-full h-28 bg-stone-950 dark:bg-stone-900"></div>
@@ -46,9 +49,22 @@ const Profile = () => {
               >
                 Heelo I am under water too much raining.
               </ModalProvider>
-              <OutlinedActionBtn type="button" className="px-2 py-1">
-                Log Out
-              </OutlinedActionBtn>
+
+              <ModalProvider
+                isOpen={isLogOutOpen}
+                closeModal={handleLogOutClose}
+                modalBtnVariant={
+                  <OutlinedActionBtn
+                    type="button"
+                    className="px-2 py-1"
+                    handleClick={handleLogOutOpen}
+                  >
+                    Log Out
+                  </OutlinedActionBtn>
+                }
+              >
+                Do you want to log out?
+              </ModalProvider>
             </div>
           </div>
           <div className="userprofile_quote">
