@@ -6,6 +6,7 @@ import {
   ModalProvider,
   TextInput,
   TextInputLabel,
+  ContainedActionBtn,
 } from "../../../../Components";
 import { CalendarMonthOutlined, ExitToApp, Link } from "@mui/icons-material";
 
@@ -103,7 +104,20 @@ const Profile = () => {
                   </OutlinedActionBtn>
                 }
               >
-                Do you want to log out?
+                <div className="p-4 flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="text-center text-2xl font-semibold">
+                      Log out of SocialBee?
+                    </div>
+                    <p className="text-center">
+                      You can always log back in at any time.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <ContainedActionBtn>Log out</ContainedActionBtn>
+                    <OutlinedActionBtn>Cancel</OutlinedActionBtn>
+                  </div>
+                </div>
               </ModalProvider>
             </div>
           </div>
