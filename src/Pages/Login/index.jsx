@@ -56,6 +56,7 @@ const Login = () => {
   const handleLogInFormSubmit = (event) => {
     event.preventDefault();
     logInHandler(logInData.logInName, logInData.logInPassword);
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -153,12 +154,8 @@ const Login = () => {
                 <OutlinedActionBtn
                   className="login_guest_action"
                   outlineBtnType="button"
-                  handleClick={(event) => {
-                    setLogInData({
-                      logInName: "emilysmith",
-                      logInPassword: "emily@123Smith",
-                    });
-                    handleLogInFormSubmit(event);
+                  handleClick={() => {
+                    logInHandler("emilysmith", "emily@123Smith");
                     navigate("/home");
                   }}
                 >

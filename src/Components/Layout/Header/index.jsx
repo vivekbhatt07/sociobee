@@ -23,7 +23,7 @@ const Header = (props) => {
       </Link>
       <TextInput
         inputType="search"
-        className="w-60"
+        className="w-52"
         inputPlaceholder="Search User..."
       />
       <div className="flex items-center gap-4">
@@ -38,7 +38,8 @@ const Header = (props) => {
         </button>
         <AvatarActionLink
           avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
-          className="hidden"
+          className="hidden md:block"
+          reach="/profile"
         />
       </div>
     </header>

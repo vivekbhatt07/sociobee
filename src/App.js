@@ -11,6 +11,7 @@ import {
   Profile,
   PostDetail,
 } from "./Pages/Account/PrivatePages";
+import { PrivateRoute } from "./Components";
 
 function App() {
   return (
@@ -18,14 +19,28 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Account />}>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Account />
+            </PrivateRoute>
+          }
+        >
           <Route path="home" element={<Home />} />
           <Route path="explore" element={<Explore />} />
           <Route path="bookmark" element={<Bookmark />} />
           <Route path="like" element={<Like />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-        <Route path="" element={<PostDetail />} />
+        <Route
+          path=""
+          element={
+            <PrivateRoute>
+              <PostDetail />
+            </PrivateRoute>
+          }
+        />
         <Route />
       </Routes>
     </div>

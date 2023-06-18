@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useTheme } from "../../Context";
+import { ContainedActionBtn } from "../Actions";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
 function Tab(props) {
   const [activeTab, setActiveTab] = useState(0);
@@ -33,6 +35,9 @@ function Tab(props) {
               </li>
             );
           })}
+          <button>
+            <EditNoteIcon />
+          </button>
         </ul>
       </div>
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">

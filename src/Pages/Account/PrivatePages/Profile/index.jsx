@@ -9,8 +9,11 @@ import {
   ContainedActionBtn,
 } from "../../../../Components";
 import { CalendarMonthOutlined, ExitToApp, Link } from "@mui/icons-material";
+import { useAuth } from "../../../../Context";
 
 const Profile = () => {
+  const { logOutHandler } = useAuth();
+
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isLogOutOpen, setIsLogOutOpen] = useState(false);
   const handleEditProfileOpen = () => setIsEditProfileOpen(true);
@@ -68,16 +71,16 @@ const Profile = () => {
                       </AvatarActionLink>
                     </div>
                     <form className="flex flex-col gap-3">
-                      <TextInputLabel labelText="Name" className="">
+                      <TextInputLabel labelText="Name">
                         <TextInput></TextInput>
                       </TextInputLabel>
-                      <TextInputLabel labelText="Username" className="">
+                      <TextInputLabel labelText="Username">
                         <TextInput></TextInput>
                       </TextInputLabel>
-                      <TextInputLabel labelText="Bio" className="">
+                      <TextInputLabel labelText="Bio">
                         <TextInput></TextInput>
                       </TextInputLabel>
-                      <TextInputLabel labelText="Website" className="">
+                      <TextInputLabel labelText="Website">
                         <TextInput></TextInput>
                       </TextInputLabel>
                       <div className="flex justify-center">
@@ -114,8 +117,12 @@ const Profile = () => {
                     </p>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <ContainedActionBtn>Log out</ContainedActionBtn>
-                    <OutlinedActionBtn>Cancel</OutlinedActionBtn>
+                    <ContainedActionBtn handleClick={() => logOutHandler()}>
+                      Log out
+                    </ContainedActionBtn>
+                    <OutlinedActionBtn handleClick={handleLogOutClose}>
+                      Cancel
+                    </OutlinedActionBtn>
                   </div>
                 </div>
               </ModalProvider>

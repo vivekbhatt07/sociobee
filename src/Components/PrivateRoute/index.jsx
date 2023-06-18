@@ -3,9 +3,10 @@ import { Navigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "../../Context/AuthContext";
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
+  const location = useLocation();
   const { token } = useAuth();
-  // return token ?
+  return token ? children : <Navigate to="/" state={{ from: location }} />;
 };
 
 export default PrivateRoute;

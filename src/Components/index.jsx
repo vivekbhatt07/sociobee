@@ -29,6 +29,8 @@ import {
 
 import ModalProvider from "./ModalProvider";
 
+import PrivateRoute from "./PrivateRoute";
+
 export {
   Header,
   Footer,
@@ -55,4 +57,5 @@ export {
   PostCard,
   SuggestionCard,
   ModalProvider,
+  PrivateRoute,
 };
