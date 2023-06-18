@@ -4,6 +4,8 @@ import {
   IconActionBtn,
   OutlinedActionBtn,
   ModalProvider,
+  TextInput,
+  TextInputLabel,
 } from "../../../../Components";
 import { CalendarMonthOutlined, ExitToApp, Link } from "@mui/icons-material";
 
@@ -37,6 +39,7 @@ const Profile = () => {
               <ModalProvider
                 isOpen={isEditProfileOpen}
                 closeModal={handleEditProfileClose}
+                modalTitle="Edit Profile"
                 modalBtnVariant={
                   <OutlinedActionBtn
                     type="button"
@@ -47,12 +50,49 @@ const Profile = () => {
                   </OutlinedActionBtn>
                 }
               >
-                Heelo I am under water too much raining.
+                <div className="">
+                  <div className="edit_banner h-[60px] bg-stone-500"></div>
+                  <div className="p-4 flex flex-col gap-3">
+                    <div>
+                      <AvatarActionLink
+                        avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+                        className="w-16 h-16 -mt-12"
+                      >
+                        <div className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70"></div>
+                        <input
+                          type="file"
+                          accept="image/png, image/jpeg"
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5"
+                        />
+                      </AvatarActionLink>
+                    </div>
+                    <form className="flex flex-col gap-3">
+                      <TextInputLabel labelText="Name" className="">
+                        <TextInput></TextInput>
+                      </TextInputLabel>
+                      <TextInputLabel labelText="Username" className="">
+                        <TextInput></TextInput>
+                      </TextInputLabel>
+                      <TextInputLabel labelText="Bio" className="">
+                        <TextInput></TextInput>
+                      </TextInputLabel>
+                      <TextInputLabel labelText="Website" className="">
+                        <TextInput></TextInput>
+                      </TextInputLabel>
+                      <div className="flex justify-center">
+                        <OutlinedActionBtn outlineBtnType="submit">
+                          Save
+                        </OutlinedActionBtn>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </ModalProvider>
 
               <ModalProvider
                 isOpen={isLogOutOpen}
                 closeModal={handleLogOutClose}
+                modalTitle="Log Out"
                 modalBtnVariant={
                   <OutlinedActionBtn
                     type="button"

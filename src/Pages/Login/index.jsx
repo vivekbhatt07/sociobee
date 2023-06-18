@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageWrapper,
@@ -26,6 +27,8 @@ const Login = () => {
   const { isDarkTheme } = useTheme();
   const { logInHandler } = useAuth();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
+  const navigate = useNavigate();
 
   const [logInData, setLogInData] = useState({
     logInName: "",
@@ -150,6 +153,14 @@ const Login = () => {
                 <OutlinedActionBtn
                   className="login_guest_action"
                   outlineBtnType="button"
+                  handleClick={(event) => {
+                    setLogInData({
+                      logInName: "emilysmith",
+                      logInPassword: "emily@123Smith",
+                    });
+                    handleLogInFormSubmit(event);
+                    navigate("/home");
+                  }}
                 >
                   Log in as guest
                 </OutlinedActionBtn>

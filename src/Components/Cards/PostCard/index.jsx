@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
 import {
   MoreHorizOutlined,
@@ -29,9 +31,13 @@ const PostCard = (props) => {
     const postDetailResponse = await getPostDetailService(props?._id);
     console.log(postDetailResponse);
   };
+  const location = useLocation();
 
   return (
-    <Link className="postCard border-b p-3 flex flex-col gap-4" to={``}>
+    <Link
+      className="postCard border-b p-3 flex flex-col gap-4"
+      to={`${location.pathname}/post/${props?._id}`}
+    >
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
           <AvatarActionLink avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp" />

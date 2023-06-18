@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+
 import { AddPostCard, PostCard } from "../../../../Components";
 import { usePost } from "../../../../Context";
 

@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="app bg-stone-50 dark:bg-stone-950 transition-all duration-500 dark:text-stone-50">
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Account />}>
           <Route path="home" element={<Home />} />
