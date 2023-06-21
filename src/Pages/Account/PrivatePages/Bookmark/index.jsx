@@ -1,35 +1,16 @@
 import React from "react";
 
 import {
-  AddPostCard,
   PostCard,
   Header,
   Tab,
   SuggestionCard,
   OutlinedActionBtn,
 } from "../../../../Components";
-import { usePost } from "../../../../Context";
 
-import {
-  Whatshot,
-  SwapVert,
-  Add,
-  AddCircle,
-  AddCircleOutline,
-  Home as HomeLogo,
-  HomeOutlined as HomeOutlinedLogo,
-  Explore as ExploreLogo,
-  ExploreOutlined as ExploreOutlinedLogo,
-  Bookmark as BookmarkLogo,
-  BookmarkBorderOutlined as BookmarkOutlinedLogo,
-  Favorite as FavoriteLogo,
-  FavoriteBorderOutlined as FavoriteOutlinedLogo,
-  Person as PersonLogo,
-  PersonOutlined as PersonOutlinedLogo,
-} from "@mui/icons-material";
+import { Whatshot, SwapVert } from "@mui/icons-material";
 
 const Bookmark = () => {
-  const { state } = usePost();
   return (
     <div className="tab min-h-screen">
       <Header className="tab_header" />

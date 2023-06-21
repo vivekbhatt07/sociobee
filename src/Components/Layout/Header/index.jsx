@@ -15,7 +15,7 @@ const Header = (props) => {
 
   return (
     <header className={classes}>
-      <Link>
+      <Link to="/home">
         <img
           src={isDarkTheme ? SocialBeeDarkLogo : SocialBeeLightLogo}
           className="w-32"
