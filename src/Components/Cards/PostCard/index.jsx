@@ -46,7 +46,7 @@ const PostCard = (props) => {
               <span className="font-semibold">Vivek Bhatt</span>
               <span className="text-sm text-stone-400">May 05 2022</span>
             </div>
-            <div className="text-xs">@vivekbhatt07</div>
+            <div className="text-xs">{props?.username}</div>
           </div>
         </div>
         <IconActionBtn>
