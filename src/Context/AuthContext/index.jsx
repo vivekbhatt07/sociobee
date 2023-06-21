@@ -1,10 +1,12 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { logInService, signUpService } from "../../Utility";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const [token, setToken] = useState(
     localStorage.getItem("userCredentials")?.token
   );
@@ -23,6 +25,7 @@ const AuthProvider = ({ children }) => {
         );
         setActiveUser(foundUser);
         setToken(encodedToken);
+        navigate("/home", { replace: true });
       }
     } catch (error) {
       console.log(error);
@@ -33,6 +36,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("userCredentials");
     setActiveUser(null);
     setToken(null);
+    navigate("/", { replace: true });
   };
 
   const signUpHandler = async (

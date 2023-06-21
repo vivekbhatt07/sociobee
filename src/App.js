@@ -20,19 +20,46 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
-          path="/"
+          path="/home"
           element={
             <PrivateRoute>
-              <Account />
+              <Home />
             </PrivateRoute>
           }
-        >
-          <Route path="home" element={<Home />} />
-          <Route path="explore" element={<Explore />} />
-          <Route path="bookmark" element={<Bookmark />} />
-          <Route path="like" element={<Like />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
+        />
+        <Route
+          path="/explore"
+          element={
+            <PrivateRoute>
+              <Explore />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <PrivateRoute>
+              <Bookmark />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/like"
+          element={
+            <PrivateRoute>
+              <Like />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path=""
           element={

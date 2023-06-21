@@ -28,8 +28,6 @@ const Login = () => {
   const { logInHandler } = useAuth();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
-  const navigate = useNavigate();
-
   const [logInData, setLogInData] = useState({
     logInName: "",
     logInPassword: "",
@@ -56,7 +54,6 @@ const Login = () => {
   const handleLogInFormSubmit = (event) => {
     event.preventDefault();
     logInHandler(logInData.logInName, logInData.logInPassword);
-    navigate("/home");
   };
 
   useEffect(() => {
@@ -156,7 +153,6 @@ const Login = () => {
                   outlineBtnType="button"
                   handleClick={() => {
                     logInHandler("emilysmith", "emily@123Smith");
-                    navigate("/home");
                   }}
                 >
                   Log in as guest

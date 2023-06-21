@@ -1,0 +1,54 @@
+.tab {
+  display: grid;
+  grid-template-rows: 10dvh 10dvh 70dvh 10dvh;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "sideRight"
+    "main"
+    "sideLeft";
+}
+
+.tab_header {
+  grid-area: header;
+}
+
+.tab_nav {
+  grid-area: sideLeft;
+}
+
+.tab_btn {
+  padding: 1em 2em;
+}
+
+.tab_outlet {
+  grid-area: main;
+}
+
+.tab_sidebar {
+  grid-area: sideRight;
+}
+
+@media (min-width: 768px) {
+  .tab {
+    display: grid;
+    grid-template-rows: 10dvh 10dvh 80dvh;
+    grid-template-columns: 20% 1fr;
+    grid-template-areas:
+      "header header"
+      "sideRight sideRight"
+      "sideLeft main";
+  }
+}
+
+@media (min-width: 1000px) {
+  .tab {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+    grid-template-columns: 20% 1fr 25%;
+    grid-template-areas:
+      "header header header"
+      "sideLeft main sideRight";
+  }
+}
