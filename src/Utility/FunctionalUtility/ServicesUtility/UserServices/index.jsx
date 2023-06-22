@@ -1,3 +1,4 @@
 import editUserService from "./EditUserService";
+import getUserService from "./GetUserService";
 
-export { editUserService };
+export { getUserService, editUserService };

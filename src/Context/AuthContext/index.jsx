@@ -8,10 +8,10 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [token, setToken] = useState(
-    localStorage.getItem("userCredentials")?.token
+    JSON.parse(localStorage.getItem("userCredentials"))?.token
   );
   const [activeUser, setActiveUser] = useState(
-    localStorage.getItem("userCredentials")?.user
+    JSON.parse(localStorage.getItem("userCredentials"))?.user
   );
 
   const logInHandler = async (username, password) => {

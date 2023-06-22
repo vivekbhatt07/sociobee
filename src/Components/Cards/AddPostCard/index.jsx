@@ -10,12 +10,14 @@ import {
   GifBoxOutlined,
   SentimentSatisfiedAltOutlined as SmileIcon,
 } from "@mui/icons-material";
+import { useAuth, usePost } from "../../../Context";
 
 const AddPostCard = () => {
+  const { activeUser } = useAuth();
   return (
     <article className="addPostCard flex gap-4 px-3 py-2 border-b">
       <div className="addPostCard_user">
-        <AvatarActionLink avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp" />
+        <AvatarActionLink avatar={activeUser.profileAvatar} />
       </div>
       <div className="addPostCard_actions flex-1 flex flex-col gap-2.5">
         <textarea

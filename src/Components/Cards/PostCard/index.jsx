@@ -14,8 +14,10 @@ import {
 } from "@mui/icons-material";
 
 import { getPostDetailService } from "../../../Utility";
+import { usePost } from "../../../Context";
 
 const PostCard = (props) => {
+  const { state } = usePost();
   // const {
   //   _id,
   //   content,
@@ -27,23 +29,30 @@ const PostCard = (props) => {
   //   updatedAt,
   //   comments,
   // } = props;
-  const handlePostDetail = async () => {
-    const postDetailResponse = await getPostDetailService(props?._id);
-    console.log(postDetailResponse);
-  };
-  const location = useLocation();
+
+  // const handlePostDetail = async () => {
+  //   const postDetailResponse = await getPostDetailService(props?._id);
+  //   console.log(postDetailResponse);
+  // };
+  // const location = useLocation();
+
+  const getUser = state.userList.find((currentUser) => {
+    return currentUser.username == props.username;
+  });
 
   return (
     <Link
       className="postCard border-b p-3 flex flex-col gap-4"
-      to={`${location.pathname}/post/${props?._id}`}
+      // to={`${location.pathname}/post/${props?._id}`}
     >
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
-          <AvatarActionLink avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp" />
+          <AvatarActionLink avatar={getUser?.profileAvatar} />
           <div className="flex flex-col gap-1">
             <div className="flex gap-2 items-center">
-              <span className="font-semibold">Vivek Bhatt</span>
+              <span className="font-semibold">
+                {getUser?.firstName} {getUser?.lastName}
+              </span>
               <span className="text-sm text-stone-400">May 05 2022</span>
             </div>
             <div className="text-xs">{props?.username}</div>

@@ -127,9 +127,8 @@ export const posts = [
     _id: uuid(),
     content:
       "AI will take away many `digital` jobs (but eventually). Neither panic, nor be ignorant. Try to use AI tools in your job to the fullest, leverage it's potential to increase your output. If you do it right, you'll soon figure out if you will be replaced.",
-    mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687340669/socialbee/sketch_sklc9o.jpg",
-    mediaAlt: "lanscape sketch",
+    mediaURL: "",
+    mediaAlt: "",
     likes: {
       likeCount: 34,
       likedBy: [],
@@ -329,23 +328,6 @@ export const posts = [
       dislikedBy: [],
     },
     username: "@akshaymarch7",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    comments: [],
-  },
-  {
-    _id: uuid(),
-    content:
-      "I really want to get better at drawing and painting cinematic grand landscapes for my worldbuilding. Points that I find especially hard is scale, depth, perspective and CLOUDS. All things that you need when trying to do this...",
-    mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687341028/socialbee/topsketch_qzwhek.jpg",
-    mediaAlt: "hill sketch",
-    likes: {
-      likeCount: 4,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "Sketcher",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [],

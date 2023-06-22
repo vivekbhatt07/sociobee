@@ -7,11 +7,17 @@ import React, {
 } from "react";
 import { initialState } from "./InitialState";
 import { postReducer } from "./PostReducer";
-import { getPostService, getPostDetailService } from "../../Utility";
+import {
+  getPostService,
+  getPostDetailService,
+  getUserService,
+} from "../../Utility";
+import { useAuth } from "../AuthContext";
 
 const PostContext = createContext();
 
 const PostProvider = ({ children }) => {
+  const { token } = useAuth();
   const [state, dispatch] = useReducer(postReducer, initialState);
 
   useEffect(() => {
@@ -21,11 +27,16 @@ const PostProvider = ({ children }) => {
         if (postResponse.status === 200) {
           dispatch({ type: "GET_DATA", payload: postResponse.data.posts });
         }
+
+        const userResponse = await getUserService();
+        if (userResponse.status == 200) {
+          dispatch({ type: "GET_USERS", payload: userResponse.data.users });
+        }
       } catch (err) {
         console.error(err);
       }
     })();
-  }, []);
+  }, [token]);
   return (
     <PostContext.Provider value={{ state, dispatch }}>
       {children}

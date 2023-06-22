@@ -19,6 +19,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350988/socialbee/vivekBg_k4wkaq.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "October, 2021",
     following: [
       {
         _id: "LCrc9f0Zl0",
@@ -87,6 +88,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352030/socialbee/abhishekBg_uhima1.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "September, 2021",
     following: [
       {
         _id: "qq8zWjEeXd",
@@ -139,6 +141,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352338/socialbee/niharikaBg_awatx2.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "March, 2020",
     following: [
       {
         _id: "LCrc9f0Zl0",
@@ -199,6 +202,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352617/socialbee/pranitaBg_vlcmyz.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "April, 2018",
     following: [
       {
         _id: "ab8zWjEeXd",
@@ -251,6 +255,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352891/socialbee/shraddhaBg_rvpdau.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "January, 2022",
     following: [
       {
         _id: "1T6Be1QpLm",
@@ -303,6 +308,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687353286/socialbee/joyBg_hcbbmi.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "November, 2020",
     following: [
       {
         _id: "LCrc9f0Zl0",
@@ -363,6 +369,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687353520/socialbee/vikasBg_hmkw4v.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "January, 2022",
     following: [
       {
         _id: "t7cZfWIp-q",
@@ -405,7 +412,7 @@ export const users = [
     _id: "ab8zWjEeXd",
     firstName: "Anushka",
     lastName: "Jaiswal",
-    password: "james@123",
+    password: "HelloWorld07@",
     username: "@TheIndianGirl56",
     bio: "Fashion aficionado",
     website: "https://ajaisportfolio.netlify.app/",
@@ -415,6 +422,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687353720/socialbee/anushkaBg_lj4vgd.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "July, 2022",
     following: [
       {
         _id: "LCrc9f0Zl0",
@@ -475,6 +483,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687354111/socialbee/tanayBg_u5d0v9.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "June, 2009",
     following: [],
     followers: [
       {
@@ -542,6 +551,7 @@ export const users = [
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687354111/socialbee/akshayBg_lycit6.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    join: "March, 2011",
     following: [],
     followers: [],
     bookmarks: [],

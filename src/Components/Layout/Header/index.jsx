@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../../Context";
+import { useAuth, useTheme } from "../../../Context";
 import SocialBeeDarkLogo from "../../../Assets/Logo/SocioBeeDark.svg";
 import SocialBeeLightLogo from "../../../Assets/Logo/SocioBeeLight.svg";
 import "./Header.css";
 import { AvatarActionLink, TextInput } from "../../../Components";
 
 const Header = (props) => {
+  const { activeUser } = useAuth();
   const { isDarkTheme, toggleTheme } = useTheme();
   const { className } = props;
   const classes =
@@ -33,11 +34,11 @@ const Header = (props) => {
           onClick={() => toggleTheme(!isDarkTheme)}
         >
           <span
-            class={`circle ${isDarkTheme ? "dark" : "light"}-circle`}
+            className={`circle ${isDarkTheme ? "dark" : "light"}-circle`}
           ></span>
         </button>
         <AvatarActionLink
-          avatar="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+          avatar={activeUser.profileAvatar}
           className="hidden md:block"
           reach="/profile"
         />

@@ -9,6 +9,7 @@ import {
   signUpService,
   getPostDetailService,
   getPostService,
+  getUserService,
   editUserService,
 } from "./ServicesUtility";
 
@@ -20,5 +21,6 @@ export {
   logInService,
   getPostDetailService,
   getPostService,
+  getUserService,
   editUserService,
 };

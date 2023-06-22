@@ -152,7 +152,7 @@ const Login = () => {
                   className="login_guest_action"
                   outlineBtnType="button"
                   handleClick={() => {
-                    logInHandler("emilysmith", "emily@123Smith");
+                    logInHandler("@vivekbhatt07", "HelloWorld07@");
                   }}
                 >
                   Log in as guest

@@ -3,5 +3,8 @@ export const postReducer = (state, action) => {
     case "GET_DATA": {
       return { ...state, postList: [...action.payload] };
     }
+    case "GET_USERS": {
+      return { ...state, userList: [...action.payload] };
+    }
   }
 };
