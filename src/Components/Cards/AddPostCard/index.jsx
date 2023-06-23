@@ -23,8 +23,12 @@ import { emojiList } from "./EmojiData";
 const AddPostCard = () => {
   const { token, activeUser } = useAuth();
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
-  const [emojiText, setEmojiText] = useState();
+  const [emojiSearchText, setEmojiSearchText] = useState("");
   const [anchor, setAnchor] = useState(null);
+
+  const simpleString = (str) => {
+    return str.trim().split(" ").join("").toLowerCase();
+  };
 
   const handleEmojiBox = (event) => {
     if (!isEmojiOpen) {
@@ -89,9 +93,9 @@ const AddPostCard = () => {
                 onChange={handlePostData}
               />
             </label>
-            <IconActionBtn>
+            {/* <IconActionBtn>
               <GifBoxOutlined />
-            </IconActionBtn>
+            </IconActionBtn> */}
             <IconActionBtn handleClick={handleEmojiBox} iconBtnType="button">
               <SmileIcon />
             </IconActionBtn>
@@ -105,31 +109,70 @@ const AddPostCard = () => {
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
-                  <div className="w-[320px] bg-stone-50 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800 shadow-md">
+                  <div className="w-[280px] bg-stone-50 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800 shadow-md">
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Select Emoji</span>
                       <IconActionBtn
-                        handleClick={() => handleEmojiBox()}
+                        handleClick={() => {
+                          handleEmojiBox();
+                          setEmojiSearchText("");
+                        }}
                         className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
                       >
                         <CloseIcon />
                       </IconActionBtn>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <TextInput inputType="search" name="" />
-                      <div className="grid grid-cols-5 h-52 overflow-y-scroll">
-                        {emojiList.map((currentEmoji) => {
-                          return (
-                            <div
-                              key={currentEmoji.id}
-                              className="justify-self-center"
-                            >
-                              <IconActionBtn>
-                                {currentEmoji.emoji}
-                              </IconActionBtn>
-                            </div>
+                      <TextInput
+                        inputType="search"
+                        inputPlaceholder="Search emojis"
+                        inputHandle={(event) => {
+                          setEmojiSearchText(event.target.value);
+                        }}
+                        inputValue={emojiSearchText}
+                      />
+                      <div className="relative grid grid-cols-5 h-52 overflow-y-scroll scroll-smooth">
+                        {emojiList.filter((current) => {
+                          return simpleString(current.description).includes(
+                            simpleString(emojiSearchText)
                           );
-                        })}
+                        }).length === 0 ? (
+                          <div className="bg-stone-500 px-4 py-2 text-xs absolute top-0 translate-x-1/2 left-0 rounded-md text-stone-50">
+                            No Emojies Found
+                          </div>
+                        ) : (
+                          emojiList
+                            .filter((current) => {
+                              return current.description.includes(
+                                emojiSearchText
+                              );
+                            })
+                            .map((currentEmoji) => {
+                              return (
+                                <div
+                                  key={currentEmoji.id}
+                                  className="justify-self-start"
+                                  title={currentEmoji.description}
+                                >
+                                  <IconActionBtn
+                                    iconBtnType="button"
+                                    handleClick={() => {
+                                      setPostData((prevPostData) => {
+                                        return {
+                                          ...prevPostData,
+                                          postText:
+                                            prevPostData.postText +
+                                            currentEmoji.emoji,
+                                        };
+                                      });
+                                    }}
+                                  >
+                                    {currentEmoji.emoji}
+                                  </IconActionBtn>
+                                </div>
+                              );
+                            })
+                        )}
                       </div>
                     </div>
                   </div>

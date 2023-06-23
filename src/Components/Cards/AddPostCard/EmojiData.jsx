@@ -241,7 +241,6 @@ export const emojiList = [
   },
   {
     id: 31,
-
     emoji: "🤭",
     description: "face with hand over mouth",
     category: "Smileys & Emotion",
@@ -250,7 +249,6 @@ export const emojiList = [
   },
   {
     id: 32,
-
     emoji: "🫢",
     description: "face with open eyes and hand over mouth",
     category: "Smileys & Emotion",
@@ -259,7 +257,6 @@ export const emojiList = [
   },
   {
     id: 33,
-
     emoji: "🫣",
     description: "face with peeking eye",
     category: "Smileys & Emotion",
@@ -268,7 +265,6 @@ export const emojiList = [
   },
   {
     id: 34,
-
     emoji: "🤫",
     description: "shushing face",
     category: "Smileys & Emotion",
@@ -277,7 +273,6 @@ export const emojiList = [
   },
   {
     id: 35,
-
     emoji: "🤔",
     description: "thinking face",
     category: "Smileys & Emotion",
@@ -286,7 +281,6 @@ export const emojiList = [
   },
   {
     id: 36,
-
     emoji: "🫡",
     description: "saluting face",
     category: "Smileys & Emotion",
@@ -295,7 +289,6 @@ export const emojiList = [
   },
   {
     id: 37,
-
     emoji: "🤐",
     description: "zipper-mouth face",
     category: "Smileys & Emotion",
@@ -304,7 +297,6 @@ export const emojiList = [
   },
   {
     id: 38,
-
     emoji: "🤨",
     description: "face with raised eyebrow",
     category: "Smileys & Emotion",
@@ -313,7 +305,6 @@ export const emojiList = [
   },
   {
     id: 39,
-
     emoji: "😐",
     description: "neutral face",
     category: "Smileys & Emotion",
@@ -321,48 +312,54 @@ export const emojiList = [
     tags: ["meh"],
   },
 
-  //   {
-  //     emoji: "😶",
-  //     description: "face without mouth",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["no_mouth"],
-  //     tags: ["mute", "silence"],
-  //   },
-  //   {
-  //     emoji: "🫥",
-  //     description: "dotted line face",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["dotted_line_face"],
-  //     tags: ["invisible"],
-  //   },
-  //   {
-  //     emoji: "😶‍🌫️",
-  //     description: "face in clouds",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["face_in_clouds"],
-  //     tags: [],
-  //   },
-  //   {
-  //     emoji: "😏",
-  //     description: "smirking face",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["smirk"],
-  //     tags: ["smug"],
-  //   },
-  //   {
-  //     emoji: "😒",
-  //     description: "unamused face",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["unamused"],
-  //     tags: ["meh"],
-  //   },
-  //   {
-  //     emoji: "🙄",
-  //     description: "face with rolling eyes",
-  //     category: "Smileys & Emotion",
-  //     aliases: ["roll_eyes"],
-  //     tags: [],
-  //   },
+  {
+    id: 40,
+    emoji: "😶",
+    description: "face without mouth",
+    category: "Smileys & Emotion",
+    aliases: ["no_mouth"],
+    tags: ["mute", "silence"],
+  },
+  {
+    id: 41,
+    emoji: "🫥",
+    description: "dotted line face",
+    category: "Smileys & Emotion",
+    aliases: ["dotted_line_face"],
+    tags: ["invisible"],
+  },
+  {
+    id: 42,
+    emoji: "😶‍🌫️",
+    description: "face in clouds",
+    category: "Smileys & Emotion",
+    aliases: ["face_in_clouds"],
+    tags: [],
+  },
+  {
+    id: 43,
+    emoji: "😏",
+    description: "smirking face",
+    category: "Smileys & Emotion",
+    aliases: ["smirk"],
+    tags: ["smug"],
+  },
+  {
+    id: 44,
+    emoji: "😒",
+    description: "unamused face",
+    category: "Smileys & Emotion",
+    aliases: ["unamused"],
+    tags: ["meh"],
+  },
+  {
+    id: 45,
+    emoji: "🙄",
+    description: "face with rolling eyes",
+    category: "Smileys & Emotion",
+    aliases: ["roll_eyes"],
+    tags: [],
+  },
   //   {
   //     emoji: "😬",
   //     description: "grimacing face",
