@@ -10,6 +10,7 @@ import {
   Favorite as FavoriteLogo,
   Person as PersonLogo,
 } from "@mui/icons-material";
+import { ContainedActionBtn } from "../Actions";
 
 function Tab() {
   const { isDarkTheme } = useTheme();
@@ -84,6 +85,7 @@ function Tab() {
             </NavLink>
           </li>
         </ul>
+        {/* <ContainedActionBtn>Post</ContainedActionBtn> */}
       </div>
     </>
   );

@@ -41,7 +41,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 976px) {
   .tab {
     min-height: 100vh;
     display: grid;
