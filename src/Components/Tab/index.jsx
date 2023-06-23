@@ -1,24 +1,28 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
 import { useTheme } from "../../Context";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-
 import {
   Home as HomeLogo,
   Explore as ExploreLogo,
   Bookmark as BookmarkLogo,
   Favorite as FavoriteLogo,
   Person as PersonLogo,
+  AddCircle as AddLogo,
 } from "@mui/icons-material";
-import { ContainedActionBtn } from "../Actions";
+import { AddPostCard, ModalProvider } from "../../Components";
 
 function Tab() {
+  const [isAddPostModalOpen, setIsAddPostModalOpen] = useState(false);
+
+  const addPostModalOpen = () => setIsAddPostModalOpen(true);
+  const addPostModalClose = () => setIsAddPostModalOpen(false);
+
   const { isDarkTheme } = useTheme();
 
   return (
     <>
       <div className="tab_nav flex justify-center">
-        <ul className="flex flex-row w-60 justify-center p-3 lg:flex-col list-none bg-[#fff] dark:bg-stone-950 md:flex-col md:h-[80dvh] md:justify-start lg:p-0 xl:w-full">
+        <ul className="flex flex-row w-60 justify-center p-3 lg:flex-col list-none bg-stone-50 dark:bg-stone-950 md:flex-col md:h-[80dvh] md:justify-start lg:p-0 xl:w-full">
           <li className="tab_nav_item flex">
             <NavLink
               className="tab_btn text-base flex w-14 h-14 justify-center items-center gap-4 no-underline font-sans text-stone-950 font-semibold transition-colors duration-300 dark:text-stone-50 bg-stone-50 border-0 dark:bg-stone-950 hover:bg-stone-400 hover:text-stone-950 md:w-full lg:justify-start"
@@ -84,8 +88,28 @@ function Tab() {
               <span className="tab_btn_label hidden lg:block">Profile</span>
             </NavLink>
           </li>
+
+          <ModalProvider
+            isOpen={isAddPostModalOpen}
+            closeModal={addPostModalClose}
+            modalTitle="Add Post"
+            modalBtnVariant={
+              <li className="tab_nav_item flex">
+                <button
+                  className="tab_btn text-base flex w-14 h-14 justify-center items-center gap-4 no-underline font-sans font-semibold transition-colors duration-300 bg-stone-800 dark:text-stone-50 text-stone-50 border-0 dark:bg-stone-950 hover:bg-stone-400 hover:text-stone-950 md:w-full lg:justify-start"
+                  onClick={addPostModalOpen}
+                >
+                  <AddLogo />
+                  <span className="tab_btn_label hidden lg:block">
+                    ADD POST
+                  </span>
+                </button>
+              </li>
+            }
+          >
+            <AddPostCard />
+          </ModalProvider>
         </ul>
-        {/* <ContainedActionBtn>Post</ContainedActionBtn> */}
       </div>
     </>
   );
