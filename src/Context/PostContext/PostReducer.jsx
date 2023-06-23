@@ -6,5 +6,15 @@ export const postReducer = (state, action) => {
     case "GET_USERS": {
       return { ...state, userList: [...action.payload] };
     }
+    case "EDIT_USER": {
+      return {
+        ...state,
+        userList: state.userList.map((currentUser) => {
+          return currentUser._id == action.payload._id
+            ? { ...action.payload }
+            : currentUser;
+        }),
+      };
+    }
   }
 };

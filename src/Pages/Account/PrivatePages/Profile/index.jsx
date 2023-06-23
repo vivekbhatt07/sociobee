@@ -23,19 +23,25 @@ import {
   Link,
   CameraAlt,
   AccountCircle,
+  CheckCircle,
 } from "@mui/icons-material";
 
+import { editUserService } from "../../../../Utility";
+
 const Profile = () => {
-  const { state } = usePost();
-  const { logOutHandler, activeUser } = useAuth();
+  const { state, dispatch } = usePost();
+  const { token, logOutHandler, activeUser } = useAuth();
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isLogOutOpen, setIsLogOutOpen] = useState(false);
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
+  const [activeAvatar, setActiveAvatar] = useState("");
   const [userEditData, setUserEditData] = useState({
     userEditAvatar: "",
     userEditBio: "",
     userEditWeb: "",
   });
+  console.log(activeAvatar);
+  console.log(userEditData);
 
   // EDIT PROFILE MODAL HANDLE:
   const handleEditProfileOpen = () => setIsEditProfileOpen(true);
@@ -51,22 +57,43 @@ const Profile = () => {
 
   // USER EDIT DATA HANDLE:
   const handleUserEditData = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files, type } = event.target;
     setUserEditData((prevUserEditData) => {
-      return { ...prevUserEditData, [name]: value };
+      return {
+        ...prevUserEditData,
+        [name]: type == "file" ? URL.createObjectURL(files[0]) : value,
+      };
     });
   };
 
   // SUBMIT USER EDIT DATA:
   const submitUserEditData = (event) => {
     event.preventDefault();
+    handleEditUserService(token, activeUser);
     handleEditProfileClose();
-    console.log(userEditData);
   };
 
-  // GET CURRENT USER DATA:
+  // GET CURRENT USER POST DATA:
   const activeUserPosts = state.postList.filter((currentPost) => {
     return currentPost.username == activeUser.username;
+  });
+
+  // EDIT USER SERVICE:
+  const handleEditUserService = async (token, activeUser) => {
+    const userEditResponse = await editUserService(token, {
+      ...activeUser,
+      website: userEditData.userEditWeb,
+      profileAvatar: userEditData.userEditAvatar,
+      bio: userEditData.userEditBio,
+    });
+    if (userEditResponse.status == 201) {
+      dispatch({ type: "EDIT_USER", payload: userEditResponse.data.user });
+    }
+  };
+
+  // GET CURRENT USER OBJECT:
+  const activeUserProfile = state.userList.find((currentUser) => {
+    return currentUser._id == activeUser._id;
   });
 
   return (
@@ -77,7 +104,7 @@ const Profile = () => {
         <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
           <div className="w-full h-56 bg-stone-950 dark:bg-stone-900">
             <img
-              src={activeUser?.backgroundImage}
+              src={activeUserProfile?.backgroundImage}
               alt="profile_cover"
               className="w-full h-full object-cover"
             />
@@ -85,17 +112,17 @@ const Profile = () => {
           <article className="userprofile_card flex flex-col mx-auto gap-6 -mt-14 px-6 border-b pb-6">
             <AvatarActionLink
               className="userprofile_avatar w-24 h-24"
-              avatar={activeUser.profileAvatar}
+              avatar={activeUserProfile?.profileAvatar}
             />
             <div className="userprofile_content flex flex-col gap-2">
               <div className="userprofile_head flex flex-col gap-4 sm:flex-row sm:gap-12 sm:justify-between sm:items-start">
                 <div className="userprofile_title flex flex-col gap-1">
                   <p className="userprofile_name flex gap-1 font-semibold text-2xl">
-                    <span>{activeUser.firstName}</span>
-                    <span>{activeUser.lastName}</span>
+                    <span>{activeUserProfile?.firstName}</span>
+                    <span>{activeUserProfile?.lastName}</span>
                   </p>
                   <span className="userprofile_username text-sm rounded-xl text-stone-500">
-                    {activeUser?.username}
+                    {activeUserProfile?.username}
                   </span>
                 </div>
                 <div className="userprofile_actions flex items-center gap-4">
@@ -116,7 +143,7 @@ const Profile = () => {
                     <div className="">
                       <div className="edit_banner h-[100px] bg-stone-500">
                         <img
-                          src={activeUser?.backgroundImage}
+                          src={activeUserProfile?.backgroundImage}
                           alt="profile_cover"
                           className="w-full h-full object-cover"
                         />
@@ -128,7 +155,7 @@ const Profile = () => {
                         <div className="mb-2 flex gap-4">
                           <AvatarActionLink
                             isLink={false}
-                            avatar={activeUser.profileAvatar}
+                            avatar={activeUserProfile?.profileAvatar}
                             className="w-16 h-16 -mt-12"
                           >
                             <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
@@ -220,21 +247,74 @@ const Profile = () => {
                                       key={currentAvatar.id}
                                       className="relative w-16 h-16 flex justify-center items-center justify-self-center"
                                     >
-                                      <input type="radio" />
+                                      <input
+                                        className="hidden"
+                                        type="radio"
+                                        name="userEditAvatar"
+                                        onChange={(event) =>
+                                          setActiveAvatar(event.target.value)
+                                        }
+                                        value={currentAvatar.avatarLogo}
+                                        checked={
+                                          activeAvatar ==
+                                          currentAvatar.avatarLogo
+                                        }
+                                      />
                                       <div className="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
                                         <img
                                           src={currentAvatar.avatarLogo}
                                           alt=""
                                         />
                                       </div>
+                                      {activeAvatar ==
+                                        currentAvatar.avatarLogo && (
+                                        <div className="w-16 h-16 bg-stone-950 opacity-50 rounded-full"></div>
+                                      )}
+
+                                      {activeAvatar ==
+                                        currentAvatar.avatarLogo && (
+                                        <div
+                                          className="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full flex justify-center items-center"
+                                          style={{ background: "#000" }}
+                                        >
+                                          <CheckCircle
+                                            className=""
+                                            style={{ color: "green" }}
+                                          />
+                                        </div>
+                                      )}
                                     </label>
                                   );
                                 })}
                               </div>
                               <div className="flex justify-center gap-2">
-                                <ContainedActionBtn>Select</ContainedActionBtn>
+                                <ContainedActionBtn
+                                  isDisabled={activeAvatar}
+                                  btnStyle={{
+                                    cursor: activeAvatar
+                                      ? "pointer"
+                                      : "not-allowed",
+                                    opacity: activeAvatar ? "1" : "0.5",
+                                  }}
+                                  handleClick={() => {
+                                    console.log("hello");
+                                    setUserEditData((prevUserEditData) => {
+                                      return {
+                                        ...prevUserEditData,
+                                        userEditAvatar: activeAvatar,
+                                      };
+                                    });
+                                    setActiveAvatar("");
+                                    handleAvatarClose();
+                                  }}
+                                >
+                                  Select
+                                </ContainedActionBtn>
                                 <OutlinedActionBtn
-                                  handleClick={handleAvatarClose}
+                                  handleClick={() => {
+                                    setActiveAvatar("");
+                                    handleAvatarClose();
+                                  }}
                                 >
                                   Discard
                                 </OutlinedActionBtn>
@@ -312,19 +392,19 @@ const Profile = () => {
                   </ModalProvider>
                 </div>
               </div>
-              <div className="userprofile_quote">{activeUser.bio}</div>
+              <div className="userprofile_quote">{activeUserProfile?.bio}</div>
               <div className="userprofile_meta flex flex-col gap-2">
                 <div className="flex text-stone-500 gap-1 hover:underline transition-all duration-500 hover:text-stone-600">
                   <Link />
-                  <a href={activeUser.website} target="_blank">
-                    {activeUser.website}
+                  <a href={activeUserProfile?.website} target="_blank">
+                    {activeUserProfile?.website}
                   </a>
                 </div>
                 <p className="flex items-center gap-2 text-sm text-stone-500">
                   <CalendarMonthOutlined />
                   <div className="flex gap-1">
                     <span>Joined</span>
-                    <span>{activeUser.join}</span>
+                    <span>{activeUserProfile?.join}</span>
                   </div>
                 </p>
               </div>
@@ -337,13 +417,13 @@ const Profile = () => {
                 </p>
                 <p className="flex gap-1 text-sm">
                   <span className="text-stone-950 font-semibold dark:text-stone-50">
-                    {activeUser.followers.length}
+                    {activeUserProfile?.followers.length}
                   </span>
                   <span className="font-light">Followers</span>
                 </p>
                 <p className="flex gap-1 text-sm">
                   <span className="text-stone-950 font-semibold dark:text-stone-50">
-                    {activeUser.following.length}
+                    {activeUserProfile?.following.length}
                   </span>
                   <span className="font-light">Following</span>
                 </p>
