@@ -44,7 +44,12 @@ const AuthProvider = ({ children }) => {
     password,
     email,
     firstName,
-    lastName
+    lastName,
+    bio,
+    website,
+    profileAvatar,
+    backgroundImage,
+    join
   ) => {
     try {
       const signUpResponse = await signUpService(
@@ -52,7 +57,12 @@ const AuthProvider = ({ children }) => {
         password,
         email,
         firstName,
-        lastName
+        lastName,
+        bio,
+        website,
+        profileAvatar,
+        backgroundImage,
+        join
       );
       if (signUpResponse.status === 201) {
         const { createdUser, encodedToken } = signUpResponse.data;
@@ -62,6 +72,7 @@ const AuthProvider = ({ children }) => {
         );
         setActiveUser(createdUser);
         setToken(encodedToken);
+        navigate("/home", { replace: true });
       }
     } catch (error) {
       console.log(error);

@@ -70,6 +70,11 @@ const Profile = () => {
   const submitUserEditData = (event) => {
     event.preventDefault();
     handleEditUserService(token, activeUser);
+    setUserEditData({
+      userEditAvatar: "",
+      userEditBio: "",
+      userEditWeb: "",
+    });
     handleEditProfileClose();
   };
 
@@ -297,7 +302,6 @@ const Profile = () => {
                                     opacity: activeAvatar ? "1" : "0.5",
                                   }}
                                   handleClick={() => {
-                                    console.log("hello");
                                     setUserEditData((prevUserEditData) => {
                                       return {
                                         ...prevUserEditData,

@@ -5,7 +5,12 @@ const signUpService = async (
   password,
   email,
   firstName,
-  lastName
+  lastName,
+  bio,
+  website,
+  profileAvatar,
+  backgroundImage,
+  join
 ) => {
   return axios.post("/api/auth/signup", {
     username,
@@ -13,6 +18,11 @@ const signUpService = async (
     email,
     firstName,
     lastName,
+    bio,
+    website,
+    profileAvatar,
+    backgroundImage,
+    join,
   });
 };
 

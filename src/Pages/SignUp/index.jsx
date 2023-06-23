@@ -107,7 +107,12 @@ const SignUp = () => {
       signUpData.signUpPassword,
       signUpData.signUpEmail,
       signUpData.signUpFirstName,
-      signUpData.signUpLastName
+      signUpData.signUpLastName,
+      "Edit your bio",
+      "Edit your website",
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687520455/Avatar/AvatarFifteen_wmdlk9.svg",
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687521328/Avatar/signUpCover_ri9f1x.png",
+      "June, 2023"
     );
   };
 
@@ -214,6 +219,21 @@ const SignUp = () => {
             </TextInputLabel>
 
             <ContainedActionBtn type="submit">Sign up</ContainedActionBtn>
+            <ContainedActionBtn
+              type="button"
+              handleClick={() => {
+                setSignUpData({
+                  signUpFirstName: "Hello",
+                  signUpLastName: "World",
+                  signUpEmail: "helloWorld@gmail.com",
+                  signUpUsername: "helloWorld07",
+                  signUpPassword: "HelloWorld07@",
+                  signUpConfirm: "HelloWorld07@",
+                });
+              }}
+            >
+              Test
+            </ContainedActionBtn>
           </PrimaryContainer>
         </form>
         <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4">
