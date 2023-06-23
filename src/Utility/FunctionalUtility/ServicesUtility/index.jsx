@@ -1,5 +1,9 @@
 import { logInService, signUpService } from "./AuthServices";
-import { getPostDetailService, getPostService } from "./DataServices";
+import {
+  getPostDetailService,
+  getPostService,
+  sendPostService,
+} from "./DataServices";
 import { getUserService, editUserService } from "./UserServices";
 
 export {
@@ -9,4 +13,5 @@ export {
   getPostService,
   getUserService,
   editUserService,
+  sendPostService,
 };

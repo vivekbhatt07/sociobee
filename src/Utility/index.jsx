@@ -8,6 +8,7 @@ import {
   getPostService,
   getUserService,
   editUserService,
+  sendPostService,
 } from "./FunctionalUtility";
 
 export {
@@ -20,4 +21,5 @@ export {
   getPostService,
   getUserService,
   editUserService,
+  sendPostService,
 };

@@ -11,6 +11,7 @@ import {
   getPostService,
   getUserService,
   editUserService,
+  sendPostService,
 } from "./ServicesUtility";
 
 export {
@@ -23,4 +24,5 @@ export {
   getPostService,
   getUserService,
   editUserService,
+  sendPostService,
 };
