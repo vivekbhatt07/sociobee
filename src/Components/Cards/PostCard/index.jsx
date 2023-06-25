@@ -46,7 +46,6 @@ const PostCard = (props) => {
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
-    console.log(postLikeResponse);
     if (postLikeResponse.status == 201) {
       dispatch({ type: "GET_DATA", payload: postLikeResponse.data.posts });
     }
@@ -61,7 +60,6 @@ const PostCard = (props) => {
 
   const handleAddBookmark = async (postId, encodedToken) => {
     const addBookmarkResponse = await addBookmarkService(postId, encodedToken);
-    console.log(addBookmarkResponse);
     if (addBookmarkResponse.status == 200) {
       dispatch({
         type: "GET_BOOKMARK",
