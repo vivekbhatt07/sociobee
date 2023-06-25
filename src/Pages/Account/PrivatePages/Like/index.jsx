@@ -8,15 +8,31 @@ import {
   OutlinedActionBtn,
 } from "../../../../Components";
 import { Whatshot, SwapVert } from "@mui/icons-material";
+import { useAuth, usePost } from "../../../../Context";
 
 const Like = () => {
+  const { state } = usePost();
+  const { activeUser } = useAuth();
+
+  const likedList = state.postList.reduce((list, currentPost) => {
+    return currentPost.likes.likedBy.findIndex((currentLike) => {
+      return currentLike.username == activeUser.username;
+    }) == -1
+      ? [...list]
+      : [...list, currentPost];
+  }, []);
+
   return (
     <div className="tab min-h-screen">
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
         <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
-          Like
+          {likedList.map((currentLikedPost) => {
+            return (
+              <PostCard key={currentLikedPost._id} {...currentLikedPost} />
+            );
+          })}
         </div>
       </div>
       <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
