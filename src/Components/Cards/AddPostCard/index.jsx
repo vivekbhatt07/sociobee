@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
+import { v4 as uuid } from "uuid";
+import { formatDate } from "../../../backend/utils/authUtils";
+
 import {
   AvatarActionLink,
   ContainedActionBtn,
@@ -22,6 +25,7 @@ import { emojiList } from "./EmojiData";
 
 const AddPostCard = () => {
   const { token, activeUser } = useAuth();
+  const { dispatch } = usePost();
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
   const [emojiSearchText, setEmojiSearchText] = useState("");
   const [anchor, setAnchor] = useState(null);
@@ -41,10 +45,15 @@ const AddPostCard = () => {
 
   console.log(postData);
 
-  //   const handleSendPostService = async(token, post) => {
-  // const sendPostServiceResponse = await sendPostService(token, post);
-
-  //   }
+  const handleSendPostService = async (token, post) => {
+    const sendPostServiceResponse = await sendPostService(token, post);
+    if (sendPostServiceResponse.status == 201) {
+      dispatch({
+        type: "GET_DATA",
+        payload: sendPostServiceResponse.data.posts,
+      });
+    }
+  };
 
   // USER POST DATA HANDLE:
   const handlePostData = (event) => {
@@ -61,6 +70,20 @@ const AddPostCard = () => {
 
   const submitPostData = (event) => {
     event.preventDefault();
+    handleSendPostService(token, {
+      _id: uuid(),
+      content: postData.postText,
+      mediaURL: postData.postImage,
+      likes: {
+        likeCount: 0,
+        likedBy: [],
+        dislikedBy: [],
+      },
+      username: activeUser.username,
+      createdAt: formatDate(),
+      updatedAt: formatDate(),
+      comments: [],
+    });
   };
 
   return (

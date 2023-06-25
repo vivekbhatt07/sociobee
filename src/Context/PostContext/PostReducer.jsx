@@ -6,6 +6,10 @@ export const postReducer = (state, action) => {
     case "GET_USERS": {
       return { ...state, userList: [...action.payload] };
     }
+
+    case "GET_BOOKMARK": {
+      return { ...state, bookmarkList: [...action.payload] };
+    }
     case "EDIT_USER": {
       return {
         ...state,

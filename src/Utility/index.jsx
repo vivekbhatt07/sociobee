@@ -9,6 +9,10 @@ import {
   getUserService,
   editUserService,
   sendPostService,
+  likePostService,
+  disLikePostService,
+  addBookmarkService,
+  removeBookmarkService,
 } from "./FunctionalUtility";
 
 export {
@@ -22,4 +26,8 @@ export {
   getUserService,
   editUserService,
   sendPostService,
+  likePostService,
+  disLikePostService,
+  addBookmarkService,
+  removeBookmarkService,
 };

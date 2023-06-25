@@ -3,6 +3,10 @@ import {
   getPostDetailService,
   getPostService,
   sendPostService,
+  likePostService,
+  disLikePostService,
+  addBookmarkService,
+  removeBookmarkService,
 } from "./DataServices";
 import { getUserService, editUserService } from "./UserServices";
 
@@ -14,4 +18,8 @@ export {
   getUserService,
   editUserService,
   sendPostService,
+  likePostService,
+  disLikePostService,
+  addBookmarkService,
+  removeBookmarkService,
 };
