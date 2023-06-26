@@ -7,6 +7,17 @@ export const postReducer = (state, action) => {
       return { ...state, userList: [...action.payload] };
     }
 
+    case "FOLLOW_USER": {
+      return {
+        ...state,
+        userList: state.userList.map((currentUser) => {
+          return currentUser._id == action.payload.id
+            ? action.payload.user
+            : currentUser;
+        }),
+      };
+    }
+
     case "GET_BOOKMARK": {
       return {
         ...state,

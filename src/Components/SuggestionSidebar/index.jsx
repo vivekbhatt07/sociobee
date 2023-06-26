@@ -6,12 +6,18 @@ const SuggestionSidebar = () => {
   const { state } = usePost();
   const { activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
-  const followingList = activeUser.following.map((current) => {
+
+  // GET CURRENT USER OBJECT:
+  const activeUserProfile = state.userList.find((currentUser) => {
+    return currentUser._id == activeUser._id;
+  });
+
+  const followingList = activeUserProfile?.following.map((current) => {
     return current.username;
   });
 
   const suggestionList = state.userList.reduce((list, currentUser) => {
-    if (currentUser.username !== activeUser.username) {
+    if (currentUser.username !== activeUserProfile?.username) {
       return followingList.includes(currentUser.username)
         ? [...list]
         : [...list, currentUser];
