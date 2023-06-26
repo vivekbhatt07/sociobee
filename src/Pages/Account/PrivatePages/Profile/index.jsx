@@ -11,6 +11,7 @@ import {
   Tab,
   Header,
   PostCard,
+  SuggestionSidebar,
 } from "../../../../Components";
 
 import { useAuth, usePost } from "../../../../Context";
@@ -458,24 +459,7 @@ const Profile = () => {
               <span>Latest</span>
             </OutlinedActionBtn>
           </div>
-          <div className="hidden flex-col gap-2 lg:block">
-            <span className="text-lg">Suggestions for you</span>
-            <div className="flex flex-col gap-2">
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-            </div>
-          </div>
+          <SuggestionSidebar />
         </div>
       </div>
     </div>

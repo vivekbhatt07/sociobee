@@ -31,6 +31,8 @@ import ModalProvider from "./ModalProvider";
 
 import PrivateRoute from "./PrivateRoute";
 
+import SuggestionSidebar from "./SuggestionSidebar";
+
 export {
   Header,
   Footer,
@@ -58,4 +60,5 @@ export {
   SuggestionCard,
   ModalProvider,
   PrivateRoute,
+  SuggestionSidebar,
 };

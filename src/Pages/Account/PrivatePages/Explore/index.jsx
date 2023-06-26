@@ -6,6 +6,7 @@ import {
   Tab,
   SuggestionCard,
   OutlinedActionBtn,
+  SuggestionSidebar,
 } from "../../../../Components";
 import { Whatshot, SwapVert } from "@mui/icons-material";
 import { usePost, useAuth, useTheme } from "../../../../Context";
@@ -52,24 +53,7 @@ const Explore = () => {
               <span>Latest</span>
             </OutlinedActionBtn>
           </div>
-          <div className="hidden flex-col gap-2 lg:block">
-            <span className="text-lg">Suggestions for you</span>
-            <div className="flex flex-col gap-2">
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-            </div>
-          </div>
+          <SuggestionSidebar />
         </div>
       </div>
     </div>
