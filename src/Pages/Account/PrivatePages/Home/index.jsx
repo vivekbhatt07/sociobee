@@ -34,8 +34,6 @@ const Home = () => {
     });
   }
 
-  console.log(sortedList);
-
   const homeList = sortedList.reduce((list, currentPost) => {
     return currentPost.username == activeUser.username ||
       activeUser.following.findIndex((currentFollowing) => {

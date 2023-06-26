@@ -1,6 +1,6 @@
 import React from "react";
 import { usePost, useAuth, useTheme } from "../../Context";
-import { SuggestionCard } from "../../Components";
+import { SuggestionCard, Loader } from "../../Components";
 
 const SuggestionSidebar = () => {
   const { state } = usePost();
@@ -25,13 +25,18 @@ const SuggestionSidebar = () => {
       return [...list];
     }
   }, []);
+
   return (
     <div className="hidden flex-col gap-3 lg:flex bg-stone-200 p-4 rounded-md dark:bg-stone-900">
       <span className="text-lg font-medium ml-2">Suggestions for you</span>
       <div className="flex flex-col gap-2">
-        {suggestionList.map((currentUser) => {
-          return <SuggestionCard key={currentUser._id} {...currentUser} />;
-        })}
+        {suggestionList.length === 0 ? (
+          <Loader />
+        ) : (
+          suggestionList.map((currentUser) => {
+            return <SuggestionCard key={currentUser._id} {...currentUser} />;
+          })
+        )}
       </div>
     </div>
   );

@@ -41,8 +41,6 @@ const Profile = () => {
     userEditBio: "",
     userEditWeb: "",
   });
-  console.log(activeAvatar);
-  console.log(userEditData);
 
   // EDIT PROFILE MODAL HANDLE:
   const handleEditProfileOpen = () => setIsEditProfileOpen(true);
