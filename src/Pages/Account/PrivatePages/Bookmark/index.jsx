@@ -9,15 +9,45 @@ import {
 } from "../../../../Components";
 
 import { Whatshot, SwapVert } from "@mui/icons-material";
+import { usePost, useTheme } from "../../../../Context";
 
 const Bookmark = () => {
+  const { state } = usePost();
+  const { isDarkTheme } = useTheme();
   return (
     <div className="tab min-h-screen">
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
-          Bookmark
+        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth pt-8">
+          {state.bookmarkList.length !== 0 ? (
+            state.bookmarkList.map((currentBookmark) => {
+              return (
+                <PostCard key={currentBookmark._id} {...currentBookmark} />
+              );
+            })
+          ) : (
+            <div className="flex flex-col gap-6">
+              <div className="flex justify-center">
+                <span className="text-2xl font-bold">No Bookmark</span>
+              </div>
+              {isDarkTheme ? (
+                <img
+                  src={
+                    "https://res.cloudinary.com/duqsyuriy/image/upload/v1687699196/NoBookmarksDark_xjckkj.svg"
+                  }
+                  className="mx-auto"
+                />
+              ) : (
+                <img
+                  src={
+                    "https://res.cloudinary.com/duqsyuriy/image/upload/v1687698623/NoBookmarksLight_n1v17q.svg"
+                  }
+                  className="mx-auto"
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
       <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">

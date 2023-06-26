@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
 import {
@@ -13,28 +12,58 @@ import {
   Share,
 } from "@mui/icons-material";
 
-import { getPostDetailService } from "../../../Utility";
-import { usePost } from "../../../Context";
+import {
+  getPostDetailService,
+  likePostService,
+  disLikePostService,
+  addBookmarkService,
+  removeBookmarkService,
+} from "../../../Utility";
+import { useAuth, usePost } from "../../../Context";
 
 const PostCard = (props) => {
-  const { state } = usePost();
-  // const {
-  //   _id,
-  //   content,
-  //   mediaURL,
-  //   mediaAlt,
-  //   likes,
-  //   username,
-  //   createdAt,
-  //   updatedAt,
-  //   comments,
-  // } = props;
+  const { token } = useAuth();
+  const { state, dispatch } = usePost();
+  const [isLike, setIsLike] = useState(false);
+  const [isBookmark, setIsBookmark] = useState(false);
 
-  // const handlePostDetail = async () => {
-  //   const postDetailResponse = await getPostDetailService(props?._id);
-  //   console.log(postDetailResponse);
-  // };
-  // const location = useLocation();
+  const handlePostLike = async (postId, encodedToken) => {
+    const postLikeResponse = await likePostService(postId, encodedToken);
+    if (postLikeResponse.status == 201) {
+      dispatch({ type: "GET_DATA", payload: postLikeResponse.data.posts });
+    }
+  };
+
+  const handlePostDislike = async (postId, encodedToken) => {
+    const postDislikeResponse = await disLikePostService(postId, encodedToken);
+    if (postDislikeResponse.status == 201) {
+      dispatch({ type: "GET_DATA", payload: postDislikeResponse.data.posts });
+    }
+  };
+
+  const handleAddBookmark = async (postId, encodedToken) => {
+    const addBookmarkResponse = await addBookmarkService(postId, encodedToken);
+    if (addBookmarkResponse.status == 200) {
+      dispatch({
+        type: "GET_BOOKMARK",
+        payload: addBookmarkResponse.data.bookmarks,
+      });
+    }
+  };
+
+  const handleRemoveBookmark = async (postId, encodedToken) => {
+    const removeBookmarkResponse = await removeBookmarkService(
+      postId,
+      encodedToken
+    );
+
+    if (removeBookmarkResponse.status == 200) {
+      dispatch({
+        type: "GET_BOOKMARK",
+        payload: removeBookmarkResponse.data.bookmarks,
+      });
+    }
+  };
 
   const getUser = state.userList.find((currentUser) => {
     return currentUser.username == props.username;
@@ -83,16 +112,47 @@ const PostCard = (props) => {
       <div className="postCard_footer flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
           <div className="flex gap-1 items-center">
-            <IconActionBtn>
-              <FavoriteBorder />
-            </IconActionBtn>
+            {isLike ? (
+              <IconActionBtn
+                handleClick={() => {
+                  setIsLike(false);
+                  handlePostDislike(props?._id, token);
+                }}
+              >
+                <Favorite sx={{ color: "red" }} />
+              </IconActionBtn>
+            ) : (
+              <IconActionBtn
+                handleClick={() => {
+                  setIsLike(true);
+                  handlePostLike(props?._id, token);
+                }}
+              >
+                <FavoriteBorder />
+              </IconActionBtn>
+            )}
             <span>{props?.likes?.likeCount}</span>
           </div>
           <div className="flex gap-1 items-center">
-            <IconActionBtn>
-              <BookmarkBorder />
-            </IconActionBtn>
-            <span>3</span>
+            {isBookmark ? (
+              <IconActionBtn
+                handleClick={() => {
+                  setIsBookmark(false);
+                  handleRemoveBookmark(props?._id, token);
+                }}
+              >
+                <Bookmark sx={{ color: "orange" }} />
+              </IconActionBtn>
+            ) : (
+              <IconActionBtn
+                handleClick={() => {
+                  setIsBookmark(true);
+                  handleAddBookmark(props?._id, token);
+                }}
+              >
+                <BookmarkBorder />
+              </IconActionBtn>
+            )}
           </div>
           <div className="flex gap-1 items-center">
             <IconActionBtn>

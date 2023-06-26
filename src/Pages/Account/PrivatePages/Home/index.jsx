@@ -9,12 +9,38 @@ import {
   SuggestionCard,
   OutlinedActionBtn,
 } from "../../../../Components";
-import { usePost } from "../../../../Context";
+import { usePost, useAuth, useTheme } from "../../../../Context";
 
 import { Whatshot, SwapVert } from "@mui/icons-material";
 
 const Home = () => {
   const { state } = usePost();
+  const { activeUser } = useAuth();
+  const { isDarkTheme } = useTheme();
+
+  const homeList = state.postList.reduce((list, currentPost) => {
+    return currentPost.username == activeUser.username ||
+      activeUser.following.findIndex((currentFollowing) => {
+        return currentFollowing.username == currentPost.username;
+      }) !== -1
+      ? [...list, currentPost]
+      : [...list];
+  }, []);
+
+  const followingList = activeUser.following.map((current) => {
+    return current.username;
+  });
+
+  const suggestionList = state.userList.reduce((list, currentUser) => {
+    if (currentUser.username !== activeUser.username) {
+      return followingList.includes(currentUser.username)
+        ? [...list]
+        : [...list, currentUser];
+    } else {
+      return [...list];
+    }
+  }, []);
+
   return (
     <div className="tab min-h-screen">
       <Header className="tab_header" />
@@ -22,7 +48,7 @@ const Home = () => {
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
         <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
           <AddPostCard />
-          {state?.postList.map((currentPost) => {
+          {homeList.map((currentPost) => {
             return <PostCard {...currentPost} key={currentPost?._id} />;
           })}
         </div>
@@ -44,22 +70,14 @@ const Home = () => {
               <span>Latest</span>
             </OutlinedActionBtn>
           </div>
-          <div className="hidden flex-col gap-2 lg:block">
+          <div className="hidden flex-col gap-2 lg:flex">
             <span className="text-lg">Suggestions for you</span>
             <div className="flex flex-col gap-2">
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
+              {suggestionList.map((currentUser) => {
+                return (
+                  <SuggestionCard key={currentUser._id} {...currentUser} />
+                );
+              })}
             </div>
           </div>
         </div>

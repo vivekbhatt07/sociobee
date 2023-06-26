@@ -6,6 +6,16 @@ export const postReducer = (state, action) => {
     case "GET_USERS": {
       return { ...state, userList: [...action.payload] };
     }
+
+    case "GET_BOOKMARK": {
+      return {
+        ...state,
+        bookmarkList: state.postList.filter((currentPost) => {
+          return action.payload.includes(currentPost._id);
+        }),
+      };
+    }
+
     case "EDIT_USER": {
       return {
         ...state,
