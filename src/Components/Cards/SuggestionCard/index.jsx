@@ -13,20 +13,19 @@ const SuggestionCard = (props) => {
       <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
         <AvatarActionLink avatar={profileAvatar} />
         <div className="flex flex-col">
-          <span>
+          <span className="font-medium">
             {firstName} {lastName}
           </span>
           <span className="text-xs">{username}</span>
         </div>
       </div>
       <ContainedActionBtn
-        className="follow_btn flex items-center gap-2"
+        className="follow_btn flex items-center gap-2 text-sm"
         containBtnType="button"
         handleClick={() => {
           handleFollowUser(_id, token);
         }}
       >
-        <Add />
         <span>Follow</span>
       </ContainedActionBtn>
     </article>

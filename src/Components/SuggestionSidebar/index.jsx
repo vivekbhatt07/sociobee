@@ -26,8 +26,8 @@ const SuggestionSidebar = () => {
     }
   }, []);
   return (
-    <div className="hidden flex-col gap-2 lg:flex">
-      <span className="text-lg">Suggestions for you</span>
+    <div className="hidden flex-col gap-3 lg:flex bg-stone-200 p-4 rounded-md dark:bg-stone-900">
+      <span className="text-lg font-medium ml-2">Suggestions for you</span>
       <div className="flex flex-col gap-2">
         {suggestionList.map((currentUser) => {
           return <SuggestionCard key={currentUser._id} {...currentUser} />;

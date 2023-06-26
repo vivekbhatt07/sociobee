@@ -57,48 +57,92 @@ const Home = () => {
           })}
         </div>
       </div>
-      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
-        <div className="flex flex-col gap-2 p-3">
-          <div className="flex w-full gap-2">
-            {state.sortType === "isTrending" ? (
-              <ContainedActionBtn
-                containBtnType="button"
-                className="basis-3/6 flex items-center justify-center"
-              >
-                <Whatshot /> <span>Trending</span>
-              </ContainedActionBtn>
-            ) : (
-              <OutlinedActionBtn
-                outlineBtnType="button"
-                className="basis-3/6 flex items-center justify-center"
-                handleClick={() => {
-                  dispatch({ type: "SET_SORT", payload: "isTrending" });
-                }}
-              >
-                <Whatshot /> <span>Trending</span>
-              </OutlinedActionBtn>
-            )}
-            {state.sortType == "isLatest" ? (
-              <ContainedActionBtn
-                containBtnType="button"
-                className="basis-3/6 flex items-center justify-center"
-              >
-                <SwapVert />
-                <span>Latest</span>
-              </ContainedActionBtn>
-            ) : (
-              <OutlinedActionBtn
-                outlineBtnType="button"
-                className="basis-3/6 flex items-center justify-center"
-                handleClick={() =>
-                  dispatch({ type: "SET_SORT", payload: "isLatest" })
-                }
-              >
-                <SwapVert />
-                <span>Latest</span>
-              </OutlinedActionBtn>
-            )}
-          </div>
+      <div className="tab_sidebar dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
+        <div className="flex flex-col gap-4 p-3">
+          {isDarkTheme ? (
+            <div className="flex w-full gap-2">
+              {" "}
+              {state.sortType === "isTrending" ? (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <Whatshot /> <span>Trending</span>
+                </OutlinedActionBtn>
+              ) : (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() => {
+                    dispatch({ type: "SET_SORT", payload: "isTrending" });
+                  }}
+                >
+                  <Whatshot /> <span>Trending</span>
+                </ContainedActionBtn>
+              )}
+              {state.sortType == "isLatest" ? (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </OutlinedActionBtn>
+              ) : (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() =>
+                    dispatch({ type: "SET_SORT", payload: "isLatest" })
+                  }
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </ContainedActionBtn>
+              )}
+            </div>
+          ) : (
+            <div className="flex w-full gap-2">
+              {state.sortType === "isTrending" ? (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <Whatshot /> <span>Trending</span>
+                </ContainedActionBtn>
+              ) : (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() => {
+                    dispatch({ type: "SET_SORT", payload: "isTrending" });
+                  }}
+                >
+                  <Whatshot /> <span>Trending</span>
+                </OutlinedActionBtn>
+              )}
+              {state.sortType == "isLatest" ? (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </ContainedActionBtn>
+              ) : (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() =>
+                    dispatch({ type: "SET_SORT", payload: "isLatest" })
+                  }
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </OutlinedActionBtn>
+              )}
+            </div>
+          )}
           <SuggestionSidebar />
         </div>
       </div>
