@@ -26,23 +26,6 @@ const PostCard = (props) => {
   const { state, dispatch } = usePost();
   const [isLike, setIsLike] = useState(false);
   const [isBookmark, setIsBookmark] = useState(false);
-  // const {
-  //   _id,
-  //   content,
-  //   mediaURL,
-  //   mediaAlt,
-  //   likes,
-  //   username,
-  //   createdAt,
-  //   updatedAt,
-  //   comments,
-  // } = props;
-
-  // const handlePostDetail = async () => {
-  //   const postDetailResponse = await getPostDetailService(props?._id);
-  //   console.log(postDetailResponse);
-  // };
-  // const location = useLocation();
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);

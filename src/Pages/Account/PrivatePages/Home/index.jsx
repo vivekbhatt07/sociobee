@@ -27,6 +27,20 @@ const Home = () => {
       : [...list];
   }, []);
 
+  const followingList = activeUser.following.map((current) => {
+    return current.username;
+  });
+
+  const suggestionList = state.userList.reduce((list, currentUser) => {
+    if (currentUser.username !== activeUser.username) {
+      return followingList.includes(currentUser.username)
+        ? [...list]
+        : [...list, currentUser];
+    } else {
+      return [...list];
+    }
+  }, []);
+
   return (
     <div className="tab min-h-screen">
       <Header className="tab_header" />
@@ -56,22 +70,14 @@ const Home = () => {
               <span>Latest</span>
             </OutlinedActionBtn>
           </div>
-          <div className="hidden flex-col gap-2 lg:block">
+          <div className="hidden flex-col gap-2 lg:flex">
             <span className="text-lg">Suggestions for you</span>
             <div className="flex flex-col gap-2">
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
-              <SuggestionCard />
+              {suggestionList.map((currentUser) => {
+                return (
+                  <SuggestionCard key={currentUser._id} {...currentUser} />
+                );
+              })}
             </div>
           </div>
         </div>
