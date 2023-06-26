@@ -443,22 +443,7 @@ const Profile = () => {
         </div>
       </div>
       <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
-        <div className="flex flex-col gap-2 p-3">
-          <div className="flex w-full gap-2">
-            <OutlinedActionBtn
-              outlineBtnType="button"
-              className="basis-3/6 flex items-center justify-center"
-            >
-              <Whatshot /> <span>Trending</span>
-            </OutlinedActionBtn>
-            <OutlinedActionBtn
-              outlineBtnType="button"
-              className="basis-3/6 flex items-center justify-center"
-            >
-              <SwapVert />
-              <span>Latest</span>
-            </OutlinedActionBtn>
-          </div>
+        <div className="p-3">
           <SuggestionSidebar />
         </div>
       </div>

@@ -37,5 +37,11 @@ export const postReducer = (state, action) => {
         }),
       };
     }
+    case "SET_SORT": {
+      return {
+        ...state,
+        sortType: action.payload,
+      };
+    }
   }
 };
