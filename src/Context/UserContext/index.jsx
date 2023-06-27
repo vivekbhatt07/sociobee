@@ -12,7 +12,6 @@ const UserProvider = ({ children }) => {
       followUserId,
       encodedToken
     );
-    console.log(followUserResponse);
     if (followUserResponse.status == 200) {
       dispatch({
         type: "FOLLOW_USER",
@@ -29,7 +28,15 @@ const UserProvider = ({ children }) => {
       followUserId,
       encodedToken
     );
-    console.log(unfollowUserResponse);
+    if (unfollowUserResponse.status == 200) {
+      dispatch({
+        type: "FOLLOW_USER",
+        payload: {
+          id: unfollowUserResponse.data.user._id,
+          user: unfollowUserResponse.data.user,
+        },
+      });
+    }
   };
 
   return (

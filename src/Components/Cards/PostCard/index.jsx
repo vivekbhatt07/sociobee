@@ -22,7 +22,7 @@ import {
 import { useAuth, usePost } from "../../../Context";
 
 const PostCard = (props) => {
-  const { token } = useAuth();
+  const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
   const [isLike, setIsLike] = useState(false);
   const [isBookmark, setIsBookmark] = useState(false);
@@ -77,13 +77,20 @@ const PostCard = (props) => {
   });
 
   return (
-    <Link
-      className="postCard border-b p-3 flex flex-col gap-4"
-      // to={`${location.pathname}/post/${props?._id}`}
-    >
+    <article className="postCard border-b p-3 flex flex-col gap-4">
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
-          <AvatarActionLink avatar={getUser?.profileAvatar} />
+          {getUser?.username == activeUser.username ? (
+            <AvatarActionLink
+              avatar={getUser?.profileAvatar}
+              reach={`/profile`}
+            />
+          ) : (
+            <AvatarActionLink
+              avatar={getUser?.profileAvatar}
+              reach={`/${getUser?.username}`}
+            />
+          )}
           <div className="flex flex-col gap-1">
             <div className="flex gap-2 items-center">
               <span className="font-semibold">
@@ -172,7 +179,7 @@ const PostCard = (props) => {
           <Share />
         </IconActionBtn>
       </div>
-    </Link>
+    </article>
   );
 };
 

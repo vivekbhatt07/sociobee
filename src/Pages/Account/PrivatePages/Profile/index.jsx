@@ -1,26 +1,22 @@
 import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   AvatarActionLink,
-  IconActionBtn,
   OutlinedActionBtn,
   ModalProvider,
   TextInput,
   TextInputLabel,
-  ContainedActionBtn,
-  SuggestionCard,
   Tab,
   Header,
   PostCard,
   SuggestionSidebar,
+  ContainedActionBtn,
 } from "../../../../Components";
 
-import { useAuth, usePost } from "../../../../Context";
+import { useAuth, usePost, useUser } from "../../../../Context";
 
 import {
-  Whatshot,
-  SwapVert,
   CalendarMonthOutlined,
-  ExitToApp,
   Link,
   CameraAlt,
   AccountCircle,
@@ -30,6 +26,9 @@ import {
 import { editUserService } from "../../../../Utility";
 
 const Profile = () => {
+  const { handleFollowUser, handleUnfollowUser } = useUser();
+  const navigate = useNavigate();
+  const { userId } = useParams();
   const { state, dispatch } = usePost();
   const { token, logOutHandler, activeUser } = useAuth();
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
@@ -79,6 +78,14 @@ const Profile = () => {
 
   // GET CURRENT USER POST DATA:
   const activeUserPosts = state.postList.filter((currentPost) => {
+    // return currentPost.username == activeUser.username;
+    if (userId == activeUser.username) {
+      return currentPost.username == activeUser.username;
+    }
+    if (userId) {
+      return currentPost.username == userId;
+    }
+
     return currentPost.username == activeUser.username;
   });
 
@@ -97,8 +104,28 @@ const Profile = () => {
 
   // GET CURRENT USER OBJECT:
   const activeUserProfile = state.userList.find((currentUser) => {
+    if (userId == activeUser.username) {
+      return currentUser._id == activeUser._id;
+    }
+    if (userId) {
+      return currentUser.username == userId;
+    }
+
     return currentUser._id == activeUser._id;
   });
+
+  // BUTTON:
+
+  const currentUser = state.userList.find((current) => {
+    return current._id == activeUser._id;
+  });
+
+  const followingList = currentUser?.following.map((current) => {
+    return current.username;
+  });
+  const isFollowing = followingList?.includes(userId);
+
+  console.log(followingList);
 
   return (
     <div className="tab min-h-screen">
@@ -129,271 +156,297 @@ const Profile = () => {
                     {activeUserProfile?.username}
                   </span>
                 </div>
-                <div className="userprofile_actions flex items-center gap-4">
-                  <ModalProvider
-                    isOpen={isEditProfileOpen}
-                    closeModal={handleEditProfileClose}
-                    modalTitle="Edit Profile"
-                    modalBtnVariant={
-                      <OutlinedActionBtn
-                        type="button"
-                        className="px-2 py-1"
-                        handleClick={handleEditProfileOpen}
+                {userId ? (
+                  <div className="userprofile_actions">
+                    {isFollowing ? (
+                      <ContainedActionBtn
+                        containBtnType="button"
+                        handleClick={() => {
+                          handleUnfollowUser(activeUserProfile?._id, token);
+                        }}
                       >
-                        Edit Profile
-                      </OutlinedActionBtn>
-                    }
-                  >
-                    <div className="">
-                      <div className="edit_banner h-[100px] bg-stone-500">
-                        <img
-                          src={activeUserProfile?.backgroundImage}
-                          alt="profile_cover"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <form
-                        onSubmit={submitUserEditData}
-                        className="p-4 flex flex-col gap-3"
+                        Unfollow
+                      </ContainedActionBtn>
+                    ) : (
+                      <ContainedActionBtn
+                        containBtnType="button"
+                        handleClick={() => {
+                          handleFollowUser(activeUserProfile?._id, token);
+                        }}
                       >
-                        <div className="mb-2 flex gap-4">
-                          <AvatarActionLink
-                            isLink={false}
-                            avatar={activeUserProfile?.profileAvatar}
-                            className="w-16 h-16 -mt-12"
-                          >
-                            <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
-                              <label className="flex w-full h-full cursor-pointer">
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  id="profile-image-picker"
-                                  className="hidden"
-                                  name="userEditAvatar"
-                                  onChange={handleUserEditData}
-                                />
-                                <CameraAlt className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-stone-50" />
-                              </label>
-                            </span>
-                          </AvatarActionLink>
-                          <ModalProvider
-                            isOpen={isAvatarOpen}
-                            closeModal={handleAvatarClose}
-                            modalTitle="Select Avatar"
-                            modalBtnVariant={
-                              <AvatarActionLink
-                                isLink={false}
-                                avatar="https://res.cloudinary.com/duqsyuriy/image/upload/v1687449306/Avatar/AvatarFive_ynsdwl.svg"
-                                className="w-16 h-16 -mt-12"
-                                onClick={handleAvatarOpen}
-                              >
-                                <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
-                                  <AccountCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-stone-50" />
-                                </span>
-                              </AvatarActionLink>
-                            }
-                          >
-                            <div className="p-4 flex flex-col gap-6">
-                              <div className="grid grid-cols-4 gap-y-4">
-                                {[
-                                  {
-                                    id: "0",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarTwelve_lbkpxs.svg",
-                                    avatarAlt: "avatarOne",
-                                  },
+                        Follow
+                      </ContainedActionBtn>
+                    )}
+                  </div>
+                ) : (
+                  <div className="userprofile_actions flex items-center gap-4">
+                    <ModalProvider
+                      isOpen={isEditProfileOpen}
+                      closeModal={handleEditProfileClose}
+                      modalTitle="Edit Profile"
+                      modalBtnVariant={
+                        <OutlinedActionBtn
+                          type="button"
+                          className="px-2 py-1"
+                          handleClick={handleEditProfileOpen}
+                        >
+                          Edit Profile
+                        </OutlinedActionBtn>
+                      }
+                    >
+                      <div className="">
+                        <div className="edit_banner h-[100px] bg-stone-500">
+                          <img
+                            src={activeUserProfile?.backgroundImage}
+                            alt="profile_cover"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <form
+                          onSubmit={submitUserEditData}
+                          className="p-4 flex flex-col gap-3"
+                        >
+                          <div className="mb-2 flex gap-4">
+                            <AvatarActionLink
+                              isLink={false}
+                              avatar={activeUserProfile?.profileAvatar}
+                              className="w-16 h-16 -mt-12"
+                            >
+                              <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
+                                <label className="flex w-full h-full cursor-pointer">
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    id="profile-image-picker"
+                                    className="hidden"
+                                    name="userEditAvatar"
+                                    onChange={handleUserEditData}
+                                  />
+                                  <CameraAlt className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-stone-50" />
+                                </label>
+                              </span>
+                            </AvatarActionLink>
+                            <ModalProvider
+                              isOpen={isAvatarOpen}
+                              closeModal={handleAvatarClose}
+                              modalTitle="Select Avatar"
+                              modalBtnVariant={
+                                <AvatarActionLink
+                                  isLink={false}
+                                  avatar="https://res.cloudinary.com/duqsyuriy/image/upload/v1687449306/Avatar/AvatarFive_ynsdwl.svg"
+                                  className="w-16 h-16 -mt-12"
+                                  onClick={handleAvatarOpen}
+                                >
+                                  <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
+                                    <AccountCircle className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-stone-50" />
+                                  </span>
+                                </AvatarActionLink>
+                              }
+                            >
+                              <div className="p-4 flex flex-col gap-6">
+                                <div className="grid grid-cols-4 gap-y-4">
+                                  {[
+                                    {
+                                      id: "0",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarTwelve_lbkpxs.svg",
+                                      avatarAlt: "avatarOne",
+                                    },
 
-                                  {
-                                    id: "1",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarEleven_frqxrs.svg",
-                                    avatarAlt: "avatarTwo",
-                                  },
-                                  {
-                                    id: "2",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarThree_mg1cgs.svg",
-                                    avatarAlt: "avatarThree",
-                                  },
-                                  {
-                                    id: "3",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarFourteen_oiwipf.svg",
-                                    avatarAlt: "avatarFour",
-                                  },
-                                  {
-                                    id: "4",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarThirteen_gjgk9b.svg",
-                                    avatarAlt: "avatarFive",
-                                  },
-                                  {
-                                    id: "5",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarOne_gma0e0.svg",
-                                    avatarAlt: "avatarSix",
-                                  },
-                                  {
-                                    id: "6",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarFour_e8avmg.svg",
-                                    avatarAlt: "avatarSix",
-                                  },
-                                  {
-                                    id: "7",
-                                    avatarLogo:
-                                      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarTwo_svgrsc.svg",
-                                    avatarAlt: "avatarSix",
-                                  },
-                                ].map((currentAvatar) => {
-                                  return (
-                                    <label
-                                      key={currentAvatar.id}
-                                      className="relative w-16 h-16 flex justify-center items-center justify-self-center"
-                                    >
-                                      <input
-                                        className="hidden"
-                                        type="radio"
-                                        name="userEditAvatar"
-                                        onChange={(event) =>
-                                          setActiveAvatar(event.target.value)
-                                        }
-                                        value={currentAvatar.avatarLogo}
-                                        checked={
-                                          activeAvatar ==
-                                          currentAvatar.avatarLogo
-                                        }
-                                      />
-                                      <div className="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                                        <img
-                                          src={currentAvatar.avatarLogo}
-                                          alt=""
+                                    {
+                                      id: "1",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarEleven_frqxrs.svg",
+                                      avatarAlt: "avatarTwo",
+                                    },
+                                    {
+                                      id: "2",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarThree_mg1cgs.svg",
+                                      avatarAlt: "avatarThree",
+                                    },
+                                    {
+                                      id: "3",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarFourteen_oiwipf.svg",
+                                      avatarAlt: "avatarFour",
+                                    },
+                                    {
+                                      id: "4",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarThirteen_gjgk9b.svg",
+                                      avatarAlt: "avatarFive",
+                                    },
+                                    {
+                                      id: "5",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarOne_gma0e0.svg",
+                                      avatarAlt: "avatarSix",
+                                    },
+                                    {
+                                      id: "6",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarFour_e8avmg.svg",
+                                      avatarAlt: "avatarSix",
+                                    },
+                                    {
+                                      id: "7",
+                                      avatarLogo:
+                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarTwo_svgrsc.svg",
+                                      avatarAlt: "avatarSix",
+                                    },
+                                  ].map((currentAvatar) => {
+                                    return (
+                                      <label
+                                        key={currentAvatar.id}
+                                        className="relative w-16 h-16 flex justify-center items-center justify-self-center"
+                                      >
+                                        <input
+                                          className="hidden"
+                                          type="radio"
+                                          name="userEditAvatar"
+                                          onChange={(event) =>
+                                            setActiveAvatar(event.target.value)
+                                          }
+                                          value={currentAvatar.avatarLogo}
+                                          checked={
+                                            activeAvatar ==
+                                            currentAvatar.avatarLogo
+                                          }
                                         />
-                                      </div>
-                                      {activeAvatar ==
-                                        currentAvatar.avatarLogo && (
-                                        <div className="w-16 h-16 bg-stone-950 opacity-50 rounded-full"></div>
-                                      )}
-
-                                      {activeAvatar ==
-                                        currentAvatar.avatarLogo && (
-                                        <div
-                                          className="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full flex justify-center items-center"
-                                          style={{ background: "#000" }}
-                                        >
-                                          <CheckCircle
-                                            className=""
-                                            style={{ color: "green" }}
+                                        <div className="w-16 h-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
+                                          <img
+                                            src={currentAvatar.avatarLogo}
+                                            alt=""
                                           />
                                         </div>
-                                      )}
-                                    </label>
-                                  );
-                                })}
-                              </div>
-                              <div className="flex justify-center gap-2">
-                                <ContainedActionBtn
-                                  isDisabled={activeAvatar}
-                                  btnStyle={{
-                                    cursor: activeAvatar
-                                      ? "pointer"
-                                      : "not-allowed",
-                                    opacity: activeAvatar ? "1" : "0.5",
-                                  }}
-                                  handleClick={() => {
-                                    setUserEditData((prevUserEditData) => {
-                                      return {
-                                        ...prevUserEditData,
-                                        userEditAvatar: activeAvatar,
-                                      };
-                                    });
-                                    setActiveAvatar("");
-                                    handleAvatarClose();
-                                  }}
-                                >
-                                  Select
-                                </ContainedActionBtn>
-                                <OutlinedActionBtn
-                                  handleClick={() => {
-                                    setActiveAvatar("");
-                                    handleAvatarClose();
-                                  }}
-                                >
-                                  Discard
-                                </OutlinedActionBtn>
-                              </div>
-                            </div>
-                          </ModalProvider>
-                        </div>
-                        <div className="flex flex-col gap-3">
-                          <TextInputLabel labelText="Bio">
-                            <TextInput
-                              inputName="userEditBio"
-                              inputType="text"
-                              inputValue={userEditData.userEditBio}
-                              inputPlaceholder="Front-end master"
-                              inputHandle={handleUserEditData}
-                            />
-                          </TextInputLabel>
-                          <TextInputLabel labelText="Website">
-                            <TextInput
-                              inputName="userEditWeb"
-                              inputType="text"
-                              inputValue={userEditData.userEditWeb}
-                              inputPlaceholder="www.vivekbhatt.netlify.app"
-                              inputHandle={handleUserEditData}
-                            />
-                          </TextInputLabel>
-                          <div className="flex justify-start gap-2 mt-4">
-                            <ContainedActionBtn containBtnType="submit">
-                              Save
-                            </ContainedActionBtn>
-                            <OutlinedActionBtn
-                              outlineBtnType="button"
-                              handleClick={handleEditProfileClose}
-                            >
-                              Cancel
-                            </OutlinedActionBtn>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </ModalProvider>
+                                        {activeAvatar ==
+                                          currentAvatar.avatarLogo && (
+                                          <div className="w-16 h-16 bg-stone-950 opacity-50 rounded-full"></div>
+                                        )}
 
-                  <ModalProvider
-                    isOpen={isLogOutOpen}
-                    closeModal={handleLogOutClose}
-                    modalTitle="Log Out"
-                    modalBtnVariant={
-                      <OutlinedActionBtn
-                        type="button"
-                        className="px-2 py-1"
-                        handleClick={handleLogOutOpen}
-                      >
-                        Log Out
-                      </OutlinedActionBtn>
-                    }
-                  >
-                    <div className="p-4 flex flex-col gap-4">
-                      <div className="flex flex-col gap-2">
-                        <div className="text-center text-2xl font-semibold">
-                          Log out of SocialBee?
-                        </div>
-                        <p className="text-center">
-                          You can always log back in at any time.
-                        </p>
+                                        {activeAvatar ==
+                                          currentAvatar.avatarLogo && (
+                                          <div
+                                            className="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full flex justify-center items-center"
+                                            style={{ background: "#000" }}
+                                          >
+                                            <CheckCircle
+                                              className=""
+                                              style={{ color: "green" }}
+                                            />
+                                          </div>
+                                        )}
+                                      </label>
+                                    );
+                                  })}
+                                </div>
+                                <div className="flex justify-center gap-2">
+                                  <ContainedActionBtn
+                                    isDisabled={activeAvatar}
+                                    btnStyle={{
+                                      cursor: activeAvatar
+                                        ? "pointer"
+                                        : "not-allowed",
+                                      opacity: activeAvatar ? "1" : "0.5",
+                                    }}
+                                    handleClick={() => {
+                                      setUserEditData((prevUserEditData) => {
+                                        return {
+                                          ...prevUserEditData,
+                                          userEditAvatar: activeAvatar,
+                                        };
+                                      });
+                                      setActiveAvatar("");
+                                      handleAvatarClose();
+                                    }}
+                                  >
+                                    Select
+                                  </ContainedActionBtn>
+                                  <OutlinedActionBtn
+                                    handleClick={() => {
+                                      setActiveAvatar("");
+                                      handleAvatarClose();
+                                    }}
+                                  >
+                                    Discard
+                                  </OutlinedActionBtn>
+                                </div>
+                              </div>
+                            </ModalProvider>
+                          </div>
+                          <div className="flex flex-col gap-3">
+                            <TextInputLabel labelText="Bio">
+                              <TextInput
+                                inputName="userEditBio"
+                                inputType="text"
+                                inputValue={userEditData.userEditBio}
+                                inputPlaceholder="Front-end master"
+                                inputHandle={handleUserEditData}
+                              />
+                            </TextInputLabel>
+                            <TextInputLabel labelText="Website">
+                              <TextInput
+                                inputName="userEditWeb"
+                                inputType="text"
+                                inputValue={userEditData.userEditWeb}
+                                inputPlaceholder="www.vivekbhatt.netlify.app"
+                                inputHandle={handleUserEditData}
+                              />
+                            </TextInputLabel>
+                            <div className="flex justify-start gap-2 mt-4">
+                              <ContainedActionBtn containBtnType="submit">
+                                Save
+                              </ContainedActionBtn>
+                              <OutlinedActionBtn
+                                outlineBtnType="button"
+                                handleClick={handleEditProfileClose}
+                              >
+                                Cancel
+                              </OutlinedActionBtn>
+                            </div>
+                          </div>
+                        </form>
                       </div>
-                      <div className="flex flex-col gap-2">
-                        <ContainedActionBtn handleClick={() => logOutHandler()}>
-                          Log out
-                        </ContainedActionBtn>
-                        <OutlinedActionBtn handleClick={handleLogOutClose}>
-                          Cancel
+                    </ModalProvider>
+
+                    <ModalProvider
+                      isOpen={isLogOutOpen}
+                      closeModal={handleLogOutClose}
+                      modalTitle="Log Out"
+                      modalBtnVariant={
+                        <OutlinedActionBtn
+                          type="button"
+                          className="px-2 py-1"
+                          handleClick={handleLogOutOpen}
+                        >
+                          Log Out
                         </OutlinedActionBtn>
+                      }
+                    >
+                      <div className="p-4 flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                          <div className="text-center text-2xl font-semibold">
+                            Log out of SocialBee?
+                          </div>
+                          <p className="text-center">
+                            You can always log back in at any time.
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <ContainedActionBtn
+                            handleClick={() => logOutHandler()}
+                          >
+                            Log out
+                          </ContainedActionBtn>
+                          <OutlinedActionBtn handleClick={handleLogOutClose}>
+                            Cancel
+                          </OutlinedActionBtn>
+                        </div>
                       </div>
-                    </div>
-                  </ModalProvider>
-                </div>
+                    </ModalProvider>
+                  </div>
+                )}
               </div>
               <div className="userprofile_quote">{activeUserProfile?.bio}</div>
               <div className="userprofile_meta flex flex-col gap-2">
