@@ -6,7 +6,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
-import { ThemeProvider, AuthProvider, PostProvider } from "./Context";
+import {
+  ThemeProvider,
+  AuthProvider,
+  PostProvider,
+  UserProvider,
+} from "./Context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +20,9 @@ root.render(
       <AuthProvider>
         <ThemeProvider>
           <PostProvider>
-            <App />
+            <UserProvider>
+              <App />
+            </UserProvider>
           </PostProvider>
         </ThemeProvider>
       </AuthProvider>

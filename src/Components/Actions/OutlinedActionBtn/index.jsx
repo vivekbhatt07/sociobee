@@ -4,7 +4,7 @@ const OutlinedActionBtn = (props) => {
   const { className, children, outlineBtnType, handleClick } = props;
   const classes =
     className +
-    " px-3 py-2 rounded border-2 transition-all duration-500 hover:text-stone-50 hover:border-stone-900 hover:bg-stone-900 transform active:scale-[0.99] active:duration-200";
+    " px-3 py-2 rounded border-2 transition-all duration-500 hover:text-stone-50 hover:border-stone-900 hover:bg-stone-900 transform active:scale-[0.99] active:duration-200 dark:hover:border-stone-50";
   return (
     <button className={classes} type={outlineBtnType} onClick={handleClick}>
       {children}

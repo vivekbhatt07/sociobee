@@ -43,8 +43,6 @@ const AddPostCard = () => {
 
   const [postData, setPostData] = useState({ postText: "", postImage: "" });
 
-  console.log(postData);
-
   const handleSendPostService = async (token, post) => {
     const sendPostServiceResponse = await sendPostService(token, post);
     if (sendPostServiceResponse.status == 201) {

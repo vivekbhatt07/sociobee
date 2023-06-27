@@ -8,7 +8,12 @@ import {
   addBookmarkService,
   removeBookmarkService,
 } from "./DataServices";
-import { getUserService, editUserService } from "./UserServices";
+import {
+  getUserService,
+  editUserService,
+  followUserService,
+  unfollowUserService,
+} from "./UserServices";
 
 export {
   logInService,
@@ -17,6 +22,8 @@ export {
   getPostService,
   getUserService,
   editUserService,
+  followUserService,
+  unfollowUserService,
   sendPostService,
   likePostService,
   disLikePostService,

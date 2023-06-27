@@ -8,37 +8,39 @@ import {
   Tab,
   SuggestionCard,
   OutlinedActionBtn,
+  SuggestionSidebar,
+  ContainedActionBtn,
 } from "../../../../Components";
 import { usePost, useAuth, useTheme } from "../../../../Context";
 
 import { Whatshot, SwapVert } from "@mui/icons-material";
 
 const Home = () => {
-  const { state } = usePost();
+  const { state, dispatch } = usePost();
   const { activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
 
-  const homeList = state.postList.reduce((list, currentPost) => {
+  let sortedList = state.postList;
+
+  if (state.sortType === "isTrending") {
+    sortedList = [...sortedList].sort((a, b) => {
+      return b.likes.likeCount - a.likes.likeCount;
+    });
+  } else if (state.sortType === "isLatest") {
+    sortedList = [...sortedList].sort((a, b) => {
+      let dateA = new Date(a.createdAt);
+      let dateB = new Date(b.createdAt);
+      return dateB - dateA;
+    });
+  }
+
+  const homeList = sortedList.reduce((list, currentPost) => {
     return currentPost.username == activeUser.username ||
       activeUser.following.findIndex((currentFollowing) => {
         return currentFollowing.username == currentPost.username;
       }) !== -1
       ? [...list, currentPost]
       : [...list];
-  }, []);
-
-  const followingList = activeUser.following.map((current) => {
-    return current.username;
-  });
-
-  const suggestionList = state.userList.reduce((list, currentUser) => {
-    if (currentUser.username !== activeUser.username) {
-      return followingList.includes(currentUser.username)
-        ? [...list]
-        : [...list, currentUser];
-    } else {
-      return [...list];
-    }
   }, []);
 
   return (
@@ -53,33 +55,93 @@ const Home = () => {
           })}
         </div>
       </div>
-      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
-        <div className="flex flex-col gap-2 p-3">
-          <div className="flex w-full gap-2">
-            <OutlinedActionBtn
-              outlineBtnType="button"
-              className="basis-3/6 flex items-center justify-center"
-            >
-              <Whatshot /> <span>Trending</span>
-            </OutlinedActionBtn>
-            <OutlinedActionBtn
-              outlineBtnType="button"
-              className="basis-3/6 flex items-center justify-center"
-            >
-              <SwapVert />
-              <span>Latest</span>
-            </OutlinedActionBtn>
-          </div>
-          <div className="hidden flex-col gap-2 lg:flex">
-            <span className="text-lg">Suggestions for you</span>
-            <div className="flex flex-col gap-2">
-              {suggestionList.map((currentUser) => {
-                return (
-                  <SuggestionCard key={currentUser._id} {...currentUser} />
-                );
-              })}
+      <div className="tab_sidebar dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
+        <div className="flex flex-col gap-4 p-3">
+          {isDarkTheme ? (
+            <div className="flex w-full gap-2">
+              {" "}
+              {state.sortType === "isTrending" ? (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <Whatshot /> <span>Trending</span>
+                </OutlinedActionBtn>
+              ) : (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() => {
+                    dispatch({ type: "SET_SORT", payload: "isTrending" });
+                  }}
+                >
+                  <Whatshot /> <span>Trending</span>
+                </ContainedActionBtn>
+              )}
+              {state.sortType == "isLatest" ? (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </OutlinedActionBtn>
+              ) : (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() =>
+                    dispatch({ type: "SET_SORT", payload: "isLatest" })
+                  }
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </ContainedActionBtn>
+              )}
             </div>
-          </div>
+          ) : (
+            <div className="flex w-full gap-2">
+              {state.sortType === "isTrending" ? (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <Whatshot /> <span>Trending</span>
+                </ContainedActionBtn>
+              ) : (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() => {
+                    dispatch({ type: "SET_SORT", payload: "isTrending" });
+                  }}
+                >
+                  <Whatshot /> <span>Trending</span>
+                </OutlinedActionBtn>
+              )}
+              {state.sortType == "isLatest" ? (
+                <ContainedActionBtn
+                  containBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </ContainedActionBtn>
+              ) : (
+                <OutlinedActionBtn
+                  outlineBtnType="button"
+                  className="basis-3/6 flex items-center justify-center"
+                  handleClick={() =>
+                    dispatch({ type: "SET_SORT", payload: "isLatest" })
+                  }
+                >
+                  <SwapVert />
+                  <span>Latest</span>
+                </OutlinedActionBtn>
+              )}
+            </div>
+          )}
+          <SuggestionSidebar />
         </div>
       </div>
     </div>

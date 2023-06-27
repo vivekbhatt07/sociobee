@@ -69,6 +69,13 @@ const PostCard = (props) => {
     return currentUser.username == props.username;
   });
 
+  const date = new Date(props?.createdAt);
+  const validPostDate = date.toLocaleDateString("en-us", {
+    day: "numeric",
+    year: "numeric",
+    month: "short",
+  });
+
   return (
     <Link
       className="postCard border-b p-3 flex flex-col gap-4"
@@ -82,7 +89,7 @@ const PostCard = (props) => {
               <span className="font-semibold">
                 {getUser?.firstName} {getUser?.lastName}
               </span>
-              <span className="text-sm text-stone-400">May 05 2022</span>
+              <span className="text-sm text-stone-400">{validPostDate}</span>
             </div>
             <div className="text-xs">{props?.username}</div>
           </div>
