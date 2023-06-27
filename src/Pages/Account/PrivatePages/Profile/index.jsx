@@ -11,6 +11,8 @@ import {
   PostCard,
   SuggestionSidebar,
   ContainedActionBtn,
+  Loader,
+  DarkLoader,
 } from "../../../../Components";
 
 import { useAuth, usePost, useUser } from "../../../../Context";
@@ -24,13 +26,17 @@ import {
 } from "@mui/icons-material";
 
 import { editUserService } from "../../../../Utility";
+import { useTheme } from "@emotion/react";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
   const navigate = useNavigate();
   const { userId } = useParams();
   const { state, dispatch } = usePost();
+  const { isDarkTheme } = useTheme();
   const { token, logOutHandler, activeUser } = useAuth();
+  const [isFollowerOpen, setIsFollowerOpen] = useState(false);
+  const [isFollowingOpen, setIsFollowingOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isLogOutOpen, setIsLogOutOpen] = useState(false);
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
@@ -40,6 +46,14 @@ const Profile = () => {
     userEditBio: "",
     userEditWeb: "",
   });
+
+  // FOLLOWER MODAL HANDLE:
+  const handleFollowerOpen = () => setIsFollowerOpen(true);
+  const handleFollowerClose = () => setIsFollowerOpen(false);
+
+  // FOLLOWING MODAL HANDLE:
+  const handleFollowingOpen = () => setIsFollowingOpen(true);
+  const handleFollowingClose = () => setIsFollowingOpen(false);
 
   // EDIT PROFILE MODAL HANDLE:
   const handleEditProfileOpen = () => setIsEditProfileOpen(true);
@@ -471,25 +485,93 @@ const Profile = () => {
                   </span>
                   <span className="font-light">Posts</span>
                 </p>
-                <p className="flex gap-1 text-sm">
-                  <span className="text-stone-950 font-semibold dark:text-stone-50">
-                    {activeUserProfile?.followers.length}
-                  </span>
-                  <span className="font-light">Followers</span>
-                </p>
-                <p className="flex gap-1 text-sm">
-                  <span className="text-stone-950 font-semibold dark:text-stone-50">
-                    {activeUserProfile?.following.length}
-                  </span>
-                  <span className="font-light">Following</span>
-                </p>
+                {/* FOLLOWERS MODAL BUTTON */}
+                <ModalProvider
+                  isOpen={isFollowerOpen}
+                  closeModal={handleFollowerClose}
+                  modalTitle="Followers"
+                  modalBtnVariant={
+                    <button
+                      className="flex gap-1 text-sm"
+                      onClick={handleFollowerOpen}
+                    >
+                      <span className="text-stone-950 font-semibold dark:text-stone-50">
+                        {activeUserProfile?.followers.length}
+                      </span>
+                      <span className="font-light">Followers</span>
+                    </button>
+                  }
+                >
+                  {currentUser?.followers.map((current) => {
+                    return (
+                      <article
+                        key={current._id}
+                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center"
+                      >
+                        <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                          <AvatarActionLink avatar={current.profileAvatar} />
+                          <div className="flex flex-col">
+                            <span className="font-medium">
+                              {current.firstName} {current.lastName}
+                            </span>
+                            <span className="text-xs">{current.username}</span>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </ModalProvider>
+                {/* FOLLOWING MODAL BUTTON */}
+                <ModalProvider
+                  isOpen={isFollowingOpen}
+                  closeModal={handleFollowingClose}
+                  modalTitle="Following"
+                  modalBtnVariant={
+                    <button
+                      className="flex gap-1 text-sm"
+                      onClick={handleFollowingOpen}
+                    >
+                      <span className="text-stone-950 font-semibold dark:text-stone-50">
+                        {activeUserProfile?.following.length}
+                      </span>
+                      <span className="font-light">Following</span>
+                    </button>
+                  }
+                >
+                  {currentUser?.following.map((current) => {
+                    return (
+                      <article
+                        key={current._id}
+                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center"
+                      >
+                        <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                          <AvatarActionLink avatar={current.profileAvatar} />
+                          <div className="flex flex-col">
+                            <span className="font-medium">
+                              {current.firstName} {current.lastName}
+                            </span>
+                            <span className="text-xs">{current.username}</span>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </ModalProvider>
               </div>
             </div>
           </article>
           <section className="my-6 flex flex-col">
-            {activeUserPosts.map((currentPost) => {
-              return <PostCard {...currentPost} key={currentPost._id} />;
-            })}
+            {activeUserPosts.length === 0 ? (
+              isDarkTheme ? (
+                <DarkLoader />
+              ) : (
+                <Loader />
+              )
+            ) : (
+              activeUserPosts.map((currentPost) => {
+                return <PostCard {...currentPost} key={currentPost._id} />;
+              })
+            )}
           </section>
         </div>
       </div>
