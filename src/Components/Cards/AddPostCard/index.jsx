@@ -94,7 +94,7 @@ const AddPostCard = () => {
         className="addPostCard_actions flex-1 flex flex-col gap-2.5"
       >
         <textarea
-          className="addPostCard_action_input h-16 border-0 outline-0"
+          className="addPostCard_action_input h-16 border-0 outline-0 text-stone-950 dark:bg-stone-950 dark:text-stone-50"
           placeholder="What is happening?!"
           name="postText"
           onChange={handlePostData}
@@ -103,7 +103,7 @@ const AddPostCard = () => {
         <div className="addPostCard_meta_actions flex justify-between items-center">
           <div className="addPostCard_meta_primary flex gap-0.5">
             <label>
-              <div className="w-8 h-8 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-950">
+              <div className="w-8 h-8 text-stone-950 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-50 dark:hover:bg-stone-700">
                 <ImageOutlined />
               </div>
               <input

@@ -27,6 +27,7 @@ import {
 
 import { editUserService } from "../../../../Utility";
 import { useTheme } from "@emotion/react";
+import { avatarData } from "./AvatarData";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
@@ -42,10 +43,12 @@ const Profile = () => {
   const [isAvatarOpen, setIsAvatarOpen] = useState(false);
   const [activeAvatar, setActiveAvatar] = useState("");
   const [userEditData, setUserEditData] = useState({
-    userEditAvatar: "",
-    userEditBio: "",
-    userEditWeb: "",
+    userEditAvatar: activeUser.profileAvatar,
+    userEditBio: activeUser.bio,
+    userEditWeb: activeUser.website,
   });
+
+  const [recall, setRecall] = useState(null);
 
   // FOLLOWER MODAL HANDLE:
   const handleFollowerOpen = () => setIsFollowerOpen(true);
@@ -56,12 +59,19 @@ const Profile = () => {
   const handleFollowingClose = () => setIsFollowingOpen(false);
 
   // EDIT PROFILE MODAL HANDLE:
-  const handleEditProfileOpen = () => setIsEditProfileOpen(true);
-  const handleEditProfileClose = () => setIsEditProfileOpen(false);
+  const handleEditProfileOpen = () => {
+    setRecall(userEditData);
+    setIsEditProfileOpen(true);
+  };
+  const handleEditProfileClose = () => {
+    setIsEditProfileOpen(false);
+  };
 
   // LOGOUT MODAL HANDLE:
   const handleLogOutOpen = () => setIsLogOutOpen(true);
-  const handleLogOutClose = () => setIsLogOutOpen(false);
+  const handleLogOutClose = () => {
+    setIsLogOutOpen(false);
+  };
 
   // AVATAR MODAL HANDLE:
   const handleAvatarOpen = () => setIsAvatarOpen(true);
@@ -82,17 +92,11 @@ const Profile = () => {
   const submitUserEditData = (event) => {
     event.preventDefault();
     handleEditUserService(token, activeUser);
-    setUserEditData({
-      userEditAvatar: "",
-      userEditBio: "",
-      userEditWeb: "",
-    });
     handleEditProfileClose();
   };
 
   // GET CURRENT USER POST DATA:
   const activeUserPosts = state.postList.filter((currentPost) => {
-    // return currentPost.username == activeUser.username;
     if (userId == activeUser.username) {
       return currentPost.username == activeUser.username;
     }
@@ -138,8 +142,6 @@ const Profile = () => {
     return current.username;
   });
   const isFollowing = followingList?.includes(userId);
-
-  console.log(followingList);
 
   return (
     <div className="tab min-h-screen">
@@ -223,7 +225,7 @@ const Profile = () => {
                           <div className="mb-2 flex gap-4">
                             <AvatarActionLink
                               isLink={false}
-                              avatar={activeUserProfile?.profileAvatar}
+                              avatar={userEditData?.userEditAvatar}
                               className="w-16 h-16 -mt-12"
                             >
                               <span className="absolute top-0 right-0 bottom-0 left-0 bg-stone-950 opacity-70">
@@ -259,57 +261,7 @@ const Profile = () => {
                             >
                               <div className="p-4 flex flex-col gap-6">
                                 <div className="grid grid-cols-4 gap-y-4">
-                                  {[
-                                    {
-                                      id: "0",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarTwelve_lbkpxs.svg",
-                                      avatarAlt: "avatarOne",
-                                    },
-
-                                    {
-                                      id: "1",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarEleven_frqxrs.svg",
-                                      avatarAlt: "avatarTwo",
-                                    },
-                                    {
-                                      id: "2",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449309/Avatar/AvatarThree_mg1cgs.svg",
-                                      avatarAlt: "avatarThree",
-                                    },
-                                    {
-                                      id: "3",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarFourteen_oiwipf.svg",
-                                      avatarAlt: "avatarFour",
-                                    },
-                                    {
-                                      id: "4",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449308/Avatar/AvatarThirteen_gjgk9b.svg",
-                                      avatarAlt: "avatarFive",
-                                    },
-                                    {
-                                      id: "5",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarOne_gma0e0.svg",
-                                      avatarAlt: "avatarSix",
-                                    },
-                                    {
-                                      id: "6",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarFour_e8avmg.svg",
-                                      avatarAlt: "avatarSix",
-                                    },
-                                    {
-                                      id: "7",
-                                      avatarLogo:
-                                        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687449307/Avatar/AvatarTwo_svgrsc.svg",
-                                      avatarAlt: "avatarSix",
-                                    },
-                                  ].map((currentAvatar) => {
+                                  {avatarData.map((currentAvatar) => {
                                     return (
                                       <label
                                         key={currentAvatar.id}
@@ -409,12 +361,33 @@ const Profile = () => {
                               />
                             </TextInputLabel>
                             <div className="flex justify-start gap-2 mt-4">
-                              <ContainedActionBtn containBtnType="submit">
+                              <ContainedActionBtn
+                                containBtnType="submit"
+                                isDisabled={
+                                  userEditData.userEditBio &&
+                                  userEditData.userEditWeb
+                                }
+                                btnStyle={{
+                                  cursor:
+                                    userEditData.userEditBio &&
+                                    userEditData.userEditWeb
+                                      ? "pointer"
+                                      : "not-allowed",
+                                  opacity:
+                                    userEditData.userEditBio &&
+                                    userEditData.userEditWeb
+                                      ? "1"
+                                      : "0.5",
+                                }}
+                              >
                                 Save
                               </ContainedActionBtn>
                               <OutlinedActionBtn
                                 outlineBtnType="button"
-                                handleClick={handleEditProfileClose}
+                                handleClick={() => {
+                                  setUserEditData(recall);
+                                  handleEditProfileClose();
+                                }}
                               >
                                 Cancel
                               </OutlinedActionBtn>
@@ -423,7 +396,7 @@ const Profile = () => {
                         </form>
                       </div>
                     </ModalProvider>
-
+                    {/* LOGOUT MODAL */}
                     <ModalProvider
                       isOpen={isLogOutOpen}
                       closeModal={handleLogOutClose}
