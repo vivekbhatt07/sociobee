@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
 import {
@@ -26,6 +28,28 @@ const PostCard = (props) => {
   const { state, dispatch } = usePost();
   const [isLike, setIsLike] = useState(false);
   const [isBookmark, setIsBookmark] = useState(false);
+
+  // **************************************************
+
+  const [postMenu, setPostMenu] = useState(null);
+  const isPostMenuOpen = Boolean(postMenu);
+  const handlePostMenuOpen = (event) => {
+    setPostMenu(event.currentTarget);
+  };
+  const handlePostMenuClose = () => {
+    setPostMenu(null);
+  };
+
+  const currentUser = state.userList.find((current) => {
+    return current._id == activeUser._id;
+  });
+
+  const followingList = currentUser?.following.map((current) => {
+    return current.username;
+  });
+  const isFollowing = followingList?.includes(props?.username);
+
+  // ******************************************
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
@@ -101,9 +125,34 @@ const PostCard = (props) => {
             <div className="text-xs">{props?.username}</div>
           </div>
         </div>
-        <IconActionBtn>
-          <MoreHorizOutlined />
+        <IconActionBtn handleClick={handlePostMenuOpen}>
+          <MoreHorizOutlined className="text-stone-950 dark:text-stone-50" />
         </IconActionBtn>
+
+        <Menu
+          id="basic-menu"
+          anchorEl={postMenu}
+          open={isPostMenuOpen}
+          onClose={handlePostMenuClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          {props?.username == currentUser.username ? (
+            <div>
+              <MenuItem onClick={handlePostMenuClose}>Edit</MenuItem>
+              <MenuItem onClick={handlePostMenuClose}>Delete</MenuItem>
+            </div>
+          ) : isFollowing ? (
+            <div>
+              <MenuItem onClick={handlePostMenuClose}>Unfollow</MenuItem>
+            </div>
+          ) : (
+            <div>
+              <MenuItem onClick={handlePostMenuClose}>Follow</MenuItem>
+            </div>
+          )}
+        </Menu>
       </div>
       <div className="postCard_body flex flex-col gap-2">
         <p>{props?.content}</p>
