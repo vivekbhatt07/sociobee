@@ -1,0 +1,11 @@
+import React from "react";
+import Lottie from "lottie-react";
+import DarkLoaderLottie from "../../Assets/Lottie/DarkLoaderLottie.json";
+
+const DarkLoader = () => (
+  <div className="w-20 h-20 inline-block mx-auto">
+    <Lottie animationData={DarkLoaderLottie} loop={true} />
+  </div>
+);
+
+export default DarkLoader;

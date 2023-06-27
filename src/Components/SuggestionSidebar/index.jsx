@@ -1,6 +1,6 @@
 import React from "react";
 import { usePost, useAuth, useTheme } from "../../Context";
-import { SuggestionCard, Loader } from "../../Components";
+import { SuggestionCard, Loader, DarkLoader } from "../../Components";
 
 const SuggestionSidebar = () => {
   const { state } = usePost();
@@ -31,7 +31,11 @@ const SuggestionSidebar = () => {
       <span className="text-lg font-medium ml-2">Suggestions for you</span>
       <div className="flex flex-col gap-2">
         {suggestionList.length === 0 ? (
-          <Loader />
+          isDarkTheme ? (
+            <DarkLoader />
+          ) : (
+            <Loader />
+          )
         ) : (
           suggestionList.map((currentUser) => {
             return <SuggestionCard key={currentUser._id} {...currentUser} />;

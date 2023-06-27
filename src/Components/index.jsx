@@ -34,6 +34,7 @@ import PrivateRoute from "./PrivateRoute";
 import SuggestionSidebar from "./SuggestionSidebar";
 
 import Loader from "./Loader";
+import DarkLoader from "./DarkLoader";
 
 export {
   Header,
@@ -64,4 +65,5 @@ export {
   PrivateRoute,
   SuggestionSidebar,
   Loader,
+  DarkLoader,
 };
