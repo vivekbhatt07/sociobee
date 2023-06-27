@@ -59,15 +59,15 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
-          path=""
+          path="/:userId"
           element={
             <PrivateRoute>
-              <PostDetail />
+              <Profile />
             </PrivateRoute>
           }
         />
+
         <Route />
       </Routes>
     </div>
