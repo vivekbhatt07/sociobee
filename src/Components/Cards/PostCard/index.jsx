@@ -90,7 +90,7 @@ const PostCard = (props) => {
   };
 
   const getUser = state.userList.find((currentUser) => {
-    return currentUser.username == props.username;
+    return currentUser?.username == props?.username;
   });
 
   const date = new Date(props?.createdAt);
@@ -104,7 +104,7 @@ const PostCard = (props) => {
     <article className="postCard border-b p-3 flex flex-col gap-4">
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
-          {getUser?.username == activeUser.username ? (
+          {getUser?.username == activeUser?.username ? (
             <AvatarActionLink
               avatar={getUser?.profileAvatar}
               reach={`/profile`}
@@ -138,7 +138,7 @@ const PostCard = (props) => {
             "aria-labelledby": "basic-button",
           }}
         >
-          {props?.username == currentUser.username ? (
+          {props?.username == currentUser?.username ? (
             <div>
               <MenuItem onClick={handlePostMenuClose}>Edit</MenuItem>
               <MenuItem onClick={handlePostMenuClose}>Delete</MenuItem>
