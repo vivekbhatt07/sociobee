@@ -5,12 +5,12 @@
   align-items: center;
   padding: 8px;
   border-radius: 24px;
-  background-color: #581c87;
+  background-color: #44403c;
   justify-content: flex-start;
 }
 
 .mode:hover {
-  background: #581c87;
+  background: #44403c;
 }
 
 .circle {
@@ -30,7 +30,7 @@
   content: "";
   position: absolute;
   right: 0;
-  background: #581c87;
+  background: #44403c;
   border-radius: 50%;
   width: 75%;
   height: 75%;

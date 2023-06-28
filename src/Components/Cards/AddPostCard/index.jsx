@@ -91,7 +91,7 @@ const AddPostCard = () => {
   };
 
   return (
-    <article className="addPostCard flex gap-4 px-3 py-2 bg-[#fff]">
+    <article className="addPostCard flex gap-4 px-3 py-2 bg-[#fff] dark:bg-stone-950">
       <div className="addPostCard_user">
         <AvatarActionLink avatar={activeUser.profileAvatar} reach="/profile" />
       </div>

@@ -12,8 +12,8 @@ const TextInput = (props) => {
   } = props;
 
   const classes =
-    className +
-    " border-2 border-stone-400 p-2 rounded w-full transition-colors duration-700 outline-0 focus:border-stone-950 dark:text-stone-950";
+    "border-2 border-stone-400 p-2 rounded w-full transition-colors duration-700 outline-0 focus:border-stone-950 dark:text-stone-950 " +
+    className;
   return (
     <input
       name={inputName}
