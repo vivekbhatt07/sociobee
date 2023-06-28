@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth, usePost, useTheme } from "../../../Context";
 import SocialBeeDarkLogo from "../../../Assets/Logo/SocioBeeDark.svg";
 import SocialBeeLightLogo from "../../../Assets/Logo/SocioBeeLight.svg";
@@ -15,6 +15,7 @@ import {
 } from "../../../Components";
 
 const Header = (props) => {
+  const navigate = useNavigate();
   const { state } = usePost();
   const { activeUser } = useAuth();
   const { isDarkTheme, toggleTheme } = useTheme();
@@ -109,14 +110,14 @@ const Header = (props) => {
               )}
             </div>
           </div>
-          <div className="h-[320px] overflow-y-scroll">
+          <div className="h-[320px] overflow-y-scroll flex flex-col pr-2">
             {filteredSearchList.length !== 0 ? (
               filteredSearchList.map((current) => {
                 return (
-                  <Link
-                    to={`/${current.username}`}
+                  <article
+                    onClick={() => navigate(`/${current.username}`)}
                     key={current._id}
-                    className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center"
+                    className="flex cursor-pointer transition-all duration-200 rounded-md p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center hover:bg-stone-300 dark:hover:bg-stone-700"
                   >
                     <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
                       <AvatarActionLink avatar={current.profileAvatar} />
@@ -127,7 +128,7 @@ const Header = (props) => {
                         <span className="text-xs">{current.username}</span>
                       </div>
                     </div>
-                  </Link>
+                  </article>
                 );
               })
             ) : (
