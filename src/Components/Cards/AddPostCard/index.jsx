@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
+import Menu from "@mui/material/Menu";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
 
@@ -16,29 +17,22 @@ import {
   SentimentSatisfiedAltOutlined as SmileIcon,
   Close as CloseIcon,
 } from "@mui/icons-material";
-import { useAuth, usePost } from "../../../Context";
+import { useAuth, usePost, useTheme } from "../../../Context";
 
 import { sendPostService } from "../../../Utility";
-import { TextInput } from "../../Inputs";
-
-import { emojiList } from "./EmojiData";
 
 const AddPostCard = () => {
   const { token, activeUser } = useAuth();
+  const { isDarkTheme } = useTheme();
   const { dispatch } = usePost();
-  const [isEmojiOpen, setIsEmojiOpen] = useState(false);
-  const [emojiSearchText, setEmojiSearchText] = useState("");
-  const [anchor, setAnchor] = useState(null);
 
-  const simpleString = (str) => {
-    return str.trim().split(" ").join("").toLowerCase();
+  const [emojiMenu, setEmojiMenu] = useState(null);
+  const isEmojiMenuOpen = Boolean(emojiMenu);
+  const handleAddEmojiOpen = (event) => {
+    setEmojiMenu(event.currentTarget);
   };
-
-  const handleEmojiBox = (event) => {
-    if (!isEmojiOpen) {
-      setAnchor(event.currentTarget);
-    }
-    setIsEmojiOpen((prevIsEmojiOpen) => !prevIsEmojiOpen);
+  const handleAddEmojiClose = () => {
+    setEmojiMenu(null);
   };
 
   const [postData, setPostData] = useState({ postText: "", postImage: "" });
@@ -114,92 +108,58 @@ const AddPostCard = () => {
                 onChange={handlePostData}
               />
             </label>
-            {/* <IconActionBtn>
-              <GifBoxOutlined />
-            </IconActionBtn> */}
-            <IconActionBtn handleClick={handleEmojiBox} iconBtnType="button">
+            <IconActionBtn
+              handleClick={handleAddEmojiOpen}
+              iconBtnType="button"
+            >
               <SmileIcon />
             </IconActionBtn>
 
-            <Popper
-              open={isEmojiOpen}
-              transition
-              anchorEl={anchor}
-              anchorOrigin={{ vertical: "top", horizontal: "right" }}
-              transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+            <Menu
+              id="basic-menu"
+              anchorEl={emojiMenu}
+              open={isEmojiMenuOpen}
+              onClose={handleAddEmojiClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+                style: {
+                  padding: "0",
+                  backgroundColor: "#000",
+                  borderRadius: "4px",
+                },
+              }}
             >
-              {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={350}>
-                  <div className="w-[280px] bg-stone-50 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Select Emoji</span>
-                      <IconActionBtn
-                        handleClick={() => {
-                          handleEmojiBox();
-                          setEmojiSearchText("");
-                        }}
-                        className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
-                      >
-                        <CloseIcon />
-                      </IconActionBtn>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <TextInput
-                        inputType="search"
-                        inputPlaceholder="Search emojis"
-                        inputHandle={(event) => {
-                          setEmojiSearchText(event.target.value);
-                        }}
-                        inputValue={emojiSearchText}
-                      />
-                      <div className="relative grid grid-cols-5 h-52 overflow-y-scroll scroll-smooth">
-                        {emojiList.filter((current) => {
-                          return simpleString(current.description).includes(
-                            simpleString(emojiSearchText)
-                          );
-                        }).length === 0 ? (
-                          <div className="bg-stone-500 px-4 py-2 text-xs absolute top-0 translate-x-1/2 left-0 rounded-md text-stone-50">
-                            No Emojies Found
-                          </div>
-                        ) : (
-                          emojiList
-                            .filter((current) => {
-                              return current.description.includes(
-                                emojiSearchText
-                              );
-                            })
-                            .map((currentEmoji) => {
-                              return (
-                                <div
-                                  key={currentEmoji.id}
-                                  className="justify-self-start"
-                                  title={currentEmoji.description}
-                                >
-                                  <IconActionBtn
-                                    iconBtnType="button"
-                                    handleClick={() => {
-                                      setPostData((prevPostData) => {
-                                        return {
-                                          ...prevPostData,
-                                          postText:
-                                            prevPostData.postText +
-                                            currentEmoji.emoji,
-                                        };
-                                      });
-                                    }}
-                                  >
-                                    {currentEmoji.emoji}
-                                  </IconActionBtn>
-                                </div>
-                              );
-                            })
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Fade>
-              )}
-            </Popper>
+              <div className="text-stone-800 bg-stone-200 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">Select Emoji</span>
+                  <IconActionBtn
+                    handleClick={handleAddEmojiClose}
+                    className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
+                  >
+                    <CloseIcon className="dark:text-stone-50" />
+                  </IconActionBtn>
+                </div>
+                <div className="bg-stone-50 rounded-md dark:bg-stone-900 overflow-hidden">
+                  <Picker
+                    data={data}
+                    emojiSize={20}
+                    emojiButtonSize={28}
+                    maxFrequentRows={0}
+                    navPosition="bottom"
+                    previewPosition="none"
+                    theme={isDarkTheme ? "dark" : "light"}
+                    onEmojiSelect={(emoji) => {
+                      setPostData((prevPostData) => {
+                        return {
+                          ...prevPostData,
+                          postText: prevPostData.postText + emoji.native,
+                        };
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </Menu>
           </div>
           <ContainedActionBtn containBtnType="submit">Post</ContainedActionBtn>
         </div>
