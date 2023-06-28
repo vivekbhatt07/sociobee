@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
+import Menu from "@mui/material/Menu";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
 
@@ -12,33 +13,38 @@ import {
 
 import {
   ImageOutlined,
-  GifBoxOutlined,
   SentimentSatisfiedAltOutlined as SmileIcon,
   Close as CloseIcon,
+  Visibility,
+  DeleteOutline,
 } from "@mui/icons-material";
-import { useAuth, usePost } from "../../../Context";
+import { useAuth, usePost, useTheme } from "../../../Context";
 
 import { sendPostService } from "../../../Utility";
-import { TextInput } from "../../Inputs";
-
-import { emojiList } from "./EmojiData";
 
 const AddPostCard = () => {
   const { token, activeUser } = useAuth();
+  const { isDarkTheme } = useTheme();
   const { dispatch } = usePost();
-  const [isEmojiOpen, setIsEmojiOpen] = useState(false);
-  const [emojiSearchText, setEmojiSearchText] = useState("");
-  const [anchor, setAnchor] = useState(null);
 
-  const simpleString = (str) => {
-    return str.trim().split(" ").join("").toLowerCase();
+  // EMOJI MENU:
+  const [emojiMenu, setEmojiMenu] = useState(null);
+  const isEmojiMenuOpen = Boolean(emojiMenu);
+  const handleAddEmojiOpen = (event) => {
+    setEmojiMenu(event.currentTarget);
+  };
+  const handleAddEmojiClose = () => {
+    setEmojiMenu(null);
   };
 
-  const handleEmojiBox = (event) => {
-    if (!isEmojiOpen) {
-      setAnchor(event.currentTarget);
-    }
-    setIsEmojiOpen((prevIsEmojiOpen) => !prevIsEmojiOpen);
+  // IMAGE MENU:
+  const [imageMenu, setImageMenu] = useState(null);
+  const isImageMenuOpen = Boolean(imageMenu);
+  const handleImageMenuOpen = (event) => {
+    setImageMenu(event.currentTarget);
+  };
+  const handleImageMenuClose = () => {
+    setImageMenu(null);
   };
 
   const [postData, setPostData] = useState({ postText: "", postImage: "" });
@@ -85,25 +91,28 @@ const AddPostCard = () => {
   };
 
   return (
-    <article className="addPostCard flex gap-4 px-3 py-2 border-b">
+    <article className="addPostCard flex gap-4 px-3 py-2 bg-[#fff]">
       <div className="addPostCard_user">
-        <AvatarActionLink avatar={activeUser.profileAvatar} />
+        <AvatarActionLink avatar={activeUser.profileAvatar} reach="/profile" />
       </div>
       <form
         onSubmit={submitPostData}
         className="addPostCard_actions flex-1 flex flex-col gap-2.5"
       >
         <textarea
-          className="addPostCard_action_input h-16 border-0 outline-0 text-stone-950 dark:bg-stone-950 dark:text-stone-50"
+          className="addPostCard_action_input border-0 outline-0 text-stone-950 dark:bg-stone-950 dark:text-stone-50 h-20"
           placeholder="What is happening?!"
           name="postText"
           onChange={handlePostData}
           value={postData.postText}
         />
         <div className="addPostCard_meta_actions flex justify-between items-center">
-          <div className="addPostCard_meta_primary flex gap-0.5">
+          <div className="addPostCard_meta_primary flex gap-1">
             <label>
-              <div className="w-8 h-8 text-stone-950 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-50 dark:hover:bg-stone-700">
+              <div
+                className="w-8 h-8 text-stone-950 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-50 dark:hover:bg-stone-700"
+                title="Upload Image"
+              >
                 <ImageOutlined />
               </div>
               <input
@@ -114,94 +123,129 @@ const AddPostCard = () => {
                 onChange={handlePostData}
               />
             </label>
-            {/* <IconActionBtn>
-              <GifBoxOutlined />
-            </IconActionBtn> */}
-            <IconActionBtn handleClick={handleEmojiBox} iconBtnType="button">
+            <IconActionBtn
+              handleClick={handleAddEmojiOpen}
+              iconBtnType="button"
+              iconTitle="Emojis"
+            >
               <SmileIcon />
             </IconActionBtn>
 
-            <Popper
-              open={isEmojiOpen}
-              transition
-              anchorEl={anchor}
-              anchorOrigin={{ vertical: "top", horizontal: "right" }}
-              transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+            <Menu
+              id="basic-menu"
+              anchorEl={emojiMenu}
+              open={isEmojiMenuOpen}
+              onClose={handleAddEmojiClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+                style: {
+                  padding: "0",
+                  backgroundColor: "#000",
+                  borderRadius: "4px",
+                },
+              }}
             >
-              {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={350}>
-                  <div className="w-[280px] bg-stone-50 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800 shadow-md">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Select Emoji</span>
-                      <IconActionBtn
-                        handleClick={() => {
-                          handleEmojiBox();
-                          setEmojiSearchText("");
-                        }}
-                        className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
-                      >
-                        <CloseIcon />
-                      </IconActionBtn>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <TextInput
-                        inputType="search"
-                        inputPlaceholder="Search emojis"
-                        inputHandle={(event) => {
-                          setEmojiSearchText(event.target.value);
-                        }}
-                        inputValue={emojiSearchText}
-                      />
-                      <div className="relative grid grid-cols-5 h-52 overflow-y-scroll scroll-smooth">
-                        {emojiList.filter((current) => {
-                          return simpleString(current.description).includes(
-                            simpleString(emojiSearchText)
-                          );
-                        }).length === 0 ? (
-                          <div className="bg-stone-500 px-4 py-2 text-xs absolute top-0 translate-x-1/2 left-0 rounded-md text-stone-50">
-                            No Emojies Found
-                          </div>
-                        ) : (
-                          emojiList
-                            .filter((current) => {
-                              return current.description.includes(
-                                emojiSearchText
-                              );
-                            })
-                            .map((currentEmoji) => {
-                              return (
-                                <div
-                                  key={currentEmoji.id}
-                                  className="justify-self-start"
-                                  title={currentEmoji.description}
-                                >
-                                  <IconActionBtn
-                                    iconBtnType="button"
-                                    handleClick={() => {
-                                      setPostData((prevPostData) => {
-                                        return {
-                                          ...prevPostData,
-                                          postText:
-                                            prevPostData.postText +
-                                            currentEmoji.emoji,
-                                        };
-                                      });
-                                    }}
-                                  >
-                                    {currentEmoji.emoji}
-                                  </IconActionBtn>
-                                </div>
-                              );
-                            })
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Fade>
-              )}
-            </Popper>
+              <div className="text-stone-800 bg-stone-200 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">Select Emoji</span>
+                  <IconActionBtn
+                    handleClick={handleAddEmojiClose}
+                    className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
+                  >
+                    <CloseIcon className="dark:text-stone-50" />
+                  </IconActionBtn>
+                </div>
+                <div className="bg-stone-50 rounded-md dark:bg-stone-900 overflow-hidden">
+                  <Picker
+                    data={data}
+                    emojiSize={20}
+                    emojiButtonSize={28}
+                    maxFrequentRows={0}
+                    navPosition="bottom"
+                    previewPosition="none"
+                    perLine={8}
+                    theme={isDarkTheme ? "dark" : "light"}
+                    onEmojiSelect={(emoji) => {
+                      setPostData((prevPostData) => {
+                        return {
+                          ...prevPostData,
+                          postText: prevPostData.postText + emoji.native,
+                        };
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </Menu>
+
+            {postData.postImage && (
+              <IconActionBtn
+                iconBtnType="button"
+                handleClick={handleImageMenuOpen}
+                iconTitle="Image Preview"
+              >
+                <Visibility />
+              </IconActionBtn>
+            )}
+            <Menu
+              id="basic-menu"
+              anchorEl={imageMenu}
+              open={isImageMenuOpen}
+              onClose={handleImageMenuClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+                style: {
+                  padding: "0",
+                  backgroundColor: isDarkTheme ? "#000" : "#fff",
+                  borderRadius: "4px",
+                },
+              }}
+            >
+              <div className="text-stone-800 bg-stone-200 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">Image Preview</span>
+                  <IconActionBtn
+                    handleClick={handleImageMenuClose}
+                    className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
+                  >
+                    <CloseIcon />
+                  </IconActionBtn>
+                </div>
+
+                <div className="">
+                  <img src={postData.postImage} alt="post_img" />
+                </div>
+              </div>
+            </Menu>
+
+            {postData.postImage && (
+              <IconActionBtn
+                iconBtnType="button"
+                handleClick={() => {
+                  setPostData((prevPostData) => {
+                    return { ...prevPostData, postImage: "" };
+                  });
+                }}
+                iconTitle="Remove Image"
+              >
+                <DeleteOutline />
+              </IconActionBtn>
+            )}
           </div>
-          <ContainedActionBtn containBtnType="submit">Post</ContainedActionBtn>
+          <ContainedActionBtn
+            containBtnType="submit"
+            isDisabled={postData.postText || postData.postImage}
+            btnStyle={{
+              cursor:
+                postData.postText || postData.postImage
+                  ? "pointer"
+                  : "not-allowed",
+              opacity: postData.postText || postData.postImage ? "1" : "0.5",
+            }}
+            className="px-3 py-1 text-xs"
+          >
+            Post
+          </ContainedActionBtn>
         </div>
       </form>
     </article>
