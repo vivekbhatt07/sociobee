@@ -49,7 +49,9 @@ const Home = () => {
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
         <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
-          <AddPostCard />
+          <div className="border-b">
+            <AddPostCard />
+          </div>
           {homeList.map((currentPost) => {
             return <PostCard {...currentPost} key={currentPost?._id} />;
           })}
