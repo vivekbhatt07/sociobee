@@ -13,7 +13,7 @@ export const posts = [
       "Finally completed my e-commerce app using React! It's been an awesome journey with a lot of learning. Check it out and share your feedback!",
     mediaURL:
       "https://res.cloudinary.com/duqsyuriy/video/upload/v1687361575/socialbee/VivekEcommerce_d4ltez.mp4",
-    mediaAlt: "ecommerce",
+    mediaAlt: "ecommerce.mp4",
     likes: {
       likeCount: 160,
       likedBy: [],
@@ -30,7 +30,7 @@ export const posts = [
       "🌟 Big announcement! 🎉I've just finished building my dazzling jewellery website using React! 💍💎It's been an amazing adventure,merging my love for web development and exquisite accessories.Explore the collection, share your thoughts.",
     mediaURL:
       "https://res.cloudinary.com/duqsyuriy/video/upload/v1687363179/socialbee/AnushkaEcommerce_mnhrmu.mp4",
-    mediaAlt: "ecommerce",
+    mediaAlt: "ecommerce.mp4",
     likes: {
       likeCount: 53,
       likedBy: [],
@@ -47,7 +47,7 @@ export const posts = [
       "I just completed READHAVEN, my first React e-commerce web app dedicated to books! Kindly spread the word & share your love for books! Feedback suggestions are highly appreciated! ",
     mediaURL:
       "https://res.cloudinary.com/duqsyuriy/video/upload/v1687363887/socialbee/NiharikaEcommerce_v53n6z.mp4",
-    mediaAlt: "ecommerce",
+    mediaAlt: "ecommerce.mp4",
     likes: {
       likeCount: 5,
       likedBy: [],
@@ -79,7 +79,7 @@ export const posts = [
     content: "Created an food ordering app using react js",
     mediaURL:
       "https://res.cloudinary.com/duqsyuriy/video/upload/v1687368778/socialbee/ShraddhaEcommerce_rbljdt.mp4",
-    mediaAlt: "",
+    mediaAlt: "ecommerce.mp4",
     likes: {
       likeCount: 9,
       likedBy: [],

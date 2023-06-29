@@ -122,14 +122,14 @@ const PostCard = (props) => {
 
   // HANDLE EDIT POST:
 
-  const handleEditPost = async (postId, postData, encodedToken) => {
-    const editPostResponse = await editPostService(
-      postId,
-      postData,
-      encodedToken
-    );
-    console.log(editPostResponse);
-  };
+  // const handleEditPost = async (postId, postData, encodedToken) => {
+  //   const editPostResponse = await editPostService(
+  //     postId,
+  //     postData,
+  //     encodedToken
+  //   );
+  //   console.log(editPostResponse);
+  // };
 
   const getUser = state.userList.find((currentUser) => {
     return currentUser?.username == props?.username;
@@ -207,7 +207,7 @@ const PostCard = (props) => {
                   </MenuItem>
                 }
               >
-                <AddPostCard />
+                <AddPostCard {...props} isEdit />
               </ModalProvider>
               <MenuItem
                 onClick={() => {
