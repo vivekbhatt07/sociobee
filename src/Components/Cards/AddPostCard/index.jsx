@@ -4,6 +4,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
+import VideoCameraFrontOutlinedIcon from "@mui/icons-material/VideoCameraFrontOutlined";
 
 import {
   AvatarActionLink,
@@ -47,7 +48,11 @@ const AddPostCard = () => {
     setImageMenu(null);
   };
 
-  const [postData, setPostData] = useState({ postText: "", postImage: "" });
+  const [postData, setPostData] = useState({
+    postText: "",
+    postImage: "",
+    postImageName: "",
+  });
 
   const handleSendPostService = async (token, post) => {
     const sendPostServiceResponse = await sendPostService(token, post);
@@ -65,7 +70,12 @@ const AddPostCard = () => {
     setPostData((prevPostData) => {
       return {
         ...prevPostData,
-        [name]: type == "file" ? URL.createObjectURL(files[0]) : value,
+        [name]:
+          type == "file" && files.length !== 0
+            ? URL.createObjectURL(files[0])
+            : value,
+        postImageName:
+          type == "file" && files.length !== 0 ? files[0].name : "",
       };
     });
   };
@@ -87,6 +97,11 @@ const AddPostCard = () => {
       createdAt: formatDate(),
       updatedAt: formatDate(),
       comments: [],
+    });
+    setPostData({
+      postText: "",
+      postImage: "",
+      postImageName: "",
     });
   };
 
@@ -120,7 +135,28 @@ const AddPostCard = () => {
                 accept="image/*"
                 className="hidden"
                 name="postImage"
-                onChange={handlePostData}
+                onChange={(event) => {
+                  handlePostData(event);
+                }}
+              />
+            </label>
+            <label>
+              <div
+                className="w-8 h-8 text-stone-950 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-50 dark:hover:bg-stone-700"
+                title="Upload Video"
+              >
+                <VideoCameraFrontOutlinedIcon />
+              </div>
+              <input
+                id="video-uploader"
+                type="file"
+                accept="video/*"
+                className="hidden"
+                name="postImage"
+                // key={postData.postImage}
+                onChange={(event) => {
+                  handlePostData(event);
+                }}
               />
             </label>
             <IconActionBtn
@@ -182,7 +218,7 @@ const AddPostCard = () => {
               <IconActionBtn
                 iconBtnType="button"
                 handleClick={handleImageMenuOpen}
-                iconTitle="Image Preview"
+                iconTitle="Media Preview"
               >
                 <Visibility />
               </IconActionBtn>
@@ -203,7 +239,7 @@ const AddPostCard = () => {
             >
               <div className="text-stone-800 bg-stone-200 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium">Image Preview</span>
+                  <span className="font-medium">Media Preview</span>
                   <IconActionBtn
                     handleClick={handleImageMenuClose}
                     className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
@@ -213,7 +249,19 @@ const AddPostCard = () => {
                 </div>
 
                 <div className="">
-                  <img src={postData.postImage} alt="post_img" />
+                  {postData.postImageName?.includes("mp4") ? (
+                    <video controls>
+                      <source
+                        src={postData.postImage}
+                        type="video/mp4"
+                      ></source>
+                    </video>
+                  ) : (
+                    <img
+                      src={postData.postImage}
+                      className="object-cover w-full"
+                    />
+                  )}
                 </div>
               </div>
             </Menu>
@@ -223,10 +271,16 @@ const AddPostCard = () => {
                 iconBtnType="button"
                 handleClick={() => {
                   setPostData((prevPostData) => {
-                    return { ...prevPostData, postImage: "" };
+                    return {
+                      ...prevPostData,
+                      postImage: "",
+                      postImageName: "",
+                    };
                   });
+                  let uploader = document.getElementById("video-uploader");
+                  uploader.value = null;
                 }}
-                iconTitle="Remove Image"
+                iconTitle="Remove Media"
               >
                 <DeleteOutline />
               </IconActionBtn>

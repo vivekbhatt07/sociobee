@@ -5,7 +5,12 @@ import MenuItem from "@mui/material/MenuItem";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
-import { AvatarActionLink, IconActionBtn } from "../../Actions";
+import {
+  AvatarActionLink,
+  IconActionBtn,
+  ModalProvider,
+  AddPostCard,
+} from "../../../Components";
 import {
   MoreHorizOutlined,
   FavoriteBorder,
@@ -23,6 +28,7 @@ import {
   addBookmarkService,
   removeBookmarkService,
   deletePostService,
+  editPostService,
 } from "../../../Utility";
 import { useAuth, usePost } from "../../../Context";
 
@@ -31,6 +37,13 @@ const PostCard = (props) => {
   const { state, dispatch } = usePost();
   const [isLike, setIsLike] = useState(false);
   const [isBookmark, setIsBookmark] = useState(false);
+
+  // EDIT MODAL:
+
+  const [isEditPostModalOpen, setIsEditPostModalOpen] = useState(false);
+
+  const editPostModalOpen = () => setIsEditPostModalOpen(true);
+  const editPostModalClose = () => setIsEditPostModalOpen(false);
 
   // **************************************************
 
@@ -107,6 +120,17 @@ const PostCard = (props) => {
     }
   };
 
+  // HANDLE EDIT POST:
+
+  const handleEditPost = async (postId, postData, encodedToken) => {
+    const editPostResponse = await editPostService(
+      postId,
+      postData,
+      encodedToken
+    );
+    console.log(editPostResponse);
+  };
+
   const getUser = state.userList.find((currentUser) => {
     return currentUser?.username == props?.username;
   });
@@ -164,15 +188,27 @@ const PostCard = (props) => {
         >
           {props?.username == currentUser?.username ? (
             <div>
-              <MenuItem
-                onClick={() => {
+              <ModalProvider
+                isOpen={isEditPostModalOpen}
+                closeModal={() => {
+                  editPostModalClose();
                   handlePostMenuClose();
                 }}
-                sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+                modalTitle="Add Post"
+                modalBtnVariant={
+                  <MenuItem
+                    onClick={() => {
+                      editPostModalOpen();
+                    }}
+                    sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+                  >
+                    <EditOutlinedIcon />
+                    <span>Edit</span>
+                  </MenuItem>
+                }
               >
-                <EditOutlinedIcon />
-                <span>Edit</span>
-              </MenuItem>
+                <AddPostCard />
+              </ModalProvider>
               <MenuItem
                 onClick={() => {
                   handleDeletePost(props?._id, token);
