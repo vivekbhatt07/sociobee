@@ -65,10 +65,23 @@ const PostCard = (props) => {
   });
   const isFollowing = followingList?.includes(props?.username);
 
+  const currentPost = state.postList.find((currentPost) => {
+    return currentPost._id == props._id;
+  });
+
+  const isLiked = currentPost.likes.likedBy.find((currentLikedPost) => {
+    return currentLikedPost.username.includes(activeUser.username);
+  });
+
+  const isBookmarked = state.bookmarkList.find((currentBookmarkPost) => {
+    return currentBookmarkPost._id.includes(currentPost._id);
+  });
+
   // HANDLE POST LIKE:
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
+    console.log(postLikeResponse);
     if (postLikeResponse.status == 201) {
       dispatch({ type: "GET_DATA", payload: postLikeResponse.data.posts });
     }
@@ -252,7 +265,7 @@ const PostCard = (props) => {
       <div className="postCard_footer flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
           <div className="flex gap-1 items-center">
-            {isLike ? (
+            {isLiked ? (
               <IconActionBtn
                 handleClick={() => {
                   setIsLike(false);
@@ -274,7 +287,7 @@ const PostCard = (props) => {
             <span>{props?.likes?.likeCount}</span>
           </div>
           <div className="flex gap-1 items-center">
-            {isBookmark ? (
+            {isBookmarked ? (
               <IconActionBtn
                 handleClick={() => {
                   setIsBookmark(false);
