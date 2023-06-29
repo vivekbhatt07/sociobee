@@ -22,6 +22,7 @@ import {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  deletePostService,
 } from "../../../Utility";
 import { useAuth, usePost } from "../../../Context";
 
@@ -51,7 +52,7 @@ const PostCard = (props) => {
   });
   const isFollowing = followingList?.includes(props?.username);
 
-  // ******************************************
+  // HANDLE POST LIKE:
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
@@ -60,12 +61,16 @@ const PostCard = (props) => {
     }
   };
 
+  // HANDLE POST DISLIKE:
+
   const handlePostDislike = async (postId, encodedToken) => {
     const postDislikeResponse = await disLikePostService(postId, encodedToken);
     if (postDislikeResponse.status == 201) {
       dispatch({ type: "GET_DATA", payload: postDislikeResponse.data.posts });
     }
   };
+
+  // HANDLE ADD BOOKMARK:
 
   const handleAddBookmark = async (postId, encodedToken) => {
     const addBookmarkResponse = await addBookmarkService(postId, encodedToken);
@@ -76,6 +81,8 @@ const PostCard = (props) => {
       });
     }
   };
+
+  // HANDLE REMOVE BOOKMARK:
 
   const handleRemoveBookmark = async (postId, encodedToken) => {
     const removeBookmarkResponse = await removeBookmarkService(
@@ -88,6 +95,15 @@ const PostCard = (props) => {
         type: "GET_BOOKMARK",
         payload: removeBookmarkResponse.data.bookmarks,
       });
+    }
+  };
+
+  // HANDLE DELETE POST:
+
+  const handleDeletePost = async (postId, encodedToken) => {
+    const deletePostResponse = await deletePostService(postId, encodedToken);
+    if (deletePostResponse.status == 201) {
+      dispatch({ type: "GET_DATA", payload: deletePostResponse.data.posts });
     }
   };
 
@@ -149,14 +165,19 @@ const PostCard = (props) => {
           {props?.username == currentUser?.username ? (
             <div>
               <MenuItem
-                onClick={handlePostMenuClose}
+                onClick={() => {
+                  handlePostMenuClose();
+                }}
                 sx={{ display: "flex", alignItems: "center", gap: "12px" }}
               >
                 <EditOutlinedIcon />
                 <span>Edit</span>
               </MenuItem>
               <MenuItem
-                onClick={handlePostMenuClose}
+                onClick={() => {
+                  handleDeletePost(props?._id, token);
+                  handlePostMenuClose();
+                }}
                 sx={{ display: "flex", alignItems: "center", gap: "12px" }}
               >
                 <DeleteOutlinedIcon />
