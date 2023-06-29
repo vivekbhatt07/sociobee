@@ -80,7 +80,15 @@ const AuthProvider = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ token, activeUser, logInHandler, logOutHandler, signUpHandler }}
+      value={{
+        token,
+        setToken,
+        activeUser,
+        setActiveUser,
+        logInHandler,
+        logOutHandler,
+        signUpHandler,
+      }}
     >
       {children}
     </AuthContext.Provider>

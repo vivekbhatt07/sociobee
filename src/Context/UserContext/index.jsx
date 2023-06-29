@@ -1,10 +1,12 @@
 import React, { createContext, useContext } from "react";
 import { followUserService, unfollowUserService } from "../../Utility";
 import { usePost } from "../PostContext";
+import { useAuth } from "../AuthContext";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+  const { setActiveUser } = useAuth();
   const { dispatch } = usePost();
 
   const handleFollowUser = async (followUserId, encodedToken) => {
@@ -13,6 +15,7 @@ const UserProvider = ({ children }) => {
       encodedToken
     );
     if (followUserResponse.status == 200) {
+      setActiveUser(followUserResponse.data.user);
       dispatch({
         type: "FOLLOW_USER",
         payload: {
@@ -29,6 +32,7 @@ const UserProvider = ({ children }) => {
       encodedToken
     );
     if (unfollowUserResponse.status == 200) {
+      setActiveUser(unfollowUserResponse.data.user);
       dispatch({
         type: "FOLLOW_USER",
         payload: {

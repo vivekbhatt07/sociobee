@@ -7,6 +7,8 @@ import {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 } from "./DataServices";
 import {
   getUserService,
@@ -29,4 +31,6 @@ export {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 };

@@ -10,6 +10,8 @@ import {
   OutlinedActionBtn,
   SuggestionSidebar,
   ContainedActionBtn,
+  DarkLoader,
+  Loader,
 } from "../../../../Components";
 import { usePost, useAuth, useTheme } from "../../../../Context";
 
@@ -52,9 +54,19 @@ const Home = () => {
           <div className="border-b">
             <AddPostCard />
           </div>
-          {homeList.map((currentPost) => {
-            return <PostCard {...currentPost} key={currentPost?._id} />;
-          })}
+          <div className="">
+            {homeList.length === 0 ? (
+              isDarkTheme ? (
+                <DarkLoader />
+              ) : (
+                <Loader />
+              )
+            ) : (
+              homeList.map((currentPost) => {
+                return <PostCard {...currentPost} key={currentPost?._id} />;
+              })
+            )}
+          </div>
         </div>
       </div>
       <div className="tab_sidebar dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">

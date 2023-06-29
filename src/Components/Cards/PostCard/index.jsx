@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 import { AvatarActionLink, IconActionBtn } from "../../Actions";
 import {
@@ -134,14 +136,32 @@ const PostCard = (props) => {
           anchorEl={postMenu}
           open={isPostMenuOpen}
           onClose={handlePostMenuClose}
+          sx={{
+            background: "transparent",
+          }}
           MenuListProps={{
             "aria-labelledby": "basic-button",
+            style: {
+              background: "transparent",
+            },
           }}
         >
           {props?.username == currentUser?.username ? (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Edit</MenuItem>
-              <MenuItem onClick={handlePostMenuClose}>Delete</MenuItem>
+              <MenuItem
+                onClick={handlePostMenuClose}
+                sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <EditOutlinedIcon />
+                <span>Edit</span>
+              </MenuItem>
+              <MenuItem
+                onClick={handlePostMenuClose}
+                sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <DeleteOutlinedIcon />
+                <span>Delete</span>
+              </MenuItem>
             </div>
           ) : isFollowing ? (
             <div>
@@ -157,7 +177,7 @@ const PostCard = (props) => {
       <div className="postCard_body flex flex-col gap-2">
         <p>{props?.content}</p>
         {props?.mediaURL && (
-          <div>
+          <div className="rounded-lg overflow-hidden border border-stone-400">
             {props?.mediaURL?.includes("mp4") ? (
               <video controls>
                 <source src={props?.mediaURL} type="video/mp4"></source>
@@ -166,7 +186,7 @@ const PostCard = (props) => {
               <img
                 src={props?.mediaURL}
                 alt={props?.mediaAlt}
-                className="object-cover w-full h-full"
+                className="object-cover w-full"
               />
             )}
           </div>

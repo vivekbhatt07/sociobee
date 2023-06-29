@@ -5,6 +5,7 @@ import SocialBeeDarkLogo from "../../../Assets/Logo/SocioBeeDark.svg";
 import SocialBeeLightLogo from "../../../Assets/Logo/SocioBeeLight.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
+import { TransitionGroup } from "react-transition-group";
 import "./Header.css";
 import {
   AvatarActionLink,
@@ -13,6 +14,7 @@ import {
   ModalProvider,
   OutlinedActionBtn,
 } from "../../../Components";
+import { Collapse } from "@mui/material";
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -101,36 +103,39 @@ const Header = (props) => {
                   iconBtnType="button"
                   handleClick={() => setUserSearchText("")}
                 >
-                  <ClearIcon />
+                  <ClearIcon className="dark:text-stone-950 dark:hover:text-stone-50" />
                 </IconActionBtn>
               ) : (
                 <IconActionBtn>
-                  <SearchIcon />
+                  <SearchIcon className="dark:text-stone-950 dark:hover:text-stone-50" />
                 </IconActionBtn>
               )}
             </div>
           </div>
           <div className="h-[320px] overflow-y-scroll flex flex-col pr-2">
             {filteredSearchList.length !== 0 ? (
-              filteredSearchList.map((current) => {
-                return (
-                  <article
-                    onClick={() => navigate(`/${current.username}`)}
-                    key={current._id}
-                    className="flex cursor-pointer transition-all duration-200 rounded-md p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center hover:bg-stone-300 dark:hover:bg-stone-700"
-                  >
-                    <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
-                      <AvatarActionLink avatar={current.profileAvatar} />
-                      <div className="flex flex-col">
-                        <span className="font-medium">
-                          {current.firstName} {current.lastName}
-                        </span>
-                        <span className="text-xs">{current.username}</span>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })
+              <TransitionGroup>
+                {filteredSearchList.map((current) => {
+                  return (
+                    <Collapse key={current._id}>
+                      <article
+                        onClick={() => navigate(`/${current.username}`)}
+                        className="flex cursor-pointer transition-all duration-200 rounded-md p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center hover:bg-stone-300 dark:hover:bg-stone-700"
+                      >
+                        <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                          <AvatarActionLink avatar={current.profileAvatar} />
+                          <div className="flex flex-col">
+                            <span className="font-medium">
+                              {current.firstName} {current.lastName}
+                            </span>
+                            <span className="text-xs">{current.username}</span>
+                          </div>
+                        </div>
+                      </article>
+                    </Collapse>
+                  );
+                })}
+              </TransitionGroup>
             ) : (
               <div>No user found</div>
             )}

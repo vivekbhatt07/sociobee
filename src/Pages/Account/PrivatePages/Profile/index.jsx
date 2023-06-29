@@ -35,7 +35,7 @@ const Profile = () => {
   const { userId } = useParams();
   const { state, dispatch } = usePost();
   const { isDarkTheme } = useTheme();
-  const { token, logOutHandler, activeUser } = useAuth();
+  const { token, logOutHandler, activeUser, setActiveUser } = useAuth();
   const [isFollowerOpen, setIsFollowerOpen] = useState(false);
   const [isFollowingOpen, setIsFollowingOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
@@ -116,6 +116,7 @@ const Profile = () => {
       bio: userEditData.userEditBio,
     });
     if (userEditResponse.status == 201) {
+      setActiveUser(userEditResponse.data.user);
       dispatch({ type: "EDIT_USER", payload: userEditResponse.data.user });
     }
   };

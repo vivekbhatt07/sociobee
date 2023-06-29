@@ -5,6 +5,8 @@ import likePostService from "./LikePostService";
 import disLikePostService from "./DislikePostService";
 import addBookmarkService from "./AddBookmarkService";
 import removeBookmarkService from "./RemoveBookmarkService";
+import editPostService from "./EditPostService";
+import deletePostService from "./DeletePostService";
 
 export {
   getPostDetailService,
@@ -14,4 +16,6 @@ export {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 };
