@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -30,13 +29,13 @@ import {
   deletePostService,
   editPostService,
 } from "../../../Utility";
-import { useAuth, usePost } from "../../../Context";
+import { useAuth, usePost, useUser } from "../../../Context";
 
 const PostCard = (props) => {
+  console.log(props);
   const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
-
-  console.log(props);
+  const { handleFollowUser, handleUnfollowUser } = useUser();
 
   // EDIT MODAL:
 
@@ -228,11 +227,25 @@ const PostCard = (props) => {
             </div>
           ) : isFollowing ? (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Unfollow</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleUnfollowUser(props._id, token);
+                  handlePostMenuClose();
+                }}
+              >
+                Unfollow
+              </MenuItem>
             </div>
           ) : (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Follow</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleFollowUser(props?._id, token);
+                  handlePostMenuClose();
+                }}
+              >
+                Follow
+              </MenuItem>
             </div>
           )}
         </Menu>

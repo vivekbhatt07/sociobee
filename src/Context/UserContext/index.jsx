@@ -10,10 +10,12 @@ const UserProvider = ({ children }) => {
   const { dispatch } = usePost();
 
   const handleFollowUser = async (followUserId, encodedToken) => {
+    console.log(followUserId, encodedToken);
     const followUserResponse = await followUserService(
       followUserId,
       encodedToken
     );
+    console.log(followUserResponse);
     if (followUserResponse.status == 200) {
       setActiveUser(followUserResponse.data.user);
       dispatch({
