@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Collapse } from "@mui/material";
 import { useAuth, usePost, useTheme } from "../../../Context";
 import SocialBeeDarkLogo from "../../../Assets/Logo/SocioBeeDark.svg";
 import SocialBeeLightLogo from "../../../Assets/Logo/SocioBeeLight.svg";
@@ -14,7 +15,6 @@ import {
   ModalProvider,
   OutlinedActionBtn,
 } from "../../../Components";
-import { Collapse } from "@mui/material";
 
 const Header = (props) => {
   const navigate = useNavigate();

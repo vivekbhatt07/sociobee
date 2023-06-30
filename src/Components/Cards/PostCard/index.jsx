@@ -133,17 +133,6 @@ const PostCard = (props) => {
     }
   };
 
-  // HANDLE EDIT POST:
-
-  // const handleEditPost = async (postId, postData, encodedToken) => {
-  //   const editPostResponse = await editPostService(
-  //     postId,
-  //     postData,
-  //     encodedToken
-  //   );
-  //   console.log(editPostResponse);
-  // };
-
   const getUser = state.userList.find((currentUser) => {
     return currentUser?.username == props?.username;
   });
@@ -248,9 +237,9 @@ const PostCard = (props) => {
         <p>{props?.content}</p>
         {props?.mediaURL && (
           <div className="rounded-lg overflow-hidden border border-stone-400">
-            {props?.mediaURL?.includes("mp4") ? (
+            {props?.mediaAlt?.includes("mp4") ? (
               <video controls>
-                <source src={props?.mediaURL} type="video/mp4"></source>
+                <source src={props?.mediaURL} type="video/mp4" />
               </video>
             ) : (
               <img

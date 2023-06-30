@@ -276,10 +276,7 @@ const AddPostCard = (props) => {
                 <div className="">
                   {postData.postImageName?.includes("mp4") ? (
                     <video controls>
-                      <source
-                        src={postData.postImage}
-                        type="video/mp4"
-                      ></source>
+                      <source src={postData.postImage} type="video/mp4" />
                     </video>
                   ) : (
                     <img

@@ -36,14 +36,16 @@ const Home = () => {
     });
   }
 
-  const homeList = sortedList.reduce((list, currentPost) => {
-    return currentPost.username == activeUser.username ||
-      activeUser.following.findIndex((currentFollowing) => {
-        return currentFollowing.username == currentPost.username;
-      }) !== -1
-      ? [...list, currentPost]
-      : [...list];
-  }, []);
+  const followingList = activeUser.following.map((currentFollowing) => {
+    return currentFollowing.username;
+  });
+
+  const homeList = sortedList.filter((currentPost) => {
+    return (
+      activeUser.username == currentPost.username ||
+      followingList.includes(currentPost.username)
+    );
+  });
 
   return (
     <div className="tab min-h-screen">
@@ -54,13 +56,15 @@ const Home = () => {
           <div className="border-b">
             <AddPostCard />
           </div>
-          <div className="">
-            {homeList.length === 0 ? (
-              isDarkTheme ? (
+          {/* isDarkTheme ? (
                 <DarkLoader />
               ) : (
                 <Loader />
-              )
+              ) */}
+
+          <div className="">
+            {homeList.length === 0 ? (
+              <div>No post Added</div>
             ) : (
               homeList.map((currentPost) => {
                 return <PostCard {...currentPost} key={currentPost?._id} />;
