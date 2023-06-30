@@ -4,11 +4,10 @@ import {
   PostCard,
   Header,
   Tab,
-  SuggestionCard,
-  OutlinedActionBtn,
   SuggestionSidebar,
+  Loader,
+  DarkLoader,
 } from "../../../../Components";
-import { Whatshot, SwapVert } from "@mui/icons-material";
 import { usePost, useAuth, useTheme } from "../../../../Context";
 
 const Explore = () => {
@@ -16,14 +15,16 @@ const Explore = () => {
   const { activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
 
-  const exploreList = state.postList.reduce((list, currentPost) => {
-    return currentPost.username !== activeUser.username &&
-      activeUser.followers.findIndex((currentFollowing) => {
-        return currentFollowing.username.includes(currentPost.username);
-      }) !== -1
-      ? [...list, currentPost]
-      : [...list];
-  }, []);
+  const followingList = activeUser.following.map((currentFollowing) => {
+    return currentFollowing.username;
+  });
+
+  const exploreList = state.postList.filter((currentPost) => {
+    return (
+      activeUser.username !== currentPost.username &&
+      !followingList.includes(currentPost.username)
+    );
+  });
 
   return (
     <div className="tab min-h-screen">
@@ -31,9 +32,17 @@ const Explore = () => {
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
         <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
-          {exploreList.map((currentPost) => {
-            return <PostCard {...currentPost} key={currentPost?._id} />;
-          })}
+          {exploreList.length == 0 ? (
+            isDarkTheme ? (
+              <DarkLoader />
+            ) : (
+              <Loader />
+            )
+          ) : (
+            exploreList.map((currentPost) => {
+              return <PostCard {...currentPost} key={currentPost?._id} />;
+            })
+          )}
         </div>
       </div>
       <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">

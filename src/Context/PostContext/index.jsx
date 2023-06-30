@@ -17,7 +17,7 @@ import { useAuth } from "../AuthContext";
 const PostContext = createContext();
 
 const PostProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, setActiveUser } = useAuth();
   const [state, dispatch] = useReducer(postReducer, initialState);
 
   useEffect(() => {

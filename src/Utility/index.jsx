@@ -15,6 +15,8 @@ import {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 } from "./FunctionalUtility";
 
 export {
@@ -34,4 +36,6 @@ export {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 };

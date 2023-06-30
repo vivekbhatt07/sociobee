@@ -31,11 +31,10 @@ import { avatarData } from "./AvatarData";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
-  const navigate = useNavigate();
   const { userId } = useParams();
   const { state, dispatch } = usePost();
   const { isDarkTheme } = useTheme();
-  const { token, logOutHandler, activeUser } = useAuth();
+  const { token, logOutHandler, activeUser, setActiveUser } = useAuth();
   const [isFollowerOpen, setIsFollowerOpen] = useState(false);
   const [isFollowingOpen, setIsFollowingOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
@@ -116,30 +115,27 @@ const Profile = () => {
       bio: userEditData.userEditBio,
     });
     if (userEditResponse.status == 201) {
+      setActiveUser(userEditResponse.data.user);
       dispatch({ type: "EDIT_USER", payload: userEditResponse.data.user });
     }
   };
 
-  // GET CURRENT USER OBJECT:
-  const activeUserProfile = state.userList.find((currentUser) => {
+  let activeUserProfile;
+
+  if (userId) {
     if (userId == activeUser.username) {
-      return currentUser._id == activeUser._id;
+      activeUserProfile = activeUser;
+    } else {
+      activeUserProfile = state.userList.find((currentUser) => {
+        return currentUser.username.includes(userId);
+      });
     }
-    if (userId) {
-      return currentUser.username == userId;
-    }
+  } else {
+    activeUserProfile = activeUser;
+  }
 
-    return currentUser._id == activeUser._id;
-  });
-
-  // BUTTON:
-
-  const currentUser = state.userList.find((current) => {
-    return current._id == activeUser._id;
-  });
-
-  const followingList = currentUser?.following.map((current) => {
-    return current.username;
+  const followingList = activeUser.following.map((currentFollowing) => {
+    return currentFollowing.username;
   });
   const isFollowing = followingList?.includes(userId);
 
@@ -475,7 +471,7 @@ const Profile = () => {
                     </button>
                   }
                 >
-                  {currentUser?.followers.map((current) => {
+                  {activeUser?.followers.map((current) => {
                     return (
                       <article
                         key={current._id}
@@ -511,7 +507,7 @@ const Profile = () => {
                     </button>
                   }
                 >
-                  {currentUser?.following.map((current) => {
+                  {activeUser?.following.map((current) => {
                     return (
                       <article
                         key={current._id}
@@ -535,11 +531,7 @@ const Profile = () => {
           </article>
           <section className="my-6 flex flex-col">
             {activeUserPosts.length === 0 ? (
-              isDarkTheme ? (
-                <DarkLoader />
-              ) : (
-                <Loader />
-              )
+              <div>No Posts Yet</div>
             ) : (
               activeUserPosts.map((currentPost) => {
                 return <PostCard {...currentPost} key={currentPost._id} />;

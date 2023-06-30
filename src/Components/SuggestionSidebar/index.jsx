@@ -1,4 +1,6 @@
 import React from "react";
+import { TransitionGroup } from "react-transition-group";
+import { Collapse } from "@mui/material";
 import { usePost, useAuth, useTheme } from "../../Context";
 import { SuggestionCard, Loader, DarkLoader } from "../../Components";
 
@@ -7,24 +9,16 @@ const SuggestionSidebar = () => {
   const { activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
 
-  // GET CURRENT USER OBJECT:
-  const activeUserProfile = state.userList.find((currentUser) => {
-    return currentUser._id == activeUser._id;
+  const followingList = activeUser.following.map((currentFollowing) => {
+    return currentFollowing.username;
   });
 
-  const followingList = activeUserProfile?.following.map((current) => {
-    return current.username;
+  const suggestionList = state.userList.filter((currentUser) => {
+    return (
+      activeUser.username !== currentUser.username &&
+      !followingList.includes(currentUser.username)
+    );
   });
-
-  const suggestionList = state.userList.reduce((list, currentUser) => {
-    if (currentUser.username !== activeUserProfile?.username) {
-      return followingList.includes(currentUser.username)
-        ? [...list]
-        : [...list, currentUser];
-    } else {
-      return [...list];
-    }
-  }, []);
 
   return (
     <div className="hidden flex-col gap-3 lg:flex bg-stone-200 p-4 rounded-md dark:bg-stone-900">
@@ -37,9 +31,15 @@ const SuggestionSidebar = () => {
             <Loader />
           )
         ) : (
-          suggestionList.map((currentUser) => {
-            return <SuggestionCard key={currentUser._id} {...currentUser} />;
-          })
+          <TransitionGroup>
+            {suggestionList.map((currentUser) => {
+              return (
+                <Collapse key={currentUser._id}>
+                  <SuggestionCard key={currentUser._id} {...currentUser} />
+                </Collapse>
+              );
+            })}
+          </TransitionGroup>
         )}
       </div>
     </div>

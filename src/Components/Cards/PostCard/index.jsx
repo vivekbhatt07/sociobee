@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
-import { AvatarActionLink, IconActionBtn } from "../../Actions";
+import {
+  AvatarActionLink,
+  IconActionBtn,
+  ModalProvider,
+  AddPostCard,
+} from "../../../Components";
 import {
   MoreHorizOutlined,
   FavoriteBorder,
@@ -20,14 +26,22 @@ import {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  deletePostService,
+  editPostService,
 } from "../../../Utility";
-import { useAuth, usePost } from "../../../Context";
+import { useAuth, usePost, useUser } from "../../../Context";
 
 const PostCard = (props) => {
   const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
-  const [isLike, setIsLike] = useState(false);
-  const [isBookmark, setIsBookmark] = useState(false);
+  const { handleFollowUser, handleUnfollowUser } = useUser();
+
+  // EDIT MODAL:
+
+  const [isEditPostModalOpen, setIsEditPostModalOpen] = useState(false);
+
+  const editPostModalOpen = () => setIsEditPostModalOpen(true);
+  const editPostModalClose = () => setIsEditPostModalOpen(false);
 
   // **************************************************
 
@@ -47,9 +61,22 @@ const PostCard = (props) => {
   const followingList = currentUser?.following.map((current) => {
     return current.username;
   });
+
   const isFollowing = followingList?.includes(props?.username);
 
-  // ******************************************
+  const currentPost = state.postList.find((currentPost) => {
+    return currentPost._id == props._id;
+  });
+
+  const isLiked = currentPost.likes.likedBy.find((currentLikedPost) => {
+    return currentLikedPost.username.includes(activeUser.username);
+  });
+
+  const isBookmarked = state.bookmarkList.find((currentBookmarkPost) => {
+    return currentBookmarkPost._id.includes(currentPost._id);
+  });
+
+  // HANDLE POST LIKE:
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
@@ -58,12 +85,16 @@ const PostCard = (props) => {
     }
   };
 
+  // HANDLE POST DISLIKE:
+
   const handlePostDislike = async (postId, encodedToken) => {
     const postDislikeResponse = await disLikePostService(postId, encodedToken);
     if (postDislikeResponse.status == 201) {
       dispatch({ type: "GET_DATA", payload: postDislikeResponse.data.posts });
     }
   };
+
+  // HANDLE ADD BOOKMARK:
 
   const handleAddBookmark = async (postId, encodedToken) => {
     const addBookmarkResponse = await addBookmarkService(postId, encodedToken);
@@ -74,6 +105,8 @@ const PostCard = (props) => {
       });
     }
   };
+
+  // HANDLE REMOVE BOOKMARK:
 
   const handleRemoveBookmark = async (postId, encodedToken) => {
     const removeBookmarkResponse = await removeBookmarkService(
@@ -86,6 +119,15 @@ const PostCard = (props) => {
         type: "GET_BOOKMARK",
         payload: removeBookmarkResponse.data.bookmarks,
       });
+    }
+  };
+
+  // HANDLE DELETE POST:
+
+  const handleDeletePost = async (postId, encodedToken) => {
+    const deletePostResponse = await deletePostService(postId, encodedToken);
+    if (deletePostResponse.status == 201) {
+      dispatch({ type: "GET_DATA", payload: deletePostResponse.data.posts });
     }
   };
 
@@ -134,22 +176,75 @@ const PostCard = (props) => {
           anchorEl={postMenu}
           open={isPostMenuOpen}
           onClose={handlePostMenuClose}
+          sx={{
+            background: "transparent",
+          }}
           MenuListProps={{
             "aria-labelledby": "basic-button",
+            style: {
+              background: "transparent",
+            },
           }}
         >
           {props?.username == currentUser?.username ? (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Edit</MenuItem>
-              <MenuItem onClick={handlePostMenuClose}>Delete</MenuItem>
+              <ModalProvider
+                isOpen={isEditPostModalOpen}
+                closeModal={() => {
+                  editPostModalClose();
+                  handlePostMenuClose();
+                }}
+                modalTitle="Add Post"
+                modalBtnVariant={
+                  <MenuItem
+                    onClick={() => {
+                      editPostModalOpen();
+                    }}
+                    sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+                  >
+                    <EditOutlinedIcon />
+                    <span>Edit</span>
+                  </MenuItem>
+                }
+              >
+                <AddPostCard
+                  {...props}
+                  isEdit
+                  closePostModal={editPostModalClose}
+                />
+              </ModalProvider>
+              <MenuItem
+                onClick={() => {
+                  handleDeletePost(props?._id, token);
+                  handlePostMenuClose();
+                }}
+                sx={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <DeleteOutlinedIcon />
+                <span>Delete</span>
+              </MenuItem>
             </div>
           ) : isFollowing ? (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Unfollow</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleUnfollowUser(getUser._id, token);
+                  handlePostMenuClose();
+                }}
+              >
+                Unfollow
+              </MenuItem>
             </div>
           ) : (
             <div>
-              <MenuItem onClick={handlePostMenuClose}>Follow</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleFollowUser(getUser._id, token);
+                  handlePostMenuClose();
+                }}
+              >
+                Follow
+              </MenuItem>
             </div>
           )}
         </Menu>
@@ -157,16 +252,16 @@ const PostCard = (props) => {
       <div className="postCard_body flex flex-col gap-2">
         <p>{props?.content}</p>
         {props?.mediaURL && (
-          <div>
-            {props?.mediaURL?.includes("mp4") ? (
+          <div className="rounded-lg overflow-hidden border border-stone-400">
+            {props?.mediaAlt?.includes("mp4") ? (
               <video controls>
-                <source src={props?.mediaURL} type="video/mp4"></source>
+                <source src={props?.mediaURL} type="video/mp4" />
               </video>
             ) : (
               <img
                 src={props?.mediaURL}
                 alt={props?.mediaAlt}
-                className="object-cover w-full h-full"
+                className="object-cover w-full"
               />
             )}
           </div>
@@ -175,10 +270,9 @@ const PostCard = (props) => {
       <div className="postCard_footer flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
           <div className="flex gap-1 items-center">
-            {isLike ? (
+            {isLiked ? (
               <IconActionBtn
                 handleClick={() => {
-                  setIsLike(false);
                   handlePostDislike(props?._id, token);
                 }}
               >
@@ -187,7 +281,6 @@ const PostCard = (props) => {
             ) : (
               <IconActionBtn
                 handleClick={() => {
-                  setIsLike(true);
                   handlePostLike(props?._id, token);
                 }}
               >
@@ -197,10 +290,9 @@ const PostCard = (props) => {
             <span>{props?.likes?.likeCount}</span>
           </div>
           <div className="flex gap-1 items-center">
-            {isBookmark ? (
+            {isBookmarked ? (
               <IconActionBtn
                 handleClick={() => {
-                  setIsBookmark(false);
                   handleRemoveBookmark(props?._id, token);
                 }}
               >
@@ -209,7 +301,6 @@ const PostCard = (props) => {
             ) : (
               <IconActionBtn
                 handleClick={() => {
-                  setIsBookmark(true);
                   handleAddBookmark(props?._id, token);
                 }}
               >

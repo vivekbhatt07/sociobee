@@ -4,7 +4,8 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
-
+import VideoCameraFrontOutlinedIcon from "@mui/icons-material/VideoCameraFrontOutlined";
+import { editPostService } from "../../../Utility";
 import {
   AvatarActionLink,
   ContainedActionBtn,
@@ -22,7 +23,7 @@ import { useAuth, usePost, useTheme } from "../../../Context";
 
 import { sendPostService } from "../../../Utility";
 
-const AddPostCard = () => {
+const AddPostCard = (props) => {
   const { token, activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
   const { dispatch } = usePost();
@@ -47,7 +48,11 @@ const AddPostCard = () => {
     setImageMenu(null);
   };
 
-  const [postData, setPostData] = useState({ postText: "", postImage: "" });
+  const [postData, setPostData] = useState({
+    postText: props.isEdit ? props?.content : "",
+    postImage: props.isEdit ? props?.mediaURL : "",
+    postImageName: props.isEdit ? props?.mediaAlt : "",
+  });
 
   const handleSendPostService = async (token, post) => {
     const sendPostServiceResponse = await sendPostService(token, post);
@@ -65,29 +70,73 @@ const AddPostCard = () => {
     setPostData((prevPostData) => {
       return {
         ...prevPostData,
-        [name]: type == "file" ? URL.createObjectURL(files[0]) : value,
+        [name]:
+          type == "file" && files.length !== 0
+            ? URL.createObjectURL(files[0])
+            : value,
+        postImageName:
+          type == "file" && files.length !== 0 ? files[0].name : "",
       };
     });
+  };
+
+  // HANDLE EDIT POST:
+
+  const handleEditPost = async (postId, postData, encodedToken) => {
+    const editPostResponse = await editPostService(
+      postId,
+      postData,
+      encodedToken
+    );
+    // console.log(editPostResponse);
+    if (editPostResponse.status === 201) {
+      dispatch({ type: "GET_DATA", payload: editPostResponse.data.posts });
+    }
   };
 
   // SUBMIT USER POST DATA:
 
   const submitPostData = (event) => {
     event.preventDefault();
-    handleSendPostService(token, {
-      _id: uuid(),
-      content: postData.postText,
-      mediaURL: postData.postImage,
-      likes: {
-        likeCount: 0,
-        likedBy: [],
-        dislikedBy: [],
-      },
-      username: activeUser.username,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
-      comments: [],
+    if (props.isEdit) {
+      handleEditPost(
+        props._id,
+        {
+          ...props,
+          content: postData.postText,
+          mediaURL: postData.postImage,
+          mediaAlt: postData.postImageName,
+        },
+        token
+      );
+    }
+    if (!props.isEdit) {
+      handleSendPostService(token, {
+        _id: uuid(),
+        content: postData.postText,
+        mediaURL: postData.postImage,
+        mediaAlt: postData.postImageName,
+        likes: {
+          likeCount: 0,
+          likedBy: [],
+          dislikedBy: [],
+        },
+        username: activeUser.username,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [],
+      });
+    }
+
+    setPostData({
+      postText: "",
+      postImage: "",
+      postImageName: "",
     });
+
+    if (props.isModal || props.isEdit) {
+      props.closePostModal();
+    }
   };
 
   return (
@@ -120,7 +169,27 @@ const AddPostCard = () => {
                 accept="image/*"
                 className="hidden"
                 name="postImage"
-                onChange={handlePostData}
+                onChange={(event) => {
+                  handlePostData(event);
+                }}
+              />
+            </label>
+            <label>
+              <div
+                className="w-8 h-8 text-stone-950 cursor-pointer rounded-full flex justify-center items-center transition-all duration-300 hover:bg-stone-300 dark:text-stone-50 dark:hover:bg-stone-700"
+                title="Upload Video"
+              >
+                <VideoCameraFrontOutlinedIcon />
+              </div>
+              <input
+                id="video-uploader"
+                type="file"
+                accept="video/*"
+                className="hidden"
+                name="postImage"
+                onChange={(event) => {
+                  handlePostData(event);
+                }}
               />
             </label>
             <IconActionBtn
@@ -182,7 +251,7 @@ const AddPostCard = () => {
               <IconActionBtn
                 iconBtnType="button"
                 handleClick={handleImageMenuOpen}
-                iconTitle="Image Preview"
+                iconTitle="Media Preview"
               >
                 <Visibility />
               </IconActionBtn>
@@ -203,7 +272,7 @@ const AddPostCard = () => {
             >
               <div className="text-stone-800 bg-stone-200 p-4 flex flex-col gap-4 rounded dark:text-stone-50 dark:bg-stone-800">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium">Image Preview</span>
+                  <span className="font-medium">Media Preview</span>
                   <IconActionBtn
                     handleClick={handleImageMenuClose}
                     className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
@@ -213,7 +282,16 @@ const AddPostCard = () => {
                 </div>
 
                 <div className="">
-                  <img src={postData.postImage} alt="post_img" />
+                  {postData.postImageName?.includes("mp4") ? (
+                    <video controls>
+                      <source src={postData.postImage} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img
+                      src={postData.postImage}
+                      className="object-cover w-full"
+                    />
+                  )}
                 </div>
               </div>
             </Menu>
@@ -223,29 +301,52 @@ const AddPostCard = () => {
                 iconBtnType="button"
                 handleClick={() => {
                   setPostData((prevPostData) => {
-                    return { ...prevPostData, postImage: "" };
+                    return {
+                      ...prevPostData,
+                      postImage: "",
+                      postImageName: "",
+                    };
                   });
+                  let uploader = document.getElementById("video-uploader");
+                  uploader.value = null;
                 }}
-                iconTitle="Remove Image"
+                iconTitle="Remove Media"
               >
                 <DeleteOutline />
               </IconActionBtn>
             )}
           </div>
-          <ContainedActionBtn
-            containBtnType="submit"
-            isDisabled={postData.postText || postData.postImage}
-            btnStyle={{
-              cursor:
-                postData.postText || postData.postImage
-                  ? "pointer"
-                  : "not-allowed",
-              opacity: postData.postText || postData.postImage ? "1" : "0.5",
-            }}
-            className="px-3 py-1 text-xs"
-          >
-            Post
-          </ContainedActionBtn>
+          {props.isEdit ? (
+            <ContainedActionBtn
+              containBtnType="submit"
+              isDisabled={postData.postText || postData.postImage}
+              btnStyle={{
+                cursor:
+                  postData.postText || postData.postImage
+                    ? "pointer"
+                    : "not-allowed",
+                opacity: postData.postText || postData.postImage ? "1" : "0.5",
+              }}
+              className="px-3 py-1 text-xs"
+            >
+              Save
+            </ContainedActionBtn>
+          ) : (
+            <ContainedActionBtn
+              containBtnType="submit"
+              isDisabled={postData.postText || postData.postImage}
+              btnStyle={{
+                cursor:
+                  postData.postText || postData.postImage
+                    ? "pointer"
+                    : "not-allowed",
+                opacity: postData.postText || postData.postImage ? "1" : "0.5",
+              }}
+              className="px-3 py-1 text-xs"
+            >
+              Post
+            </ContainedActionBtn>
+          )}
         </div>
       </form>
     </article>

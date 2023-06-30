@@ -18,6 +18,8 @@ import {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 } from "./ServicesUtility";
 
 export {
@@ -37,4 +39,6 @@ export {
   disLikePostService,
   addBookmarkService,
   removeBookmarkService,
+  editPostService,
+  deletePostService,
 };
