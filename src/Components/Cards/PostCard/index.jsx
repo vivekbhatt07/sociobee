@@ -35,8 +35,8 @@ import { useAuth, usePost } from "../../../Context";
 const PostCard = (props) => {
   const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
-  const [isLike, setIsLike] = useState(false);
-  const [isBookmark, setIsBookmark] = useState(false);
+
+  console.log(props);
 
   // EDIT MODAL:
 
@@ -209,7 +209,11 @@ const PostCard = (props) => {
                   </MenuItem>
                 }
               >
-                <AddPostCard {...props} isEdit />
+                <AddPostCard
+                  {...props}
+                  isEdit
+                  closePostModal={editPostModalClose}
+                />
               </ModalProvider>
               <MenuItem
                 onClick={() => {
@@ -257,7 +261,6 @@ const PostCard = (props) => {
             {isLiked ? (
               <IconActionBtn
                 handleClick={() => {
-                  setIsLike(false);
                   handlePostDislike(props?._id, token);
                 }}
               >
@@ -266,7 +269,6 @@ const PostCard = (props) => {
             ) : (
               <IconActionBtn
                 handleClick={() => {
-                  setIsLike(true);
                   handlePostLike(props?._id, token);
                 }}
               >
@@ -279,7 +281,6 @@ const PostCard = (props) => {
             {isBookmarked ? (
               <IconActionBtn
                 handleClick={() => {
-                  setIsBookmark(false);
                   handleRemoveBookmark(props?._id, token);
                 }}
               >
@@ -288,7 +289,6 @@ const PostCard = (props) => {
             ) : (
               <IconActionBtn
                 handleClick={() => {
-                  setIsBookmark(true);
                   handleAddBookmark(props?._id, token);
                 }}
               >

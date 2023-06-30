@@ -88,6 +88,7 @@ const AddPostCard = (props) => {
       postData,
       encodedToken
     );
+    // console.log(editPostResponse);
     if (editPostResponse.status === 201) {
       dispatch({ type: "GET_DATA", payload: editPostResponse.data.posts });
     }
@@ -109,25 +110,33 @@ const AddPostCard = (props) => {
         token
       );
     }
-    handleSendPostService(token, {
-      _id: uuid(),
-      content: postData.postText,
-      mediaURL: postData.postImage,
-      likes: {
-        likeCount: 0,
-        likedBy: [],
-        dislikedBy: [],
-      },
-      username: activeUser.username,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
-      comments: [],
-    });
+    if (!props.isEdit) {
+      handleSendPostService(token, {
+        _id: uuid(),
+        content: postData.postText,
+        mediaURL: postData.postImage,
+        mediaAlt: postData.postImageName,
+        likes: {
+          likeCount: 0,
+          likedBy: [],
+          dislikedBy: [],
+        },
+        username: activeUser.username,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [],
+      });
+    }
+
     setPostData({
       postText: "",
       postImage: "",
       postImageName: "",
     });
+
+    if (props.isModal || props.isEdit) {
+      props.closePostModal();
+    }
   };
 
   return (
@@ -178,7 +187,6 @@ const AddPostCard = (props) => {
                 accept="video/*"
                 className="hidden"
                 name="postImage"
-                // key={postData.postImage}
                 onChange={(event) => {
                   handlePostData(event);
                 }}

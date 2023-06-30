@@ -107,7 +107,7 @@ function Tab() {
               </li>
             }
           >
-            <AddPostCard />
+            <AddPostCard closePostModal={addPostModalClose} isModal />
           </ModalProvider>
         </ul>
       </div>
