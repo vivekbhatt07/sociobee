@@ -6,8 +6,11 @@ import { useAuth } from "../AuthContext";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+  const { state } = usePost();
   const { setActiveUser } = useAuth();
   const { dispatch } = usePost();
+
+  console.log(state.userList);
 
   const handleFollowUser = async (followUserId, encodedToken) => {
     try {
@@ -21,8 +24,8 @@ const UserProvider = ({ children }) => {
         dispatch({
           type: "FOLLOW_USER",
           payload: {
-            id: followUserResponse.data.user._id,
             user: followUserResponse.data.user,
+            followUser: followUserResponse.data.followUser,
           },
         });
       }
@@ -42,8 +45,8 @@ const UserProvider = ({ children }) => {
         dispatch({
           type: "FOLLOW_USER",
           payload: {
-            id: unfollowUserResponse.data.user._id,
             user: unfollowUserResponse.data.user,
+            followUser: unfollowUserResponse.data.followUser,
           },
         });
       }

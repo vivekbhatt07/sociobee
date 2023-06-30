@@ -26,14 +26,12 @@ import {
 } from "@mui/icons-material";
 
 import { editUserService } from "../../../../Utility";
-import { useTheme } from "@emotion/react";
 import { avatarData } from "./AvatarData";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
   const { userId } = useParams();
   const { state, dispatch } = usePost();
-  const { isDarkTheme } = useTheme();
   const { token, logOutHandler, activeUser, setActiveUser } = useAuth();
   const [isFollowerOpen, setIsFollowerOpen] = useState(false);
   const [isFollowingOpen, setIsFollowingOpen] = useState(false);
@@ -46,6 +44,8 @@ const Profile = () => {
     userEditBio: activeUser.bio,
     userEditWeb: activeUser.website,
   });
+
+  // console.log(state.userList);
 
   const [recall, setRecall] = useState(null);
 

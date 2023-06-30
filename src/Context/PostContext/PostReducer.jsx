@@ -11,8 +11,10 @@ export const postReducer = (state, action) => {
       return {
         ...state,
         userList: state.userList.map((currentUser) => {
-          return currentUser._id == action.payload.id
+          return currentUser._id == action.payload.user?._id
             ? action.payload.user
+            : currentUser._id == action.payload.followUser?._id
+            ? action.payload.followUser
             : currentUser;
         }),
       };
