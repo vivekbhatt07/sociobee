@@ -32,7 +32,6 @@ import {
 import { useAuth, usePost, useUser } from "../../../Context";
 
 const PostCard = (props) => {
-  console.log(props);
   const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
   const { handleFollowUser, handleUnfollowUser } = useUser();
@@ -62,6 +61,7 @@ const PostCard = (props) => {
   const followingList = currentUser?.following.map((current) => {
     return current.username;
   });
+
   const isFollowing = followingList?.includes(props?.username);
 
   const currentPost = state.postList.find((currentPost) => {
@@ -80,7 +80,6 @@ const PostCard = (props) => {
 
   const handlePostLike = async (postId, encodedToken) => {
     const postLikeResponse = await likePostService(postId, encodedToken);
-    console.log(postLikeResponse);
     if (postLikeResponse.status == 201) {
       dispatch({ type: "GET_DATA", payload: postLikeResponse.data.posts });
     }
@@ -229,7 +228,7 @@ const PostCard = (props) => {
             <div>
               <MenuItem
                 onClick={() => {
-                  handleUnfollowUser(props._id, token);
+                  handleUnfollowUser(getUser._id, token);
                   handlePostMenuClose();
                 }}
               >
@@ -240,7 +239,7 @@ const PostCard = (props) => {
             <div>
               <MenuItem
                 onClick={() => {
-                  handleFollowUser(props?._id, token);
+                  handleFollowUser(getUser._id, token);
                   handlePostMenuClose();
                 }}
               >

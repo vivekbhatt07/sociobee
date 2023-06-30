@@ -10,38 +10,45 @@ const UserProvider = ({ children }) => {
   const { dispatch } = usePost();
 
   const handleFollowUser = async (followUserId, encodedToken) => {
-    console.log(followUserId, encodedToken);
-    const followUserResponse = await followUserService(
-      followUserId,
-      encodedToken
-    );
-    console.log(followUserResponse);
-    if (followUserResponse.status == 200) {
-      setActiveUser(followUserResponse.data.user);
-      dispatch({
-        type: "FOLLOW_USER",
-        payload: {
-          id: followUserResponse.data.user._id,
-          user: followUserResponse.data.user,
-        },
-      });
+    try {
+      const followUserResponse = await followUserService(
+        followUserId,
+        encodedToken
+      );
+
+      if (followUserResponse.status == 200) {
+        setActiveUser(followUserResponse.data.user);
+        dispatch({
+          type: "FOLLOW_USER",
+          payload: {
+            id: followUserResponse.data.user._id,
+            user: followUserResponse.data.user,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleUnfollowUser = async (followUserId, encodedToken) => {
-    const unfollowUserResponse = await unfollowUserService(
-      followUserId,
-      encodedToken
-    );
-    if (unfollowUserResponse.status == 200) {
-      setActiveUser(unfollowUserResponse.data.user);
-      dispatch({
-        type: "FOLLOW_USER",
-        payload: {
-          id: unfollowUserResponse.data.user._id,
-          user: unfollowUserResponse.data.user,
-        },
-      });
+    try {
+      const unfollowUserResponse = await unfollowUserService(
+        followUserId,
+        encodedToken
+      );
+      if (unfollowUserResponse.status == 200) {
+        setActiveUser(unfollowUserResponse.data.user);
+        dispatch({
+          type: "FOLLOW_USER",
+          payload: {
+            id: unfollowUserResponse.data.user._id,
+            user: unfollowUserResponse.data.user,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
