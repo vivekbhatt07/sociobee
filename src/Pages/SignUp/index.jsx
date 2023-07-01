@@ -117,7 +117,7 @@ const SignUp = () => {
 
   return (
     <PageWrapper className="signup_page min-h-screen">
-      <SectionWrapper className="signup_section flex flex-col pt-14">
+      <SectionWrapper className="signup_section flex flex-col pt-14 gap-4">
         <img
           className="mx-auto w-40 object-cover"
           src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
