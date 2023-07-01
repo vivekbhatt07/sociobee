@@ -1,0 +1,48 @@
+@media (min-width: 550px) {
+  .signup_form_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 70px);
+    row-gap: 8px;
+    grid-template-areas:
+      "A B"
+      "C C"
+      "D D"
+      "E F"
+      "G H";
+  }
+
+  .signUpFirstName {
+    grid-area: A;
+  }
+
+  .signUpLastName {
+    grid-area: B;
+  }
+
+  .signUpEmail {
+    grid-area: C;
+  }
+
+  .signUpUsername {
+    grid-area: D;
+  }
+
+  .signUpPassword {
+    grid-area: E;
+  }
+
+  .signUpConfirm {
+    grid-area: F;
+  }
+
+  .signUpButton {
+    grid-area: G;
+    align-self: flex-end;
+  }
+
+  .signUpTestButton {
+    grid-area: H;
+    align-self: flex-end;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import "./SignUp.css";
 
 import {
   PageWrapper,
@@ -48,7 +48,6 @@ const SignUp = () => {
     signUpPassword: "",
   });
 
-  const navigate = useNavigate();
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setSignUpData((prevSignUpData) => {
@@ -118,22 +117,22 @@ const SignUp = () => {
 
   return (
     <PageWrapper className="signup_page min-h-screen">
-      <SectionWrapper className="signup_section flex flex-col">
+      <SectionWrapper className="signup_section flex flex-col pt-14">
         <img
           className="mx-auto w-40 object-cover"
           src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
           alt="logo"
         />
-        <h3 className="signup_head mx-auto mb-4 font-bold bg-stone-700 text-stone-50 py-2 px-4">
+        {/* <h3 className="signup_head mx-auto mb-4 font-bold bg-stone-700 text-stone-50 py-2 px-4">
           SIGN UP FORM
-        </h3>
+        </h3> */}
         <form
-          className="signup_form max-w-xs mx-auto mb-4 md:w-2/4"
+          className="signup_form mx-auto mb-4 md:w-[500px]"
           onSubmit={handleSignUpSubmit}
         >
           <PrimaryContainer className="signup_form_container flex-col gap-4">
             {/* FIRST NAME */}
-            <TextInputLabel labelText="First Name">
+            <TextInputLabel labelText="First Name" className="signUpFirstName">
               <TextInput
                 inputName="signUpFirstName"
                 inputType="text"
@@ -143,7 +142,7 @@ const SignUp = () => {
               />
             </TextInputLabel>
             {/* LAST NAME */}
-            <TextInputLabel labelText="Last Name">
+            <TextInputLabel labelText="Last Name" className="signUpLastName">
               <TextInput
                 inputName="signUpLastName"
                 inputType="text"
@@ -153,7 +152,7 @@ const SignUp = () => {
               />
             </TextInputLabel>
             {/* EMAIL */}
-            <TextInputLabel labelText="Email">
+            <TextInputLabel labelText="Email" className="signUpEmail">
               <TextInput
                 inputName="signUpEmail"
                 inputType="email"
@@ -168,7 +167,7 @@ const SignUp = () => {
               </ValidationContainer>
             )}
             {/* USERNAME */}
-            <TextInputLabel labelText="Username">
+            <TextInputLabel labelText="Username" className="signUpUsername">
               <TextInput
                 inputName="signUpUsername"
                 inputType="text"
@@ -183,7 +182,7 @@ const SignUp = () => {
               </ValidationContainer>
             )}
             {/* PASSWORD */}
-            <TextInputLabel labelText="Password">
+            <TextInputLabel labelText="Password" className="signUpPassword">
               <PasswordToggler
                 isTypePassword={isPasswordVisible}
                 handleVisibility={setIsPasswordVisible}
@@ -203,7 +202,10 @@ const SignUp = () => {
               </ValidationContainer>
             )}
             {/* CONFIRM PASSWORD */}
-            <TextInputLabel labelText="Confirm Password">
+            <TextInputLabel
+              labelText="Confirm Password"
+              className="signUpConfirm"
+            >
               <PasswordToggler
                 isTypePassword={isConfirmVisible}
                 handleVisibility={setIsConfirmVisible}
@@ -218,8 +220,11 @@ const SignUp = () => {
               </PasswordToggler>
             </TextInputLabel>
 
-            <ContainedActionBtn type="submit">Sign up</ContainedActionBtn>
+            <ContainedActionBtn type="submit" className="signUpButton">
+              Sign up
+            </ContainedActionBtn>
             <ContainedActionBtn
+              className="signUpTestButton"
               type="button"
               handleClick={() => {
                 setSignUpData({
