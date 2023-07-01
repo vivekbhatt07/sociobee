@@ -191,9 +191,9 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "wesome discussion with chin chang about CSS tips and tricks. Learning so many things and it's overwhelming experience with @neogcamp...!! Thank you so much tanay pratap for this amazing opportunity..!!",
+      "Received an awesome surprise on Women's Day from @hashnode Got to be a part of 20 noteworthy women writers from Hashnode. 🥹 Celebrating this small win only because of @tanaypratap Bhaiya and my lovely @neogcamp family! ❤️🙌",
     mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687415740/pranitaNeog_if2kyd.jpg",
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243169/pranitaBlog_vryan4.jpg",
     mediaAlt: "neog class",
     likes: {
       likeCount: 16,
@@ -271,6 +271,23 @@ export const posts = [
   {
     _id: uuid(),
     content:
+      "Do you remember when you joined Twitter? I do! #MyTwitterAnniversary",
+    mediaURL:
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243308/pranitaAnniversary_qtbass.jpg",
+    mediaAlt: "neog class",
+    likes: {
+      likeCount: 16,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "@pranita0709",
+    createdAt: "2023-03-15T01:06:00+05:30",
+    updatedAt: formatDate(),
+    comments: [],
+  },
+  {
+    _id: uuid(),
+    content:
       "Hey folks, I successfully completed my #50daysofcode challenge 😌, and now I'm commuting to extend this challenge to 100 days. Throughout these 50 days I learned a lot new things in programming. Let's see how next 50 days will go...",
     mediaURL: "",
     mediaAlt: "",
@@ -296,6 +313,23 @@ export const posts = [
       dislikedBy: [],
     },
     username: "@clevercoderjoy",
+    createdAt: "2023-03-15T01:06:00+05:30",
+    updatedAt: formatDate(),
+    comments: [],
+  },
+  {
+    _id: uuid(),
+    content:
+      "Checked my twitter circle. Most of them are from my neog family!❤️ Thank you so much everyone for helping me grow little by little, every day❤️🙌",
+    mediaURL:
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243480/circlePranita_dw3ah8.jpg",
+    mediaAlt: "neog class",
+    likes: {
+      likeCount: 16,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "@pranita0709",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
     comments: [],
@@ -329,6 +363,22 @@ export const posts = [
     },
     username: "@akshaymarch7",
     createdAt: "2023-03-15T01:06:00+05:30",
+    updatedAt: formatDate(),
+    comments: [],
+  },
+  {
+    _id: uuid(),
+    content: "Chills. Literal chills. Thank you for this.",
+    mediaURL:
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243960/cssBattleNiharika_nyj9gf.jpg",
+    mediaAlt: "css Battle",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "@Niharika_twt",
+    createdAt: "2023-06-03T01:06:00+05:30",
     updatedAt: formatDate(),
     comments: [],
   },

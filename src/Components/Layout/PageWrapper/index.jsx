@@ -14,7 +14,7 @@ const PageWrapper = (props) => {
     <main className={classes}>
       {children}
       <button
-        className={`mode ${props.headerMode}-mode absolute left-1/2 -translate-x-1/2 lg:top-0 lg:left-full lg:-translate-x-full`}
+        className={`mode ${props.headerMode}-mode absolute left-1/2 -translate-x-1/2 lg:top-4 lg:left-full lg:-translate-x-24`}
         variant="contained"
         onClick={() => toggleTheme(!isDarkTheme)}
       >

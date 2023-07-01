@@ -133,8 +133,8 @@ export const users = [
     lastName: "Kesarwani",
     password: "HelloWorld07@",
     username: "@Niharika_twt",
-    bio: "An adventure-seeking explorer",
-    website: "https://t.co/rVRBsKgpK3",
+    bio: "Web Developer | @neogcamp'23 | @girlscriptsoc'23 | #100DaysofCode | Ex-@oyorooms | CSE @MIT_Manipal'22",
+    website: "https://niharikakesarwani.netlify.app/",
     profileAvatar:
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
     backgroundImage:
@@ -194,7 +194,7 @@ export const users = [
     lastName: "Fulsundar",
     password: "HelloWorld07@",
     username: "@pranita0709",
-    bio: "Composing musical journeys",
+    bio: "Web Developer 👩‍💻 || Budding Writer ✍️",
     website: "https://pranita-fulsundar.netlify.app/",
     profileAvatar:
       "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
