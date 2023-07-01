@@ -14,19 +14,25 @@ import {
   ActionContainer,
   PasswordToggler,
   ValidationContainer,
+  ModalProvider,
+  AvatarActionLink,
 } from "../../Components";
 
 import { passwordValidation, userNameValidation } from "../../Utility";
 
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
-import { useTheme } from "../../Context";
-import { useAuth } from "../../Context";
+import { useTheme, useAuth, usePost } from "../../Context";
 
 const Login = () => {
   const { isDarkTheme } = useTheme();
   const { logInHandler } = useAuth();
+  const { state } = usePost();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [isLoginGuestOpen, setIsLoginGuestOpen] = useState(false);
+
+  const openLoginGuestHandler = () => setIsLoginGuestOpen(true);
+  const closeLoginGuestHandler = () => setIsLoginGuestOpen(false);
 
   const [logInData, setLogInData] = useState({
     logInName: "",
@@ -148,15 +154,49 @@ const Login = () => {
                 >
                   Log in
                 </ContainedActionBtn>
-                <OutlinedActionBtn
-                  className="login_guest_action"
-                  outlineBtnType="button"
-                  handleClick={() => {
-                    logInHandler("@vivekbhatt07", "HelloWorld07@");
-                  }}
+
+                <ModalProvider
+                  isOpen={isLoginGuestOpen}
+                  closeModal={closeLoginGuestHandler}
+                  modalTitle="Log In As"
+                  modalBtnVariant={
+                    <OutlinedActionBtn
+                      className="login_guest_action w-full"
+                      outlineBtnType="button"
+                      handleClick={() => {
+                        openLoginGuestHandler();
+                      }}
+                    >
+                      Log in as guest
+                    </OutlinedActionBtn>
+                  }
                 >
-                  Log in as guest
-                </OutlinedActionBtn>
+                  <div className="h-[400px] overflow-y-scroll">
+                    {state.userList.map((current) => {
+                      return (
+                        <article
+                          key={current._id}
+                          onClick={() =>
+                            logInHandler(current.username, current.password)
+                          }
+                          className="flex cursor-pointer transition-all duration-200 rounded-md p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center hover:bg-stone-300 dark:hover:bg-stone-700"
+                        >
+                          <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                            <AvatarActionLink avatar={current.profileAvatar} />
+                            <div className="flex flex-col">
+                              <span className="font-medium">
+                                {current.firstName} {current.lastName}
+                              </span>
+                              <span className="text-xs">
+                                {current.username}
+                              </span>
+                            </div>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </ModalProvider>
               </ActionContainer>
             </form>
           </PrimaryContainer>
