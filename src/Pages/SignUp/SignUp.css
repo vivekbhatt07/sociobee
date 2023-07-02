@@ -2,7 +2,7 @@
   .signup_form_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 70px);
+    grid-template-rows: repeat(5, minmax(70px, 1fr));
     row-gap: 8px;
     grid-template-areas:
       "A B"

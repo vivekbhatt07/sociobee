@@ -16,6 +16,7 @@ import {
   ValidationContainer,
   ModalProvider,
   AvatarActionLink,
+  LogInLottie,
 } from "../../Components";
 
 import { passwordValidation, userNameValidation } from "../../Utility";
@@ -94,7 +95,8 @@ const Login = () => {
       </SectionWrapper>
       <SectionWrapper className="login_form_section flex lg:basis-6/12">
         <div className="login_form_content max-w-xs m-auto flex flex-col gap-8 md:max-w-sm lg:w-[24rem]">
-          <PrimaryContainer className="login_form_wrap w-full flex-col">
+          <LogInLottie />
+          <PrimaryContainer className="login_form_wrap w-full flex-col dark:bg-stone-900">
             <h1 className="login_form_head cursor-pointer" role="button">
               <img
                 className="mx-auto w-40 object-cover"
@@ -200,7 +202,7 @@ const Login = () => {
               </ActionContainer>
             </form>
           </PrimaryContainer>
-          <PrimaryContainer className="login w-full items-center gap-2 justify-center">
+          <PrimaryContainer className="login w-full items-center gap-2 justify-center dark:bg-stone-900">
             <p>Don't have an account?</p>
             <TextActionLink reach="/signup">Sign Up</TextActionLink>
           </PrimaryContainer>

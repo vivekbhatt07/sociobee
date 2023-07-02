@@ -35,6 +35,7 @@ import SuggestionSidebar from "./SuggestionSidebar";
 
 import Loader from "./Loader";
 import DarkLoader from "./DarkLoader";
+import LogInLottie from "./LogInLottie";
 
 export {
   Header,
@@ -66,4 +67,5 @@ export {
   SuggestionSidebar,
   Loader,
   DarkLoader,
+  LogInLottie,
 };

@@ -130,7 +130,7 @@ const SignUp = () => {
           className="signup_form mx-auto mb-4 md:w-[500px]"
           onSubmit={handleSignUpSubmit}
         >
-          <PrimaryContainer className="signup_form_container flex-col gap-4">
+          <PrimaryContainer className="signup_form_container flex-col gap-4 dark:bg-stone-900">
             {/* FIRST NAME */}
             <TextInputLabel labelText="First Name" className="signUpFirstName">
               <TextInput
@@ -241,7 +241,7 @@ const SignUp = () => {
             </ContainedActionBtn>
           </PrimaryContainer>
         </form>
-        <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4">
+        <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4 dark:bg-stone-900">
           <p>Have an account already?</p>
           <TextActionLink reach="/">Log In</TextActionLink>
         </PrimaryContainer>
