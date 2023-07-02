@@ -137,7 +137,7 @@ const SignUp = () => {
                 inputName="signUpFirstName"
                 inputType="text"
                 inputValue={signUpData.signUpFirstName}
-                inputPlaceholder="First Name"
+                inputPlaceholder="Vivek"
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
@@ -147,7 +147,7 @@ const SignUp = () => {
                 inputName="signUpLastName"
                 inputType="text"
                 inputValue={signUpData.signUpLastName}
-                inputPlaceholder="Last Name"
+                inputPlaceholder="Bhatt"
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
@@ -157,7 +157,7 @@ const SignUp = () => {
                 inputName="signUpEmail"
                 inputType="email"
                 inputValue={signUpData.signUpEmail}
-                inputPlaceholder="Email"
+                inputPlaceholder="vivekbhatt618@gmail.com"
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
@@ -172,7 +172,7 @@ const SignUp = () => {
                 inputName="signUpUsername"
                 inputType="text"
                 inputValue={signUpData.signUpUsername}
-                inputPlaceholder="Username"
+                inputPlaceholder="vivekbhatt07"
                 inputHandle={handleOnChange}
               />
             </TextInputLabel>
@@ -191,7 +191,7 @@ const SignUp = () => {
                   inputName="signUpPassword"
                   inputType={isPasswordVisible ? "password" : "text"}
                   inputValue={signUpData.signUpPassword}
-                  inputPlaceholder="Password"
+                  inputPlaceholder="HelloWorld07@"
                   inputHandle={handleOnChange}
                 />
               </PasswordToggler>
@@ -214,7 +214,7 @@ const SignUp = () => {
                   inputName="signUpConfirm"
                   inputType={isConfirmVisible ? "password" : "text"}
                   inputValue={signUpData.signUpConfirm}
-                  inputPlaceholder="Confirm Password"
+                  inputPlaceholder="HelloWorld07@"
                   inputHandle={handleOnChange}
                 />
               </PasswordToggler>

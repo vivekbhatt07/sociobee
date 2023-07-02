@@ -139,7 +139,7 @@ const Login = () => {
                     inputName="logInPassword"
                     inputType={isPasswordVisible ? "password" : "text"}
                     inputValue={logInData.logInPassword}
-                    inputPlaceholder="Enter password"
+                    inputPlaceholder="HelloWorld07@"
                     inputHandle={handleOnChange}
                   />
                 </PasswordToggler>
