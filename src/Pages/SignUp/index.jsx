@@ -25,6 +25,8 @@ import {
   userNameValidation,
 } from "../../Utility";
 
+import SignUpLottie from "../../Assets/SignUpBg";
+
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
   const { signUpHandler } = useAuth();
@@ -117,20 +119,22 @@ const SignUp = () => {
 
   return (
     <PageWrapper className="signup_page min-h-screen">
+      <div className="hidden absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-stone-900 -translate-x-1/2 -translate-y-1/2 lg:flex justify-center items-center">
+        <div className="w-[400px] h-[400px] bg-stone-700 rounded-full"></div>
+      </div>
+
       <SectionWrapper className="signup_section flex flex-col pt-14 gap-4">
         <img
-          className="mx-auto w-40 object-cover"
+          className="mx-auto w-40 object-cover z-10"
           src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
           alt="logo"
         />
-        {/* <h3 className="signup_head mx-auto mb-4 font-bold bg-stone-700 text-stone-50 py-2 px-4">
-          SIGN UP FORM
-        </h3> */}
+
         <form
-          className="signup_form mx-auto mb-4 md:w-[500px]"
+          className="signup_form mx-auto mb-4 md:w-[500px] z-10"
           onSubmit={handleSignUpSubmit}
         >
-          <PrimaryContainer className="signup_form_container flex-col gap-4 dark:bg-stone-900">
+          <PrimaryContainer className="signup_form_container flex-col gap-4 dark:bg-stone-900 bg-stone-50">
             {/* FIRST NAME */}
             <TextInputLabel labelText="First Name" className="signUpFirstName">
               <TextInput

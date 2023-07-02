@@ -149,7 +149,7 @@ const Login = () => {
                   {logInError.logInPassword}
                 </ValidationContainer>
               )}
-              <ActionContainer className="login_form_actions flex-col ">
+              <ActionContainer className="login_form_actions flex-col">
                 <ContainedActionBtn
                   className="login_user_action"
                   containBtnType="submit"

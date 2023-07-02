@@ -10,7 +10,7 @@ export const users = [
     firstName: "Vivek",
     lastName: "Bhatt",
     password: "HelloWorld07@",
-    username: "@vivekbhatt07",
+    username: "vivekbhatt07",
     bio: "Aspiring Frontend Developer",
     website: "https://vivekbhatt.netlify.app/",
     profileAvatar:
@@ -25,7 +25,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -33,7 +33,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -41,7 +41,7 @@ export const users = [
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
         lastName: "Vishwakarma",
-        username: "@Shraddha_228",
+        username: "Shraddha_228",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
       },
@@ -49,7 +49,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -59,7 +59,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -67,7 +67,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -79,7 +79,7 @@ export const users = [
     firstName: "Abhishek",
     lastName: "Gupta",
     password: "HelloWorld07@",
-    username: "@Abhishek12703",
+    username: "Abhishek12703",
     bio: "Be Yourself!",
     website: "https://supersole.netlify.app/",
     profileAvatar:
@@ -94,7 +94,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -102,7 +102,7 @@ export const users = [
         _id: "t7cZfWIp-q",
         firstName: "Vivek",
         lastName: "Bhatt",
-        username: "@vivekbhatt07",
+        username: "vivekbhatt07",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
       },
@@ -112,7 +112,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -120,7 +120,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -132,7 +132,7 @@ export const users = [
     firstName: "Niharika",
     lastName: "Kesarwani",
     password: "HelloWorld07@",
-    username: "@Niharika_twt",
+    username: "Niharika_twt",
     bio: "Web Developer | @neogcamp'23 | @girlscriptsoc'23 | #100DaysofCode | Ex-@oyorooms | CSE @MIT_Manipal'22",
     website: "https://niharikakesarwani.netlify.app/",
     profileAvatar:
@@ -147,7 +147,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -155,7 +155,7 @@ export const users = [
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
         lastName: "Vishwakarma",
-        username: "@Shraddha_228",
+        username: "Shraddha_228",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
       },
@@ -163,7 +163,7 @@ export const users = [
         _id: "t7cZfWIp-q",
         firstName: "Vivek",
         lastName: "Bhatt",
-        username: "@vivekbhatt07",
+        username: "vivekbhatt07",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
       },
@@ -173,7 +173,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -181,7 +181,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -193,7 +193,7 @@ export const users = [
     firstName: "Pranita",
     lastName: "Fulsundar",
     password: "HelloWorld07@",
-    username: "@pranita0709",
+    username: "pranita0709",
     bio: "Web Developer 👩‍💻 || Budding Writer ✍️",
     website: "https://pranita-fulsundar.netlify.app/",
     profileAvatar:
@@ -208,7 +208,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -216,7 +216,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -226,7 +226,7 @@ export const users = [
         _id: "t7cZfWIp-q",
         firstName: "Vivek",
         lastName: "Bhatt",
-        username: "@vivekbhatt07",
+        username: "vivekbhatt07",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
       },
@@ -234,7 +234,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -246,7 +246,7 @@ export const users = [
     firstName: "Shraddha",
     lastName: "Vishwakarma",
     password: "HelloWorld07@",
-    username: "@Shraddha_228",
+    username: "Shraddha_228",
     bio: "Exploring one delicious bite at a time!",
     website: "https://shraddha-v.netlify.app/",
     profileAvatar:
@@ -261,7 +261,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -269,7 +269,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -279,7 +279,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -287,7 +287,7 @@ export const users = [
         _id: "t7cZfWIp-q",
         firstName: "Vivek",
         lastName: "Bhatt",
-        username: "@vivekbhatt07",
+        username: "vivekbhatt07",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
       },
@@ -299,7 +299,7 @@ export const users = [
     firstName: "Clever",
     lastName: "Coder",
     password: "HelloWorld07@",
-    username: "@clevercoderjoy",
+    username: "clevercoderjoy",
     bio: "Storyteller Extraordinaire",
     website: "https://clevercoderjoy.bio.link/",
     profileAvatar:
@@ -314,7 +314,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -322,7 +322,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -332,7 +332,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -340,7 +340,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -348,7 +348,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -360,7 +360,7 @@ export const users = [
     firstName: "Vikas",
     lastName: "Lodh",
     password: "HelloWorld07@",
-    username: "@VikasLodh",
+    username: "VikasLodh",
     bio: "A Creative Doodlebug",
     website: "https://buildspace.so/@wigzen",
     profileAvatar:
@@ -375,7 +375,7 @@ export const users = [
         _id: "t7cZfWIp-q",
         firstName: "Vivek",
         lastName: "Bhatt",
-        username: "@vivekbhatt07",
+        username: "vivekbhatt07",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
       },
@@ -383,7 +383,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -393,7 +393,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -401,7 +401,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -413,7 +413,7 @@ export const users = [
     firstName: "Anushka",
     lastName: "Jaiswal",
     password: "HelloWorld07@",
-    username: "@TheIndianGirl56",
+    username: "TheIndianGirl56",
     bio: "Fashion aficionado",
     website: "https://ajaisportfolio.netlify.app/",
     profileAvatar:
@@ -428,7 +428,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -436,7 +436,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -444,7 +444,7 @@ export const users = [
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
         lastName: "Vishwakarma",
-        username: "@Shraddha_228",
+        username: "Shraddha_228",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
       },
@@ -454,7 +454,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -462,7 +462,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -474,7 +474,7 @@ export const users = [
     firstName: "Tanay",
     lastName: "Pratap",
     password: "HelloWorld07@",
-    username: "@tanaypratap",
+    username: "tanaypratap",
     bio: "Haute Couture Maven",
     website: "https://tanaypratap.com/",
     profileAvatar:
@@ -490,7 +490,7 @@ export const users = [
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
         lastName: "Fulsundar",
-        username: "@pranita0709",
+        username: "pranita0709",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
@@ -498,7 +498,7 @@ export const users = [
         _id: "1T6Be1QpLm",
         firstName: "Niharika",
         lastName: "Kesarwani",
-        username: "@Niharika_twt",
+        username: "Niharika_twt",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
       },
@@ -506,7 +506,7 @@ export const users = [
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
         lastName: "Vishwakarma",
-        username: "@Shraddha_228",
+        username: "Shraddha_228",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
       },
@@ -514,7 +514,7 @@ export const users = [
         _id: "79Gksh9otl",
         firstName: "Abhishek",
         lastName: "Gupta",
-        username: "@Abhishek12703",
+        username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
       },
@@ -522,7 +522,7 @@ export const users = [
         _id: "ab8zWjEeXd",
         firstName: "Anushka",
         lastName: "Jaiswal",
-        username: "@TheIndianGirl56",
+        username: "TheIndianGirl56",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
@@ -530,7 +530,7 @@ export const users = [
         _id: "qq8zWjEeXd",
         firstName: "Vikas",
         lastName: "Lodh",
-        username: "@VikasLodh",
+        username: "VikasLodh",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
       },
@@ -542,7 +542,7 @@ export const users = [
     firstName: "Akshay",
     lastName: "Saini",
     password: "HelloWorld07@",
-    username: "@akshaymarch7",
+    username: "akshaymarch7",
     bio: "An Ambitious Trailblazer",
     website: "https://namastedev.com/namaste-react/",
     profileAvatar:
