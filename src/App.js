@@ -15,7 +15,7 @@ import { PrivateRoute } from "./Components";
 
 function App() {
   return (
-    <div className="app relative bg-stone-50 dark:bg-stone-950 transition-all duration-500 dark:text-stone-50">
+    <div className="app relative bg-stone-50 dark:bg-stone-950 transition-all duration-500 dark:text-stone-50 overflow-hidden">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

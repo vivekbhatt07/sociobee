@@ -25,8 +25,6 @@ import {
   userNameValidation,
 } from "../../Utility";
 
-import SignUpLottie from "../../Assets/SignUpBg";
-
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
   const { signUpHandler } = useAuth();
@@ -118,9 +116,9 @@ const SignUp = () => {
   };
 
   return (
-    <PageWrapper className="signup_page min-h-screen">
-      <div className="hidden absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-stone-900 -translate-x-1/2 -translate-y-1/2 lg:flex justify-center items-center">
-        <div className="w-[400px] h-[400px] bg-stone-700 rounded-full"></div>
+    <PageWrapper className="signup_page min-h-screen overflow-hidden">
+      <div className="hidden absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-stone-900 -translate-x-1/2 -translate-y-1/2 lg:flex justify-center items-center dark:bg-stone-800">
+        <div className="w-[400px] h-[400px] bg-stone-700 rounded-full dark:bg-stone-600"></div>
       </div>
 
       <SectionWrapper className="signup_section flex flex-col pt-14 gap-4">
@@ -250,6 +248,10 @@ const SignUp = () => {
           <TextActionLink reach="/">Log In</TextActionLink>
         </PrimaryContainer>
       </SectionWrapper>
+
+      <div className="hidden absolute bottom-0 right-0 w-[700px] h-[700px] rounded-full bg-stone-900 translate-x-1/2 translate-y-1/2 lg:flex justify-center items-center dark:bg-stone-800">
+        <div className="w-[400px] h-[400px] bg-stone-700 rounded-full dark:bg-stone-600"></div>
+      </div>
     </PageWrapper>
   );
 };
