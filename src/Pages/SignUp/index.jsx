@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Snackbar, Alert } from "@mui/material";
+import { Snackbar, Alert, Fade } from "@mui/material";
 import "./SignUp.css";
 
 import {
@@ -94,7 +94,7 @@ const SignUp = () => {
       } else {
         handleSignUpError(
           "signUpUsername",
-          "Username should start with an alphabet and atleast 8 Characters. All other characters can be alphabets, numbers or an underscore"
+          "Begin with a letter, atleast 8 characters. Other can be letter, number, or an (_)."
         );
       }
     } else {
@@ -107,7 +107,7 @@ const SignUp = () => {
       } else {
         handleSignUpError(
           "signUpConfirm",
-          "Password and Confirm Password doesn't match"
+          "Password and Confirm doesn't match"
         );
       }
     } else {
@@ -144,6 +144,14 @@ const SignUp = () => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setSignUpErrorData((prevSignUpErrorData) => {
+        return { ...prevSignUpErrorData, signUpCommon: "" };
+      });
+    }, 2000);
+  }, [signUpErrorData.signUpCommon]);
+
   return (
     <PageWrapper className="signup_page min-h-screen overflow-hidden">
       <div className="hidden absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-stone-900 -translate-x-1/2 -translate-y-1/2 lg:flex justify-center items-center dark:bg-stone-800">
@@ -156,7 +164,11 @@ const SignUp = () => {
           src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
           alt="logo"
         />
-
+        {signUpErrorData.signUpCommon && (
+          <Alert severity="error" sx={{ width: "350px", margin: "0 auto" }}>
+            Fulfill all the requirements to Sign Up
+          </Alert>
+        )}
         <form
           className="signup_form mx-auto mb-4 md:w-[500px] z-10"
           onSubmit={handleSignUpSubmit}
@@ -205,9 +217,11 @@ const SignUp = () => {
               />
 
               {signUpErrorData.signUpEmail && (
+                // <Fade in={Boolean(signUpErrorData.signUpEmail)}>
                 <ValidationContainer>
                   {signUpErrorData.signUpEmail}
                 </ValidationContainer>
+                // </Fade>
               )}
             </TextInputLabel>
             {/* USERNAME */}
@@ -324,11 +338,7 @@ const SignUp = () => {
             </ContainedActionBtn>
           </PrimaryContainer>
         </form>
-        {signUpErrorData.signUpCommon && (
-          <Alert severity="error" sx={{ width: "300px", margin: "0 auto" }}>
-            This is an error alert — check it out!
-          </Alert>
-        )}
+
         <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4 dark:bg-stone-900">
           <p>Have an account already?</p>
           <TextActionLink reach="/">Log In</TextActionLink>
