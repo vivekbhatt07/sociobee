@@ -1,7 +1,5 @@
 const userNameValidation = (userNameInput) => {
-  return /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/.test(
-    userNameInput
-  );
+  return /^[A-Za-z][A-Za-z0-9_]{7,29}$/.test(userNameInput);
 };
 
 export default userNameValidation;

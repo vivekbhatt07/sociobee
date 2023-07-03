@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Snackbar, Alert } from "@mui/material";
 import "./SignUp.css";
 
 import {
@@ -46,6 +47,8 @@ const SignUp = () => {
     signUpEmail: "",
     signUpUsername: "",
     signUpPassword: "",
+    signUpConfirm: "",
+    signUpCommon: "",
   });
 
   const handleOnChange = (event) => {
@@ -78,7 +81,7 @@ const SignUp = () => {
       } else {
         handleSignUpError(
           "signUpPassword",
-          "Atleast 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character"
+          "Atleast 8 characters, 1 UP & 1 LC letter, 1 number & 1 special character"
         );
       }
     } else {
@@ -91,28 +94,54 @@ const SignUp = () => {
       } else {
         handleSignUpError(
           "signUpUsername",
-          "Username should be in correct format"
+          "Username should start with an alphabet and atleast 8 Characters. All other characters can be alphabets, numbers or an underscore"
         );
       }
     } else {
       handleSignUpError("signUpUsername", "");
     }
+
+    if (signUpData.signUpPassword !== signUpData.signUpConfirm) {
+      if (signUpData.signUpConfirm === "") {
+        handleSignUpError("signUpConfirm", "");
+      } else {
+        handleSignUpError(
+          "signUpConfirm",
+          "Password and Confirm Password doesn't match"
+        );
+      }
+    } else {
+      handleSignUpError("signUpConfirm", "");
+    }
   }, [signUpData]);
 
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
-    signUpHandler(
-      signUpData.signUpUsername,
-      signUpData.signUpPassword,
-      signUpData.signUpEmail,
-      signUpData.signUpFirstName,
-      signUpData.signUpLastName,
-      "Edit your bio",
-      "Edit your website",
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687520455/Avatar/AvatarFifteen_wmdlk9.svg",
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687521328/Avatar/signUpCover_ri9f1x.png",
-      "June, 2023"
-    );
+    if (
+      signUpErrorData.signUpEmail ||
+      signUpErrorData.signUpUsername ||
+      signUpErrorData.signUpPassword ||
+      signUpData.signUpPassword !== signUpData.signUpConfirm
+    ) {
+      handleSignUpError(
+        "signUpCommon",
+        "Follow the above conditions to sign up."
+      );
+    } else {
+      console.log("hello");
+      signUpHandler(
+        signUpData.signUpUsername,
+        signUpData.signUpPassword,
+        signUpData.signUpEmail,
+        signUpData.signUpFirstName,
+        signUpData.signUpLastName,
+        "Edit your bio",
+        "Edit your website",
+        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687520455/Avatar/AvatarFifteen_wmdlk9.svg",
+        "https://res.cloudinary.com/duqsyuriy/image/upload/v1687521328/Avatar/signUpCover_ri9f1x.png",
+        "June, 2023"
+      );
+    }
   };
 
   return (
@@ -161,13 +190,26 @@ const SignUp = () => {
                 inputValue={signUpData.signUpEmail}
                 inputPlaceholder="vivekbhatt618@gmail.com"
                 inputHandle={handleOnChange}
+                TextInputStyles={{
+                  borderColor: signUpErrorData.signUpEmail
+                    ? "#FF0800"
+                    : signUpData.signUpEmail
+                    ? "green"
+                    : "#a8a29e",
+                  backgroundColor: signUpErrorData.signUpEmail
+                    ? "#FFCCCB"
+                    : signUpData.signUpEmail
+                    ? "#bcf5bc"
+                    : "#fff",
+                }}
               />
+
+              {signUpErrorData.signUpEmail && (
+                <ValidationContainer>
+                  {signUpErrorData.signUpEmail}
+                </ValidationContainer>
+              )}
             </TextInputLabel>
-            {signUpErrorData.signUpEmail && (
-              <ValidationContainer className="signup_email_validation">
-                {signUpErrorData.signUpEmail}
-              </ValidationContainer>
-            )}
             {/* USERNAME */}
             <TextInputLabel labelText="Username" className="signUpUsername">
               <TextInput
@@ -176,13 +218,25 @@ const SignUp = () => {
                 inputValue={signUpData.signUpUsername}
                 inputPlaceholder="vivekbhatt07"
                 inputHandle={handleOnChange}
+                TextInputStyles={{
+                  borderColor: signUpErrorData.signUpUsername
+                    ? "#FF0800"
+                    : signUpData.signUpUsername
+                    ? "green"
+                    : "#a8a29e",
+                  backgroundColor: signUpErrorData.signUpUsername
+                    ? "#FFCCCB"
+                    : signUpData.signUpUsername
+                    ? "#bcf5bc"
+                    : "#fff",
+                }}
               />
+              {signUpErrorData.signUpUsername && (
+                <ValidationContainer>
+                  {signUpErrorData.signUpUsername}
+                </ValidationContainer>
+              )}
             </TextInputLabel>
-            {signUpErrorData.signUpUsername && (
-              <ValidationContainer className="signup_email_validation">
-                {signUpErrorData.signUpUsername}
-              </ValidationContainer>
-            )}
             {/* PASSWORD */}
             <TextInputLabel labelText="Password" className="signUpPassword">
               <PasswordToggler
@@ -195,15 +249,26 @@ const SignUp = () => {
                   inputValue={signUpData.signUpPassword}
                   inputPlaceholder="HelloWorld07@"
                   inputHandle={handleOnChange}
+                  TextInputStyles={{
+                    borderColor: signUpErrorData.signUpPassword
+                      ? "#FF0800"
+                      : signUpData.signUpPassword
+                      ? "green"
+                      : "#a8a29e",
+                    backgroundColor: signUpErrorData.signUpPassword
+                      ? "#FFCCCB"
+                      : signUpData.signUpPassword
+                      ? "#bcf5bc"
+                      : "#fff",
+                  }}
                 />
               </PasswordToggler>
+              {signUpErrorData.signUpPassword && (
+                <ValidationContainer>
+                  {signUpErrorData.signUpPassword}
+                </ValidationContainer>
+              )}
             </TextInputLabel>
-            {signUpErrorData.signUpPassword && (
-              <ValidationContainer className="signup_password_validation">
-                {signUpErrorData.signUpPassword}
-              </ValidationContainer>
-            )}
-            {/* CONFIRM PASSWORD */}
             <TextInputLabel
               labelText="Confirm Password"
               className="signUpConfirm"
@@ -218,10 +283,26 @@ const SignUp = () => {
                   inputValue={signUpData.signUpConfirm}
                   inputPlaceholder="HelloWorld07@"
                   inputHandle={handleOnChange}
+                  TextInputStyles={{
+                    borderColor: signUpErrorData.signUpConfirm
+                      ? "#FF0800"
+                      : signUpData.signUpConfirm
+                      ? "green"
+                      : "#a8a29e",
+                    backgroundColor: signUpErrorData.signUpConfirm
+                      ? "#FFCCCB"
+                      : signUpData.signUpConfirm
+                      ? "#bcf5bc"
+                      : "#fff",
+                  }}
                 />
               </PasswordToggler>
+              {signUpErrorData.signUpConfirm && (
+                <ValidationContainer>
+                  {signUpErrorData.signUpConfirm}
+                </ValidationContainer>
+              )}
             </TextInputLabel>
-
             <ContainedActionBtn type="submit" className="signUpButton">
               Sign up
             </ContainedActionBtn>
@@ -243,6 +324,11 @@ const SignUp = () => {
             </ContainedActionBtn>
           </PrimaryContainer>
         </form>
+        {signUpErrorData.signUpCommon && (
+          <Alert severity="error" sx={{ width: "300px", margin: "0 auto" }}>
+            This is an error alert — check it out!
+          </Alert>
+        )}
         <PrimaryContainer className="login items-center gap-2 justify-center max-w-xs m-auto md:w-2/4 dark:bg-stone-900">
           <p>Have an account already?</p>
           <TextActionLink reach="/">Log In</TextActionLink>
