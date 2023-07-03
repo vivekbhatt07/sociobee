@@ -18,7 +18,7 @@ import {
 
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
-import { useTheme } from "../../Context";
+import { usePost, useTheme } from "../../Context";
 import { useAuth } from "../../Context";
 import {
   emailValidation,
@@ -29,6 +29,7 @@ import {
 const SignUp = () => {
   const { isDarkTheme } = useTheme();
   const { signUpHandler } = useAuth();
+  const { state } = usePost();
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const [isConfirmVisible, setIsConfirmVisible] = useState(true);
 
@@ -65,6 +66,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
+    let isUserNameExist = state.userList.findIndex((currentUser) => {
+      return currentUser.username == signUpData.signUpUsername;
+    });
+
     if (!emailValidation(signUpData.signUpEmail)) {
       if (signUpData.signUpEmail === "") {
         handleSignUpError("signUpEmail", "");
@@ -88,14 +93,21 @@ const SignUp = () => {
       handleSignUpError("signUpPassword", "");
     }
 
-    if (!userNameValidation(signUpData.signUpUsername)) {
+    if (
+      !userNameValidation(signUpData.signUpUsername) ||
+      isUserNameExist !== -1
+    ) {
       if (signUpData.signUpUsername === "") {
         handleSignUpError("signUpUsername", "");
       } else {
-        handleSignUpError(
-          "signUpUsername",
-          "Begin with a letter, atleast 8 characters. Other can be letter, number, or an (_)."
-        );
+        if (isUserNameExist !== -1) {
+          handleSignUpError("signUpUsername", "Username already exist");
+        } else {
+          handleSignUpError(
+            "signUpUsername",
+            "Begin with a letter, atleast 8 characters. Other can be letter, number, or an (_)."
+          );
+        }
       }
     } else {
       handleSignUpError("signUpUsername", "");
@@ -128,7 +140,6 @@ const SignUp = () => {
         "Follow the above conditions to sign up."
       );
     } else {
-      console.log("hello");
       signUpHandler(
         signUpData.signUpUsername,
         signUpData.signUpPassword,
