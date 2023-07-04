@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Alert, Snackbar } from "@mui/material";
 
 import {
   PageWrapper,
@@ -19,11 +20,10 @@ import {
   LogInLottie,
 } from "../../Components";
 
-import { passwordValidation, userNameValidation } from "../../Utility";
-
 import SocioBeeLightImg from "../../Assets/Logo/SocioBeeLight.svg";
 import SocioBeeDarkImg from "../../Assets/Logo/SocioBeeDark.svg";
 import { useTheme, useAuth, usePost } from "../../Context";
+import { ToastHandler } from "../../Utility";
 
 const Login = () => {
   const { isDarkTheme } = useTheme();
@@ -40,17 +40,6 @@ const Login = () => {
     logInPassword: "",
   });
 
-  const [logInError, setLogInError] = useState({
-    logInName: "",
-    logInPassword: "",
-  });
-
-  const handleLogInError = (warningType, warningText) => {
-    setLogInError((prevLogInError) => {
-      return { ...prevLogInError, [warningType]: warningText };
-    });
-  };
-
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setLogInData((prevLogInData) => {
@@ -58,35 +47,25 @@ const Login = () => {
     });
   };
 
+  const isLoginCredentials = state.userList.find((currentUser) => {
+    return (
+      currentUser.username == logInData.logInName &&
+      currentUser.password == logInData.logInPassword
+    );
+  });
+
   const handleLogInFormSubmit = (event) => {
     event.preventDefault();
-    logInHandler(logInData.logInName, logInData.logInPassword);
+    if (isLoginCredentials) {
+      logInHandler(logInData.logInName, logInData.logInPassword);
+      ToastHandler(
+        "success",
+        `Welcome! ${isLoginCredentials.firstName} ${isLoginCredentials.lastName}`
+      );
+    } else {
+      ToastHandler("warn", "Incorrect Login Credentials");
+    }
   };
-
-  useEffect(() => {
-    if (!userNameValidation(logInData.logInName)) {
-      if (logInData.logInName === "") {
-        handleLogInError("logInName", "");
-      } else {
-        handleLogInError("logInName", "UserName should be in correct format");
-      }
-    } else {
-      handleLogInError("logInName", "");
-    }
-
-    if (!passwordValidation(logInData.logInPassword)) {
-      if (logInData.logInPassword === "") {
-        handleLogInError("logInPassword", "");
-      } else {
-        handleLogInError(
-          "logInPassword",
-          "Atleast 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character"
-        );
-      }
-    } else {
-      handleLogInError("logInPassword", "");
-    }
-  }, [logInData]);
 
   return (
     <PageWrapper className="login_page flex-row min-h-screen">
@@ -122,11 +101,7 @@ const Login = () => {
                   }}
                 />
               </TextInputLabel>
-              {logInError.logInName && (
-                <ValidationContainer className="login_email_validation">
-                  {logInError.logInName}
-                </ValidationContainer>
-              )}
+
               <TextInputLabel
                 className="login_form_password"
                 labelText="Password"
@@ -144,11 +119,7 @@ const Login = () => {
                   />
                 </PasswordToggler>
               </TextInputLabel>
-              {logInError.logInPassword && (
-                <ValidationContainer className="login_password_validation">
-                  {logInError.logInPassword}
-                </ValidationContainer>
-              )}
+
               <ActionContainer className="login_form_actions flex-col">
                 <ContainedActionBtn
                   className="login_user_action"

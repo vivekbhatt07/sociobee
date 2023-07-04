@@ -18,6 +18,7 @@ import {
   editPostService,
   deletePostService,
 } from "./FunctionalUtility";
+import { ToastHandler } from "./ToastifyUtility";
 
 export {
   emailValidation,
@@ -38,4 +39,5 @@ export {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  ToastHandler,
 };

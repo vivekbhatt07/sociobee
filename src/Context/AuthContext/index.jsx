@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { logInService, signUpService } from "../../Utility";
+import { ToastContainer, toast } from "react-toastify";
+
+import { logInService, signUpService, ToastHandler } from "../../Utility";
 
 const AuthContext = createContext();
 
@@ -23,6 +25,7 @@ const AuthProvider = ({ children }) => {
           "userCredentials",
           JSON.stringify({ user: foundUser, token: encodedToken })
         );
+
         setActiveUser(foundUser);
         setToken(encodedToken);
         navigate("/home", { replace: true });
@@ -34,6 +37,7 @@ const AuthProvider = ({ children }) => {
 
   const logOutHandler = () => {
     localStorage.removeItem("userCredentials");
+    ToastHandler("warn", "Logging Out");
     setActiveUser(null);
     setToken(null);
     navigate("/", { replace: true });

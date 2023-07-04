@@ -24,6 +24,7 @@ import {
   emailValidation,
   passwordValidation,
   userNameValidation,
+  ToastHandler,
 } from "../../Utility";
 
 const SignUp = () => {
@@ -49,7 +50,6 @@ const SignUp = () => {
     signUpUsername: "",
     signUpPassword: "",
     signUpConfirm: "",
-    signUpCommon: "",
   });
 
   const handleOnChange = (event) => {
@@ -135,11 +135,12 @@ const SignUp = () => {
       signUpErrorData.signUpPassword ||
       signUpData.signUpPassword !== signUpData.signUpConfirm
     ) {
-      handleSignUpError(
-        "signUpCommon",
-        "Follow the above conditions to sign up."
-      );
+      ToastHandler("warn", "Follow all conditions to sign up.");
     } else {
+      ToastHandler(
+        "success",
+        `Welcome ${signUpData.signUpFirstName} ${signUpData.signUpLastName}`
+      );
       signUpHandler(
         signUpData.signUpUsername,
         signUpData.signUpPassword,
@@ -155,14 +156,6 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSignUpErrorData((prevSignUpErrorData) => {
-        return { ...prevSignUpErrorData, signUpCommon: "" };
-      });
-    }, 2000);
-  }, [signUpErrorData.signUpCommon]);
-
   return (
     <PageWrapper className="signup_page min-h-screen overflow-hidden">
       <div className="hidden absolute top-0 left-0 w-[700px] h-[700px] rounded-full bg-stone-900 -translate-x-1/2 -translate-y-1/2 lg:flex justify-center items-center dark:bg-stone-800">
@@ -175,11 +168,6 @@ const SignUp = () => {
           src={isDarkTheme ? SocioBeeDarkImg : SocioBeeLightImg}
           alt="logo"
         />
-        {signUpErrorData.signUpCommon && (
-          <Alert severity="error" sx={{ width: "350px", margin: "0 auto" }}>
-            Fulfill all the requirements to Sign Up
-          </Alert>
-        )}
         <form
           className="signup_form mx-auto mb-4 md:w-[500px] z-10"
           onSubmit={handleSignUpSubmit}
