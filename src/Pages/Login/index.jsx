@@ -149,9 +149,13 @@ const Login = () => {
                       return (
                         <article
                           key={current._id}
-                          onClick={() =>
-                            logInHandler(current.username, current.password)
-                          }
+                          onClick={() => {
+                            ToastHandler(
+                              "success",
+                              `Welcome! ${current.firstName} ${current.lastName}`
+                            );
+                            logInHandler(current.username, current.password);
+                          }}
                           className="flex cursor-pointer transition-all duration-200 rounded-md p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center hover:bg-stone-300 dark:hover:bg-stone-700"
                         >
                           <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
