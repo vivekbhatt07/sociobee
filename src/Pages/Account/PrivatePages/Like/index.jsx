@@ -35,7 +35,7 @@ const Like = () => {
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth pt-8">
+        <div className="overflow-y-auto h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth pt-8">
           {likedList.length !== 0 ? (
             likedList.map((currentLikedPost) => {
               return (
@@ -66,8 +66,8 @@ const Like = () => {
           )}
         </div>
       </div>
-      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
-        <div className="p-3">
+      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth border-l">
+        <div className="p-3  w-full">
           <SuggestionSidebar />
         </div>
       </div>

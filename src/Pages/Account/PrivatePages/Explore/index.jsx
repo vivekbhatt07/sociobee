@@ -50,8 +50,8 @@ const Explore = () => {
           )}
         </div>
       </div>
-      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
-        <div className="p-3">
+      <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth border-l">
+        <div className="p-3 w-full">
           <SuggestionSidebar />
         </div>
       </div>

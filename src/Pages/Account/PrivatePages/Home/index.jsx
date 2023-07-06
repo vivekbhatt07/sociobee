@@ -56,12 +56,6 @@ const Home = () => {
           <div className="border-b">
             <AddPostCard />
           </div>
-          {/* isDarkTheme ? (
-                <DarkLoader />
-              ) : (
-                <Loader />
-              ) */}
-
           <div className="">
             {homeList.length === 0 ? (
               <div>No post Added</div>
@@ -73,22 +67,21 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="tab_sidebar dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth">
+      <div className="tab_sidebar dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth border-l">
         <div className="flex flex-col gap-4 p-3">
           {isDarkTheme ? (
-            <div className="flex w-full gap-2">
-              {" "}
+            <div className="grid grid-cols-2 gap-2">
               {state.sortType === "isTrending" ? (
                 <OutlinedActionBtn
                   outlineBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                 >
                   <Whatshot /> <span>Trending</span>
                 </OutlinedActionBtn>
               ) : (
                 <ContainedActionBtn
                   containBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                   handleClick={() => {
                     dispatch({ type: "SET_SORT", payload: "isTrending" });
                   }}
@@ -99,7 +92,7 @@ const Home = () => {
               {state.sortType == "isLatest" ? (
                 <OutlinedActionBtn
                   outlineBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                 >
                   <SwapVert />
                   <span>Latest</span>
@@ -107,7 +100,7 @@ const Home = () => {
               ) : (
                 <ContainedActionBtn
                   containBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                   handleClick={() =>
                     dispatch({ type: "SET_SORT", payload: "isLatest" })
                   }
@@ -118,18 +111,18 @@ const Home = () => {
               )}
             </div>
           ) : (
-            <div className="flex w-full gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {state.sortType === "isTrending" ? (
                 <ContainedActionBtn
                   containBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                 >
                   <Whatshot /> <span>Trending</span>
                 </ContainedActionBtn>
               ) : (
                 <OutlinedActionBtn
                   outlineBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                   handleClick={() => {
                     dispatch({ type: "SET_SORT", payload: "isTrending" });
                   }}
@@ -140,7 +133,7 @@ const Home = () => {
               {state.sortType == "isLatest" ? (
                 <ContainedActionBtn
                   containBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                 >
                   <SwapVert />
                   <span>Latest</span>
@@ -148,7 +141,7 @@ const Home = () => {
               ) : (
                 <OutlinedActionBtn
                   outlineBtnType="button"
-                  className="basis-3/6 flex items-center justify-center"
+                  className="flex items-center justify-center"
                   handleClick={() =>
                     dispatch({ type: "SET_SORT", payload: "isLatest" })
                   }

@@ -10,9 +10,10 @@ const SuggestionCard = (props) => {
   const { token, activeUser } = useAuth();
   const { _id, firstName, lastName, profileAvatar, username } = props;
   return (
-    <article className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center">
-      <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+    <article className="flex p-2 lg:flex-col lg:items-center lg:gap-2 xl:flex-row xl:justify-between xl:items-center">
+      <div className="flex gap-3 lg:flex-col lg:justify-start lg:w-full xl:flex-row xl:justify-start xl:gap-3">
         <AvatarActionLink
+          className="mx-auto xl:m-0"
           avatar={profileAvatar}
           reach={
             props?.username == activeUser?.username
@@ -21,7 +22,7 @@ const SuggestionCard = (props) => {
           }
         />
         <div
-          className="flex flex-col cursor-pointer"
+          className="flex flex-col cursor-pointer lg:items-center xl:items-start"
           onClick={() => {
             navigate(
               props?.username == activeUser?.username
