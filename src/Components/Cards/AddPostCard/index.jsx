@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Menu from "@mui/material/Menu";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import TextareaAutosize from "@mui/base/TextareaAutosize";
+import { styled } from "@mui/material/styles";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
 import VideoCameraFrontOutlinedIcon from "@mui/icons-material/VideoCameraFrontOutlined";
@@ -22,6 +24,7 @@ import {
 import { useAuth, usePost, useTheme } from "../../../Context";
 
 import { sendPostService } from "../../../Utility";
+import { TextField } from "@mui/material";
 
 const AddPostCard = (props) => {
   const { token, activeUser } = useAuth();
@@ -67,6 +70,7 @@ const AddPostCard = (props) => {
   // USER POST DATA HANDLE:
   const handlePostData = (event) => {
     const { name, value, files, type } = event.target;
+
     setPostData((prevPostData) => {
       return {
         ...prevPostData,
@@ -88,7 +92,6 @@ const AddPostCard = (props) => {
       postData,
       encodedToken
     );
-    // console.log(editPostResponse);
     if (editPostResponse.status === 201) {
       dispatch({ type: "GET_DATA", payload: editPostResponse.data.posts });
     }
@@ -139,6 +142,61 @@ const AddPostCard = (props) => {
     }
   };
 
+  const blue = {
+    100: "#DAECFF",
+    200: "#b6daff",
+    400: "#3399FF",
+    500: "#007FFF",
+    600: "#0072E5",
+    900: "#003A75",
+  };
+
+  const grey = {
+    50: "#f6f8fa",
+    100: "#eaeef2",
+    200: "#d0d7de",
+    300: "#afb8c1",
+    400: "#8c959f",
+    500: "#6e7781",
+    600: "#57606a",
+    700: "#424a53",
+    800: "#32383f",
+    900: "#24292f",
+  };
+
+  const StyledTextarea = styled("textarea")(
+    ({ theme }) => `
+    font-family: IBM Plex Sans, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 12px;
+    border-radius: 12px;
+    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    box-shadow: 0px 2px 2px ${
+      theme.palette.mode === "dark" ? grey[900] : grey[50]
+    };
+  
+    &:hover {
+      border-color: ${blue[400]};
+    }
+  
+    &:focus {
+      border-color: ${blue[400]};
+      box-shadow: 0 0 0 3px ${
+        theme.palette.mode === "dark" ? blue[500] : blue[200]
+      };
+    }
+  
+    // firefox
+    &:focus-visible {
+      outline: 0;
+    }
+  `
+  );
+
   return (
     <article className="addPostCard flex gap-4 px-3 py-2 bg-[#fff] dark:bg-stone-950">
       <div className="addPostCard_user">
@@ -148,13 +206,24 @@ const AddPostCard = (props) => {
         onSubmit={submitPostData}
         className="addPostCard_actions flex-1 flex flex-col gap-2.5"
       >
-        <textarea
-          className="addPostCard_action_input border-0 outline-0 text-stone-950 dark:bg-stone-950 dark:text-stone-50 h-20"
+        <TextField
+          variant="standard"
+          multiline
+          minRows={3}
           placeholder="What is happening?!"
           name="postText"
           onChange={handlePostData}
-          value={postData.postText}
+          value={postData?.postText}
+          inputProps={{
+            style: {
+              color: isDarkTheme ? "#fafaf990" : "#0c0a09",
+              fontWeight: "300",
+              fontFamily: "inherit",
+            },
+          }}
+          InputProps={{ disableUnderline: true }}
         />
+
         <div className="addPostCard_meta_actions flex justify-between items-center">
           <div className="addPostCard_meta_primary flex gap-1">
             <label>
