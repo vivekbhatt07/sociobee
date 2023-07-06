@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   AvatarActionLink,
   OutlinedActionBtn,
@@ -30,6 +30,7 @@ import { avatarData } from "./AvatarData";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
+  const location = useLocation();
   const { userId } = useParams();
   const { state, dispatch } = usePost();
   const { token, logOutHandler, activeUser, setActiveUser } = useAuth();
@@ -138,11 +139,15 @@ const Profile = () => {
   const isFollowing = followingList?.includes(userId);
 
   return (
-    <div className="tab min-h-screen">
+    <div
+      className={`${
+        location.pathname == "/home" ? "tab" : "tab_mob"
+      } min-h-screen`}
+    >
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
+        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth">
           <div className="w-full h-56 bg-stone-950 dark:bg-stone-900">
             <img
               src={activeUserProfile?.backgroundImage}

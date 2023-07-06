@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   PostCard,
@@ -15,12 +16,18 @@ import { usePost, useTheme } from "../../../../Context";
 const Bookmark = () => {
   const { state } = usePost();
   const { isDarkTheme } = useTheme();
+  const location = useLocation();
+
   return (
-    <div className="tab min-h-screen">
+    <div
+      className={`${
+        location.pathname == "/home" ? "tab" : "tab_mob"
+      } min-h-screen`}
+    >
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth pt-8">
+        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth pt-8">
           {state.bookmarkList.length !== 0 ? (
             state.bookmarkList.map((currentBookmark) => {
               return (
