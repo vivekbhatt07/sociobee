@@ -9,9 +9,6 @@ const UserProvider = ({ children }) => {
   const { state } = usePost();
   const { setActiveUser } = useAuth();
   const { dispatch } = usePost();
-
-  console.log(state.userList);
-
   const handleFollowUser = async (followUserId, encodedToken) => {
     try {
       const followUserResponse = await followUserService(

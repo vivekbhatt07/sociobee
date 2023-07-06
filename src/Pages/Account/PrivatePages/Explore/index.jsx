@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useLocation } from "react-router-dom";
 import {
   PostCard,
   Header,
@@ -14,6 +14,7 @@ const Explore = () => {
   const { state } = usePost();
   const { activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
+  const location = useLocation();
 
   const followingList = activeUser.following.map((currentFollowing) => {
     return currentFollowing.username;
@@ -27,11 +28,15 @@ const Explore = () => {
   });
 
   return (
-    <div className="tab min-h-screen">
+    <div
+      className={`${
+        location.pathname == "/home" ? "tab" : "tab_mob"
+      } min-h-screen`}
+    >
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
+        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth">
           {exploreList.length == 0 ? (
             isDarkTheme ? (
               <DarkLoader />

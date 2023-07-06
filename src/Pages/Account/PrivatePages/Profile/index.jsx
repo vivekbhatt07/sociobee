@@ -45,8 +45,6 @@ const Profile = () => {
     userEditWeb: activeUser.website,
   });
 
-  // console.log(state.userList);
-
   const [recall, setRecall] = useState(null);
 
   // FOLLOWER MODAL HANDLE:
