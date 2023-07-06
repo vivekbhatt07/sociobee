@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -32,6 +33,7 @@ import {
 import { useAuth, usePost, useUser } from "../../../Context";
 
 const PostCard = (props) => {
+  const navigate = useNavigate();
   const { token, activeUser } = useAuth();
   const { state, dispatch } = usePost();
   const { handleFollowUser, handleUnfollowUser } = useUser();
@@ -157,7 +159,19 @@ const PostCard = (props) => {
               reach={`/${getUser?.username}`}
             />
           )}
-          <div className="flex flex-col gap-1">
+
+          <div
+            className="flex flex-col gap-1 cursor-pointer"
+            onClick={() => {
+              navigate(
+                `/${
+                  getUser?.username == activeUser?.username
+                    ? "profile"
+                    : getUser?.username
+                }`
+              );
+            }}
+          >
             <div className="flex gap-2 items-center">
               <span className="font-semibold">
                 {getUser?.firstName} {getUser?.lastName}
