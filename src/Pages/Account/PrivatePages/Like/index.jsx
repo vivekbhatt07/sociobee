@@ -9,7 +9,6 @@ import {
   OutlinedActionBtn,
   SuggestionSidebar,
 } from "../../../../Components";
-import { Whatshot, SwapVert } from "@mui/icons-material";
 import { useAuth, usePost, useTheme } from "../../../../Context";
 import GlossyHeader from "../../../../Components/GlossyHeader";
 
@@ -42,7 +41,11 @@ const Like = () => {
             {likedList.length !== 0 ? (
               likedList.map((currentLikedPost) => {
                 return (
-                  <PostCard key={currentLikedPost._id} {...currentLikedPost} />
+                  <PostCard
+                    key={currentLikedPost._id}
+                    {...currentLikedPost}
+                    isLike
+                  />
                 );
               })
             ) : (

@@ -9,6 +9,7 @@ import {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 } from "./DataServices";
 import {
   getUserService,
@@ -33,4 +34,5 @@ export {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 };

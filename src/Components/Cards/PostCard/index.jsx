@@ -4,7 +4,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import {
   AvatarActionLink,
   IconActionBtn,
@@ -29,6 +30,7 @@ import {
   removeBookmarkService,
   deletePostService,
   editPostService,
+  ToastHandler,
 } from "../../../Utility";
 import { useAuth, usePost, useUser } from "../../../Context";
 
@@ -102,7 +104,7 @@ const PostCard = (props) => {
     const addBookmarkResponse = await addBookmarkService(postId, encodedToken);
     if (addBookmarkResponse.status == 200) {
       dispatch({
-        type: "GET_BOOKMARK",
+        type: "HANDLE_BOOKMARK",
         payload: addBookmarkResponse.data.bookmarks,
       });
     }
@@ -118,7 +120,7 @@ const PostCard = (props) => {
 
     if (removeBookmarkResponse.status == 200) {
       dispatch({
-        type: "GET_BOOKMARK",
+        type: "HANDLE_BOOKMARK",
         payload: removeBookmarkResponse.data.bookmarks,
       });
     }
@@ -181,87 +183,117 @@ const PostCard = (props) => {
             <div className="text-xs">{props?.username}</div>
           </div>
         </div>
-        <IconActionBtn handleClick={handlePostMenuOpen}>
-          <MoreHorizOutlined className="text-stone-950 dark:text-stone-50" />
-        </IconActionBtn>
 
-        <Menu
-          id="basic-menu"
-          anchorEl={postMenu}
-          open={isPostMenuOpen}
-          onClose={handlePostMenuClose}
-          sx={{
-            background: "transparent",
-          }}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-            style: {
-              background: "transparent",
-            },
-          }}
-        >
-          {props?.username == currentUser?.username ? (
-            <div>
-              <ModalProvider
-                isOpen={isEditPostModalOpen}
-                closeModal={() => {
-                  editPostModalClose();
-                  handlePostMenuClose();
-                }}
-                modalTitle="Add Post"
-                modalBtnVariant={
+        {!props.isBook && !props.isLike && (
+          <div>
+            <IconActionBtn handleClick={handlePostMenuOpen}>
+              <MoreHorizOutlined className="text-stone-950 dark:text-stone-50" />
+            </IconActionBtn>
+            <Menu
+              id="basic-menu"
+              anchorEl={postMenu}
+              open={isPostMenuOpen}
+              onClose={handlePostMenuClose}
+              sx={{
+                background: "transparent",
+              }}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+                style: {
+                  background: "transparent",
+                },
+              }}
+            >
+              {props?.username == currentUser?.username ? (
+                <div>
+                  <ModalProvider
+                    isOpen={isEditPostModalOpen}
+                    closeModal={() => {
+                      editPostModalClose();
+                      handlePostMenuClose();
+                    }}
+                    modalTitle="Add Post"
+                    modalBtnVariant={
+                      <MenuItem
+                        onClick={() => {
+                          editPostModalOpen();
+                        }}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                        }}
+                      >
+                        <EditOutlinedIcon />
+                        <span>Edit</span>
+                      </MenuItem>
+                    }
+                  >
+                    <AddPostCard
+                      {...props}
+                      isEdit
+                      closePostModal={editPostModalClose}
+                    />
+                  </ModalProvider>
                   <MenuItem
                     onClick={() => {
-                      editPostModalOpen();
+                      handleRemoveBookmark(props?._id, token);
+                      handleDeletePost(props?._id, token);
+                      handlePostMenuClose();
                     }}
                     sx={{ display: "flex", alignItems: "center", gap: "12px" }}
                   >
-                    <EditOutlinedIcon />
-                    <span>Edit</span>
+                    <DeleteOutlinedIcon />
+                    <span>Delete</span>
                   </MenuItem>
-                }
-              >
-                <AddPostCard
-                  {...props}
-                  isEdit
-                  closePostModal={editPostModalClose}
-                />
-              </ModalProvider>
-              <MenuItem
-                onClick={() => {
-                  handleDeletePost(props?._id, token);
-                  handlePostMenuClose();
-                }}
-                sx={{ display: "flex", alignItems: "center", gap: "12px" }}
-              >
-                <DeleteOutlinedIcon />
-                <span>Delete</span>
-              </MenuItem>
-            </div>
-          ) : isFollowing ? (
-            <div>
-              <MenuItem
-                onClick={() => {
-                  handleUnfollowUser(getUser._id, token);
-                  handlePostMenuClose();
-                }}
-              >
-                Unfollow
-              </MenuItem>
-            </div>
-          ) : (
-            <div>
-              <MenuItem
-                onClick={() => {
-                  handleFollowUser(getUser._id, token);
-                  handlePostMenuClose();
-                }}
-              >
-                Follow
-              </MenuItem>
-            </div>
-          )}
-        </Menu>
+                </div>
+              ) : isFollowing ? (
+                <div>
+                  <MenuItem
+                    onClick={() => {
+                      handleUnfollowUser(getUser._id, token);
+                      handlePostMenuClose();
+                    }}
+                  >
+                    Unfollow
+                  </MenuItem>
+                </div>
+              ) : (
+                <div>
+                  <MenuItem
+                    onClick={() => {
+                      handleFollowUser(getUser._id, token);
+                      handlePostMenuClose();
+                    }}
+                  >
+                    Follow
+                  </MenuItem>
+                </div>
+              )}
+            </Menu>
+          </div>
+        )}
+        {props.isBook && (
+          <IconActionBtn
+            iconTitle="Remove"
+            handleClick={() => {
+              handleRemoveBookmark(props?._id, token);
+              ToastHandler("warn", "Removed from Bookmark");
+            }}
+          >
+            <BookmarkRemoveIcon />
+          </IconActionBtn>
+        )}
+        {props.isLike && (
+          <IconActionBtn
+            iconTitle="Remove"
+            handleClick={() => {
+              handlePostDislike(props?._id, token);
+            }}
+          >
+            <ThumbDownIcon />
+          </IconActionBtn>
+        )}
       </div>
       <div className="postCard_body flex flex-col gap-2">
         <p>{props?.content}</p>
@@ -290,7 +322,7 @@ const PostCard = (props) => {
                   handlePostDislike(props?._id, token);
                 }}
               >
-                <Favorite sx={{ color: "red" }} />
+                <Favorite />
               </IconActionBtn>
             ) : (
               <IconActionBtn
@@ -308,14 +340,16 @@ const PostCard = (props) => {
               <IconActionBtn
                 handleClick={() => {
                   handleRemoveBookmark(props?._id, token);
+                  ToastHandler("warn", "Removed from Bookmark");
                 }}
               >
-                <Bookmark sx={{ color: "orange" }} />
+                <Bookmark />
               </IconActionBtn>
             ) : (
               <IconActionBtn
                 handleClick={() => {
                   handleAddBookmark(props?._id, token);
+                  ToastHandler("success", "Added to Bookmark");
                 }}
               >
                 <BookmarkBorder />

@@ -10,8 +10,7 @@ import {
   SuggestionSidebar,
 } from "../../../../Components";
 
-import { Whatshot, SwapVert } from "@mui/icons-material";
-import { usePost, useTheme } from "../../../../Context";
+import { useAuth, usePost, useTheme } from "../../../../Context";
 import GlossyHeader from "../../../../Components/GlossyHeader";
 
 const Bookmark = () => {
@@ -34,7 +33,11 @@ const Bookmark = () => {
             {state.bookmarkList.length !== 0 ? (
               state.bookmarkList.map((currentBookmark) => {
                 return (
-                  <PostCard key={currentBookmark._id} {...currentBookmark} />
+                  <PostCard
+                    key={currentBookmark._id}
+                    {...currentBookmark}
+                    isBook
+                  />
                 );
               })
             ) : (

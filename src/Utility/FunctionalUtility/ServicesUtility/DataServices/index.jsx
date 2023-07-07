@@ -7,6 +7,7 @@ import addBookmarkService from "./AddBookmarkService";
 import removeBookmarkService from "./RemoveBookmarkService";
 import editPostService from "./EditPostService";
 import deletePostService from "./DeletePostService";
+import getBookmarkService from "./GetBookmarkService";
 
 export {
   getPostDetailService,
@@ -18,4 +19,5 @@ export {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 };

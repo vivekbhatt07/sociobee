@@ -23,6 +23,12 @@ export const postReducer = (state, action) => {
     case "GET_BOOKMARK": {
       return {
         ...state,
+        bookmarkList: [...action.payload],
+      };
+    }
+    case "HANDLE_BOOKMARK": {
+      return {
+        ...state,
         bookmarkList: state.postList.filter((currentPost) => {
           return action.payload.includes(currentPost._id);
         }),

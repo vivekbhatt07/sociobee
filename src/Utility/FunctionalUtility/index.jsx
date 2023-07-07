@@ -20,6 +20,7 @@ import {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 } from "./ServicesUtility";
 
 export {
@@ -41,4 +42,5 @@ export {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 };

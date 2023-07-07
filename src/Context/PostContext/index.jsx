@@ -11,6 +11,7 @@ import {
   getPostService,
   getPostDetailService,
   getUserService,
+  getBookmarkService,
 } from "../../Utility";
 import { useAuth } from "../AuthContext";
 
@@ -32,11 +33,20 @@ const PostProvider = ({ children }) => {
         if (userResponse.status == 200) {
           dispatch({ type: "GET_USERS", payload: userResponse.data.users });
         }
+
+        const bookmarkResponse = await getBookmarkService(token);
+        if (bookmarkResponse.status == 200) {
+          dispatch({
+            type: "GET_BOOKMARK",
+            payload: bookmarkResponse.data.bookmarks,
+          });
+        }
       } catch (err) {
         console.error(err);
       }
     })();
   }, [token]);
+
   return (
     <PostContext.Provider value={{ state, dispatch }}>
       {children}

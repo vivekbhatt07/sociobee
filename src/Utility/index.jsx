@@ -17,6 +17,7 @@ import {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
 } from "./FunctionalUtility";
 import { ToastHandler } from "./ToastifyUtility";
 
@@ -39,5 +40,6 @@ export {
   removeBookmarkService,
   editPostService,
   deletePostService,
+  getBookmarkService,
   ToastHandler,
 };
