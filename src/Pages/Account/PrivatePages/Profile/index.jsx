@@ -25,7 +25,7 @@ import {
   CheckCircle,
 } from "@mui/icons-material";
 
-import { editUserService } from "../../../../Utility";
+import { editUserService, ToastHandler } from "../../../../Utility";
 import { avatarData } from "./AvatarData";
 import GlossyHeader from "../../../../Components/GlossyHeader";
 
@@ -91,6 +91,7 @@ const Profile = () => {
   const submitUserEditData = (event) => {
     event.preventDefault();
     handleEditUserService(token, activeUser);
+    ToastHandler("success", "Profile Edited");
     handleEditProfileClose();
   };
 
