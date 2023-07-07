@@ -33,6 +33,8 @@ import PrivateRoute from "./PrivateRoute";
 
 import SuggestionSidebar from "./SuggestionSidebar";
 
+import GlossyHeader from "./GlossyHeader";
+
 import Loader from "./Loader";
 import DarkLoader from "./DarkLoader";
 import LogInLottie from "./LogInLottie";

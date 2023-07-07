@@ -16,6 +16,7 @@ import {
 import { usePost, useAuth, useTheme } from "../../../../Context";
 
 import { Whatshot, SwapVert } from "@mui/icons-material";
+import GlossyHeader from "../../../../Components/GlossyHeader";
 
 const Home = () => {
   const { state, dispatch } = usePost();
@@ -52,7 +53,8 @@ const Home = () => {
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth">
+        <div className="overflow-y-scroll h-[70dvh] md:h-[80dvh] lg:h-[90vh] scroll-smooth relative">
+          <GlossyHeader title="Home" isArrow={false} />
           <div className="border-b">
             <AddPostCard />
           </div>

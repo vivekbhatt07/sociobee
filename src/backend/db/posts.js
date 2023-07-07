@@ -76,10 +76,11 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content: "Created an food ordering app using react js",
+    content:
+      "Just a small step towards my goals ! got selected for the level - one of @neogcamp",
     mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/video/upload/v1687368778/socialbee/ShraddhaEcommerce_rbljdt.mp4",
-    mediaAlt: "ecommerce.mp4",
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688727502/abhishek_result.jpg",
+    mediaAlt: "result",
     likes: {
       likeCount: 9,
       likedBy: [],

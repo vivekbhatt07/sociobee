@@ -31,9 +31,7 @@ const SuggestionCard = (props) => {
             );
           }}
         >
-          <span className="font-medium">
-            {firstName} {lastName}
-          </span>
+          <span className="font-medium">{firstName}</span>
           <span className="text-xs">{username}</span>
         </div>
       </div>

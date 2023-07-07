@@ -9,6 +9,7 @@ import {
   DarkLoader,
 } from "../../../../Components";
 import { usePost, useAuth, useTheme } from "../../../../Context";
+import GlossyHeader from "../../../../Components/GlossyHeader";
 
 const Explore = () => {
   const { state } = usePost();
@@ -36,18 +37,21 @@ const Explore = () => {
       <Header className="tab_header" />
       <Tab />
       <div className="tab_outlet border-l bg-[#fff] dark:bg-stone-950">
-        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth">
-          {exploreList.length == 0 ? (
-            isDarkTheme ? (
-              <DarkLoader />
+        <div className="overflow-y-scroll h-[80dvh] md:h-[90dvh] lg:h-[90vh] scroll-smooth relative">
+          <GlossyHeader title="Explore" isArrow={false} />
+          <div>
+            {exploreList.length == 0 ? (
+              isDarkTheme ? (
+                <DarkLoader />
+              ) : (
+                <Loader />
+              )
             ) : (
-              <Loader />
-            )
-          ) : (
-            exploreList.map((currentPost) => {
-              return <PostCard {...currentPost} key={currentPost?._id} />;
-            })
-          )}
+              exploreList.map((currentPost) => {
+                return <PostCard {...currentPost} key={currentPost?._id} />;
+              })
+            )}
+          </div>
         </div>
       </div>
       <div className="tab_sidebar bg-[#fff] dark:bg-stone-950 lg:overflow-y-scroll scroll-smooth border-l">
