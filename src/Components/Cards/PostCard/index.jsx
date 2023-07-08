@@ -6,6 +6,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   AvatarActionLink,
   IconActionBtn,
@@ -291,7 +292,7 @@ const PostCard = (props) => {
               handlePostDislike(props?._id, token);
             }}
           >
-            <ThumbDownIcon />
+            <CloseIcon />
           </IconActionBtn>
         )}
       </div>
