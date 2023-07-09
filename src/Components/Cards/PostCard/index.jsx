@@ -56,6 +56,13 @@ const PostCard = (props) => {
   const openCommentModal = () => setIsCommentModalOpen(true);
   const closeCommentModal = () => setIsCommentModalOpen(false);
 
+  // FULL COMMENT MODAL:
+
+  const [isCommentFullModalOpen, setIsCommentFullModalOpen] = useState(false);
+
+  const openCommentFullModal = () => setIsCommentFullModalOpen(true);
+  const closeCommentFullModal = () => setIsCommentFullModalOpen(false);
+
   // **************************************************
 
   const [postMenu, setPostMenu] = useState(null);
@@ -416,7 +423,25 @@ const PostCard = (props) => {
                                 truncateUtility(currentComment.commentData, 20)
                                   .length < 20
                               ) && (
-                                <button className="text-sm">Read More</button>
+                                <ModalProvider
+                                  modalTitle="Read Comment"
+                                  isOpen={isCommentFullModalOpen}
+                                  closeModal={closeCommentFullModal}
+                                  modalBtnVariant={
+                                    <button
+                                      className="text-sm"
+                                      onClick={openCommentFullModal}
+                                    >
+                                      Read More
+                                    </button>
+                                  }
+                                >
+                                  <div className="p-3">
+                                    <p className="text-sm">
+                                      {currentComment.commentData}
+                                    </p>
+                                  </div>
+                                </ModalProvider>
                               )}
                             </div>
                           </div>
