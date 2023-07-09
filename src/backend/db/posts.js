@@ -22,7 +22,19 @@ export const posts = [
     username: "vivekbhatt07",
     createdAt: "2023-06-06T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -39,7 +51,19 @@ export const posts = [
     username: "TheIndianGirl56",
     createdAt: "2023-06-14T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -56,7 +80,19 @@ export const posts = [
     username: "Niharika_twt",
     createdAt: "2023-06-03T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -72,7 +108,19 @@ export const posts = [
     username: "clevercoderjoy",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -106,7 +154,19 @@ export const posts = [
     username: "vivekbhatt07",
     createdAt: "2022-12-27T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -122,7 +182,19 @@ export const posts = [
     username: "tanaypratap",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -138,7 +210,19 @@ export const posts = [
     username: "akshaymarch7",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -155,7 +239,19 @@ export const posts = [
     username: "VikasLodh",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -171,7 +267,19 @@ export const posts = [
     username: "Shraddha_228",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -187,7 +295,19 @@ export const posts = [
     username: "tanaypratap",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -204,7 +324,19 @@ export const posts = [
     username: "pranita0709",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -220,7 +352,19 @@ export const posts = [
     username: "Niharika_twt",
     createdAt: "2023-05-23T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -236,7 +380,19 @@ export const posts = [
     username: "TheIndianGirl56",
     createdAt: "2023-05-18T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -251,7 +407,19 @@ export const posts = [
     username: "tanaypratap",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -267,7 +435,19 @@ export const posts = [
     username: "TheIndianGirl56",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -284,7 +464,19 @@ export const posts = [
     username: "pranita0709",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -316,7 +508,19 @@ export const posts = [
     username: "clevercoderjoy",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -333,7 +537,19 @@ export const posts = [
     username: "pranita0709",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -349,7 +565,19 @@ export const posts = [
     username: "vivekbhatt07",
     createdAt: "2023-01-10T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -365,7 +593,19 @@ export const posts = [
     username: "akshaymarch7",
     createdAt: "2023-03-15T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -381,6 +621,18 @@ export const posts = [
     username: "Niharika_twt",
     createdAt: "2023-06-03T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
   },
 ];

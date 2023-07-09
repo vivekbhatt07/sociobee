@@ -20,7 +20,6 @@ function App() {
     <>
       <ToastContainer
         position="top-right"
-        // autoClose={false}
         newestOnTop={false}
         closeOnClick
         theme="colored"

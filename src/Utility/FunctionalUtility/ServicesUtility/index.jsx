@@ -1,5 +1,10 @@
 import { logInService, signUpService } from "./AuthServices";
 import {
+  addCommentService,
+  deleteCommentService,
+  editCommentService,
+} from "./CommentServices";
+import {
   getPostDetailService,
   getPostService,
   sendPostService,
@@ -21,6 +26,9 @@ import {
 export {
   logInService,
   signUpService,
+  addCommentService,
+  deleteCommentService,
+  editCommentService,
   getPostDetailService,
   getPostService,
   getUserService,

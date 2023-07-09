@@ -21,6 +21,9 @@ import {
   editPostService,
   deletePostService,
   getBookmarkService,
+  addCommentService,
+  deleteCommentService,
+  editCommentService,
 } from "./ServicesUtility";
 
 export {
@@ -43,4 +46,7 @@ export {
   editPostService,
   deletePostService,
   getBookmarkService,
+  addCommentService,
+  deleteCommentService,
+  editCommentService,
 };
