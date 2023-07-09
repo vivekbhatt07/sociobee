@@ -51,9 +51,21 @@ export const posts = [
         firstName: "Shraddha",
         lastName: "Vishwakarma",
         username: "Shraddha_228",
-        commentData: "Beautiful UI!! 🤌🔥🔥, Share it in the Linkedin as well",
+        commentData: "Wonderful! UI Share it in the Social Website",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "LCrc9f0Zl0",
+        firstName: "Pranita",
+        lastName: "Fulsundar",
+        username: "pranita0709",
+        commentData:
+          "Beautiful UI!! 🤌🔥🔥, Share it in the Linkedin as well, Integration Payment is very awesome.",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
         createdAt: formatDate(),
         updatedAt: formatDate(),
       },

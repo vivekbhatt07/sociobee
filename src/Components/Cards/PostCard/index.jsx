@@ -7,6 +7,10 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import CloseIcon from "@mui/icons-material/Close";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   AvatarActionLink,
   IconActionBtn,
@@ -34,6 +38,7 @@ import {
   editPostService,
   ToastHandler,
   truncateUtility,
+  deleteCommentService,
 } from "../../../Utility";
 import { useAuth, usePost, useUser } from "../../../Context";
 
@@ -62,6 +67,10 @@ const PostCard = (props) => {
 
   const openCommentFullModal = () => setIsCommentFullModalOpen(true);
   const closeCommentFullModal = () => setIsCommentFullModalOpen(false);
+
+  //  IS COMMENT EDIT:
+
+  const [isCommentEdit, setIsCommentEdit] = useState(false);
 
   // **************************************************
 
@@ -155,9 +164,25 @@ const PostCard = (props) => {
     return currentUser?.username == props?.username;
   });
 
-  // HANDLE COMMENT:
+  // HANDLE COMMENT DELETE:
 
-  // const handle
+  const handleDeleteComment = async (postId, commentId, encodedToken) => {
+    try {
+      const deleteCommentResponse = await deleteCommentService(
+        postId,
+        commentId,
+        encodedToken
+      );
+      if (deleteCommentResponse.status == 201) {
+        dispatch({
+          type: "GET_DATA",
+          payload: deleteCommentResponse.data.posts,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const date = new Date(props?.createdAt);
   const validPostDate = date.toLocaleDateString("en-us", {
@@ -388,13 +413,17 @@ const PostCard = (props) => {
               }
             >
               <div>
-                <PostComment />
+                <PostComment
+                  {...props}
+                  isCommentEdit={isCommentEdit}
+                  editCommentHandler={setIsCommentEdit}
+                />
                 <div className="p-2 flex flex-col gap-2 h-[200px] overflow-y-scroll">
                   {props.comments.map((currentComment) => {
                     return (
                       <article
                         key={currentComment._id}
-                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-300 h-[100px] rounded-sm"
+                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm"
                       >
                         <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
                           <AvatarActionLink
@@ -410,6 +439,61 @@ const PostCard = (props) => {
                                 <span className="text-xs">
                                   {currentComment.username}
                                 </span>
+                              </div>
+                              <div>
+                                {activeUser.username ==
+                                currentComment.username ? (
+                                  <div className="flex gap-2">
+                                    <IconActionBtn
+                                      handleClick={() =>
+                                        setIsCommentEdit(currentComment)
+                                      }
+                                    >
+                                      <EditIcon />
+                                    </IconActionBtn>
+                                    <IconActionBtn
+                                      handleClick={() => {
+                                        handleDeleteComment(
+                                          props._id,
+                                          currentComment._id,
+                                          token
+                                        );
+                                        ToastHandler("warn", "Comment Deleted");
+                                      }}
+                                    >
+                                      <DeleteIcon />
+                                    </IconActionBtn>
+                                  </div>
+                                ) : activeUser.following.findIndex(
+                                    (currentFollowing) => {
+                                      return (
+                                        currentFollowing.username ==
+                                        currentComment.username
+                                      );
+                                    }
+                                  ) == -1 ? (
+                                  <IconActionBtn
+                                    handleClick={() =>
+                                      handleFollowUser(
+                                        currentComment._id,
+                                        token
+                                      )
+                                    }
+                                  >
+                                    <PersonAddIcon />
+                                  </IconActionBtn>
+                                ) : (
+                                  <IconActionBtn
+                                    handleClick={() =>
+                                      handleUnfollowUser(
+                                        currentComment._id,
+                                        token
+                                      )
+                                    }
+                                  >
+                                    <PersonRemoveIcon />
+                                  </IconActionBtn>
+                                )}
                               </div>
                             </div>
                             <div className="flex items-center mt-3 justify-between">
