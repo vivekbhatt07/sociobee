@@ -13,6 +13,7 @@ import {
   ContainedActionBtn,
   Loader,
   DarkLoader,
+  PostComment,
 } from "../../../../Components";
 
 import { useAuth, usePost, useUser } from "../../../../Context";
@@ -523,6 +524,7 @@ const Profile = () => {
                       </button>
                     }
                   >
+                    <PostComment />
                     {activeUserProfile?.following.map((current) => {
                       return (
                         <article

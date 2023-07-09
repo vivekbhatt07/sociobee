@@ -28,7 +28,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "",
+        commentData: "This is Awesome 🔥",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),
@@ -57,7 +57,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "",
+        commentData: "This is Awesome 🔥",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),
@@ -86,7 +86,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "",
+        commentData: "This is Awesome 🔥",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),
@@ -114,7 +114,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "",
+        commentData: "This is Awesome 🔥",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),
@@ -160,7 +160,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "",
+        commentData: "This is Awesome 🔥",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),

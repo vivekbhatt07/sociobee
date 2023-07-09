@@ -12,6 +12,7 @@ import {
   IconActionBtn,
   ModalProvider,
   AddPostCard,
+  PostComment,
 } from "../../../Components";
 import {
   MoreHorizOutlined,
@@ -47,6 +48,12 @@ const PostCard = (props) => {
 
   const editPostModalOpen = () => setIsEditPostModalOpen(true);
   const editPostModalClose = () => setIsEditPostModalOpen(false);
+
+  // COMMENT MODAL:
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
+
+  const openCommentModal = () => setIsCommentModalOpen(true);
+  const closeCommentModal = () => setIsCommentModalOpen(false);
 
   // **************************************************
 
@@ -139,6 +146,10 @@ const PostCard = (props) => {
   const getUser = state.userList.find((currentUser) => {
     return currentUser?.username == props?.username;
   });
+
+  // HANDLE COMMENT:
+
+  // const handle
 
   const date = new Date(props?.createdAt);
   const validPostDate = date.toLocaleDateString("en-us", {
@@ -358,10 +369,50 @@ const PostCard = (props) => {
             )}
           </div>
           <div className="flex gap-1 items-center">
-            <IconActionBtn>
-              <Comment />
-            </IconActionBtn>
-            <span>{props?.comments}</span>
+            <ModalProvider
+              isOpen={isCommentModalOpen}
+              closeModal={closeCommentModal}
+              modalTitle="Comments"
+              modalBtnVariant={
+                <IconActionBtn handleClick={openCommentModal}>
+                  <Comment />
+                </IconActionBtn>
+              }
+            >
+              <div>
+                <PostComment />
+                <div>
+                  {props.comments.map((currentComment) => {
+                    return (
+                      <article
+                        key={currentComment._id}
+                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center"
+                      >
+                        <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                          <AvatarActionLink
+                            avatar={currentComment.profileAvatar}
+                          />
+                          <div className="flex flex-col">
+                            <span className="font-medium">
+                              {currentComment.firstName}{" "}
+                              {currentComment.lastName}
+                            </span>
+                            <span className="text-xs">
+                              {currentComment.username}
+                            </span>
+                            <p className="mt-3 text-sm">
+                              {currentComment.commentData}
+                            </p>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </ModalProvider>
+
+            <span>{props?.comments.length}</span>
           </div>
         </div>
         <IconActionBtn>

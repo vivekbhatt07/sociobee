@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react";
 import Menu from "@mui/material/Menu";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import TextareaAutosize from "@mui/base/TextareaAutosize";
-import { styled } from "@mui/material/styles";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../../../backend/utils/authUtils";
 import VideoCameraFrontOutlinedIcon from "@mui/icons-material/VideoCameraFrontOutlined";

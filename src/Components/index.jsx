@@ -39,6 +39,8 @@ import Loader from "./Loader";
 import DarkLoader from "./DarkLoader";
 import LogInLottie from "./LogInLottie";
 
+import PostComment from "./PostComment";
+
 export {
   Header,
   Footer,
@@ -70,4 +72,6 @@ export {
   Loader,
   DarkLoader,
   LogInLottie,
+  GlossyHeader,
+  PostComment,
 };
