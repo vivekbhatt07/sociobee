@@ -21,6 +21,7 @@ import {
   addCommentService,
   deleteCommentService,
   editCommentService,
+  truncateUtility,
 } from "./FunctionalUtility";
 import { ToastHandler } from "./ToastifyUtility";
 
@@ -48,4 +49,5 @@ export {
   addCommentService,
   deleteCommentService,
   editCommentService,
+  truncateUtility,
 };

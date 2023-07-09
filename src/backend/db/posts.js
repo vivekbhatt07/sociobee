@@ -28,9 +28,32 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "This is Awesome 🔥",
+        // commentData: "Mere se review krwate rehna acca project hi bnega 😂😂",
+        commentData: "Looks amazing! 🚀👏",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "ab8zWjEeXd",
+        firstName: "Anushka",
+        lastName: "Jaiswal",
+        username: "TheIndianGirl56",
+        commentData: "Looks amazing! 🚀👏",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "o5gzWjEeX_",
+        firstName: "Shraddha",
+        lastName: "Vishwakarma",
+        username: "Shraddha_228",
+        commentData: "Beautiful UI!! 🤌🔥🔥, Share it in the Linkedin as well",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
         createdAt: formatDate(),
         updatedAt: formatDate(),
       },

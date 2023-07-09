@@ -34,7 +34,7 @@ const PostComment = () => {
             InputProps={{ disableUnderline: true }}
           />
         </TextInputLabel>
-        <ContainedActionBtn>Comment</ContainedActionBtn>
+        <ContainedActionBtn>Reply</ContainedActionBtn>
       </form>
     </div>
   );

@@ -33,6 +33,7 @@ import {
   deletePostService,
   editPostService,
   ToastHandler,
+  truncateUtility,
 } from "../../../Utility";
 import { useAuth, usePost, useUser } from "../../../Context";
 
@@ -381,28 +382,43 @@ const PostCard = (props) => {
             >
               <div>
                 <PostComment />
-                <div>
+                <div className="p-2 flex flex-col gap-2 h-[200px] overflow-y-scroll">
                   {props.comments.map((currentComment) => {
                     return (
                       <article
                         key={currentComment._id}
-                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center"
+                        className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-300 h-[100px] rounded-sm"
                       >
                         <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
                           <AvatarActionLink
                             avatar={currentComment.profileAvatar}
                           />
-                          <div className="flex flex-col">
-                            <span className="font-medium">
-                              {currentComment.firstName}{" "}
-                              {currentComment.lastName}
-                            </span>
-                            <span className="text-xs">
-                              {currentComment.username}
-                            </span>
-                            <p className="mt-3 text-sm">
-                              {currentComment.commentData}
-                            </p>
+                          <div className="flex flex-col flex-1">
+                            <div className="flex justify-between">
+                              <div className="flex flex-col">
+                                <span className="font-medium">
+                                  {currentComment.firstName}{" "}
+                                  {currentComment.lastName}
+                                </span>
+                                <span className="text-xs">
+                                  {currentComment.username}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center mt-3 justify-between">
+                              <p className="text-sm">
+                                {truncateUtility(
+                                  currentComment.commentData,
+                                  20
+                                )}
+                              </p>
+                              {!(
+                                truncateUtility(currentComment.commentData, 20)
+                                  .length < 20
+                              ) && (
+                                <button className="text-sm">Read More</button>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </article>

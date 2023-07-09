@@ -26,6 +26,8 @@ import {
   editCommentService,
 } from "./ServicesUtility";
 
+import truncateUtility from "./TruncateUtitlity";
+
 export {
   emailValidation,
   passwordValidation,
@@ -49,4 +51,5 @@ export {
   addCommentService,
   deleteCommentService,
   editCommentService,
+  truncateUtility,
 };
