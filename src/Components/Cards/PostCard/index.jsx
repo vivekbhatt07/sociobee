@@ -64,10 +64,9 @@ const PostCard = (props) => {
   // FULL COMMENT MODAL:
 
   const [isCommentFullModalOpen, setIsCommentFullModalOpen] = useState(false);
-
+  const [commentFullName, setCommentFullName] = useState("");
   const openCommentFullModal = () => setIsCommentFullModalOpen(true);
   const closeCommentFullModal = () => setIsCommentFullModalOpen(false);
-
   //  IS COMMENT EDIT:
 
   const [isCommentEdit, setIsCommentEdit] = useState(false);
@@ -509,12 +508,20 @@ const PostCard = (props) => {
                               ) && (
                                 <ModalProvider
                                   modalTitle="Read Comment"
-                                  isOpen={isCommentFullModalOpen}
+                                  isOpen={
+                                    currentComment.username ==
+                                      commentFullName && isCommentFullModalOpen
+                                  }
                                   closeModal={closeCommentFullModal}
                                   modalBtnVariant={
                                     <button
                                       className="text-sm"
-                                      onClick={openCommentFullModal}
+                                      onClick={() => {
+                                        setCommentFullName(
+                                          currentComment.username
+                                        );
+                                        openCommentFullModal();
+                                      }}
                                     >
                                       Read More
                                     </button>
@@ -536,7 +543,6 @@ const PostCard = (props) => {
                 </div>
               </div>
             </ModalProvider>
-
             <span>{props?.comments.length}</span>
           </div>
         </div>
