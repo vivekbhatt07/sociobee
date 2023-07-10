@@ -15,7 +15,7 @@ export const posts = [
       "https://res.cloudinary.com/duqsyuriy/video/upload/v1687361575/socialbee/VivekEcommerce_d4ltez.mp4",
     mediaAlt: "ecommerce.mp4",
     likes: {
-      likeCount: 160,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },

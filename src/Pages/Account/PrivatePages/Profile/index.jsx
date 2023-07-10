@@ -16,7 +16,7 @@ import {
   PostComment,
 } from "../../../../Components";
 
-import { useAuth, usePost, useUser } from "../../../../Context";
+import { useAuth, usePost, useUser, useTheme } from "../../../../Context";
 
 import {
   CalendarMonthOutlined,
@@ -32,6 +32,7 @@ import GlossyHeader from "../../../../Components/GlossyHeader";
 
 const Profile = () => {
   const { handleFollowUser, handleUnfollowUser } = useUser();
+  const { isDarkTheme } = useTheme();
   const location = useLocation();
   const { userId } = useParams();
   const { state, dispatch } = usePost();
@@ -551,7 +552,21 @@ const Profile = () => {
             </article>
             <section className="my-6 flex flex-col">
               {activeUserPosts.length === 0 ? (
-                <div>No Posts Yet</div>
+                isDarkTheme ? (
+                  <div className="mx-auto flex flex-col gap-4">
+                    <div>
+                      <img src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688975502/Untitled_design_2_wjrtlg.svg" />
+                    </div>
+                    <span>No Posts Yet!</span>
+                  </div>
+                ) : (
+                  <div className="mx-auto flex flex-col gap-4">
+                    <div>
+                      <img src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688974681/Untitled_design_1_m6z7vp.svg" />
+                    </div>
+                    <span>No Posts Yet</span>
+                  </div>
+                )
               ) : (
                 activeUserPosts.map((currentPost) => {
                   return <PostCard {...currentPost} key={currentPost._id} />;
