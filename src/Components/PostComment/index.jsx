@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { TextField } from "@mui/material";
 import { TextInputLabel } from "../Labels";
@@ -15,10 +15,13 @@ const PostComment = (props) => {
   const { token, activeUser } = useAuth();
   const { isDarkTheme } = useTheme();
   const { dispatch } = usePost();
-  console.log(props.isCommentEdit.commentData);
-  const [commentText, setCommentText] = useState(
-    props.isCommentEdit ? props?.isCommentEdit.commentData : ""
-  );
+  const [commentText, setCommentText] = useState("");
+
+  useEffect(() => {
+    if (props.isCommentEdit) {
+      setCommentText(props.isCommentEdit.commentData);
+    }
+  }, [props.isCommentEdit]);
 
   const handleAddComment = async (postId, commentData, encodedToken) => {
     try {
@@ -73,6 +76,7 @@ const PostComment = (props) => {
         token
       );
       props.editCommentHandler(false);
+      setCommentText("");
       return ToastHandler("success", "Comment Updated");
     }
     handleAddComment(

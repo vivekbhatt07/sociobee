@@ -571,3 +571,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
+// Follow people to get feed as per your taste.
