@@ -525,7 +525,6 @@ const Profile = () => {
                       </button>
                     }
                   >
-                    <PostComment />
                     {activeUserProfile?.following.map((current) => {
                       return (
                         <article

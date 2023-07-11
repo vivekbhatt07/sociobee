@@ -281,7 +281,9 @@ const PostCard = (props) => {
                   </ModalProvider>
                   <MenuItem
                     onClick={() => {
-                      handleRemoveBookmark(props?._id, token);
+                      if (isBookmarked) {
+                        handleRemoveBookmark(props?._id, token);
+                      }
                       handleDeletePost(props?._id, token);
                       handlePostMenuClose();
                     }}
