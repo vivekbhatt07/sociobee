@@ -14,6 +14,7 @@ import {
   Loader,
   DarkLoader,
   PostComment,
+  Chip,
 } from "../../../../Components";
 
 import { useAuth, usePost, useUser, useTheme } from "../../../../Context";
@@ -176,9 +177,13 @@ const Profile = () => {
                       <span>{activeUserProfile?.firstName}</span>
                       <span>{activeUserProfile?.lastName}</span>
                     </p>
-                    <span className="userprofile_username text-sm rounded-xl text-stone-500">
-                      {activeUserProfile?.username}
-                    </span>
+                    <div className="flex gap-4 items-center">
+                      <span className="userprofile_username text-sm rounded-xl text-stone-500">
+                        {activeUserProfile?.username}
+                      </span>
+                      {activeUserProfile?.username !== activeUser?.username &&
+                        isFollowing && <Chip chipText="Follows you" />}
+                    </div>
                   </div>
                   {userId ? (
                     <div className="userprofile_actions">

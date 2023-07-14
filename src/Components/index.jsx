@@ -41,6 +41,8 @@ import LogInLottie from "./LogInLottie";
 
 import PostComment from "./PostComment";
 
+import Chip from "./Chip";
+
 export {
   Header,
   Footer,
@@ -74,4 +76,5 @@ export {
   LogInLottie,
   GlossyHeader,
   PostComment,
+  Chip,
 };
