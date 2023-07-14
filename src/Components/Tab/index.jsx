@@ -22,7 +22,7 @@ function Tab() {
   return (
     <>
       <div className="tab_nav flex justify-center">
-        <ul className="flex flex-row w-60 justify-center lg:flex-col list-none bg-stone-50 dark:bg-stone-950 md:flex-col md:h-[80dvh] md:justify-start lg:p-0 xl:w-full">
+        <ul className="flex flex-row w-60 justify-center lg:flex-col list-none bg-stone-50 dark:bg-stone-950 md:flex-col md:h-[80dvh] md:justify-start lg:p-0 lg:h-[90vh] lg:w-full">
           <li className="tab_nav_item flex">
             <NavLink
               className="tab_btn text-base flex w-14 h-14 justify-center items-center gap-4 no-underline font-sans text-stone-950 font-semibold transition-colors duration-300 dark:text-stone-50 bg-stone-50 border-0 dark:bg-stone-950 hover:bg-stone-400 hover:text-stone-950 md:w-full lg:justify-start"
