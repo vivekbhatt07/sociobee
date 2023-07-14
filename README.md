@@ -1,4 +1,4 @@
-# SOCIOHAVEN
+# SOCIOBEE
 
 ## Live Link - https://sociobee.netlify.app/
 
