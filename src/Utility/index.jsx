@@ -22,6 +22,7 @@ import {
   deleteCommentService,
   editCommentService,
   truncateUtility,
+  calculatePercentageUtility,
 } from "./FunctionalUtility";
 import { ToastHandler } from "./ToastifyUtility";
 
@@ -50,4 +51,5 @@ export {
   deleteCommentService,
   editCommentService,
   truncateUtility,
+  calculatePercentageUtility,
 };

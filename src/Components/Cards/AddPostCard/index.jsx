@@ -20,9 +20,10 @@ import {
   DeleteOutline,
 } from "@mui/icons-material";
 import { useAuth, usePost, useTheme } from "../../../Context";
-
-import { sendPostService } from "../../../Utility";
 import { TextField } from "@mui/material";
+import { sendPostService, calculatePercentageUtility } from "../../../Utility";
+import CircularProgressDonut from "../../CircularProgressDonut";
+import Chip from "../../Chip";
 
 const AddPostCard = (props) => {
   const { token, activeUser } = useAuth();
@@ -35,6 +36,7 @@ const AddPostCard = (props) => {
   const handleAddEmojiOpen = (event) => {
     setEmojiMenu(event.currentTarget);
   };
+
   const handleAddEmojiClose = () => {
     setEmojiMenu(null);
   };
@@ -140,28 +142,6 @@ const AddPostCard = (props) => {
     }
   };
 
-  const blue = {
-    100: "#DAECFF",
-    200: "#b6daff",
-    400: "#3399FF",
-    500: "#007FFF",
-    600: "#0072E5",
-    900: "#003A75",
-  };
-
-  const grey = {
-    50: "#f6f8fa",
-    100: "#eaeef2",
-    200: "#d0d7de",
-    300: "#afb8c1",
-    400: "#8c959f",
-    500: "#6e7781",
-    600: "#57606a",
-    700: "#424a53",
-    800: "#32383f",
-    900: "#24292f",
-  };
-
   return (
     <article className="addPostCard flex gap-4 px-3 py-2 bg-[#fff] dark:bg-stone-950">
       <div className="addPostCard_user">
@@ -185,6 +165,7 @@ const AddPostCard = (props) => {
               fontWeight: "300",
               fontFamily: "inherit",
             },
+            maxLength: 300,
           }}
           InputProps={{ disableUnderline: true }}
         />
@@ -233,7 +214,6 @@ const AddPostCard = (props) => {
             >
               <SmileIcon />
             </IconActionBtn>
-
             <Menu
               id="basic-menu"
               anchorEl={emojiMenu}
@@ -280,7 +260,6 @@ const AddPostCard = (props) => {
                 </div>
               </div>
             </Menu>
-
             {postData.postImage && (
               <IconActionBtn
                 iconBtnType="button"
@@ -329,7 +308,6 @@ const AddPostCard = (props) => {
                 </div>
               </div>
             </Menu>
-
             {postData.postImage && (
               <IconActionBtn
                 iconBtnType="button"
@@ -350,37 +328,60 @@ const AddPostCard = (props) => {
               </IconActionBtn>
             )}
           </div>
-          {props.isEdit ? (
-            <ContainedActionBtn
-              containBtnType="submit"
-              isDisabled={postData.postText || postData.postImage}
-              btnStyle={{
-                cursor:
-                  postData.postText || postData.postImage
-                    ? "pointer"
-                    : "not-allowed",
-                opacity: postData.postText || postData.postImage ? "1" : "0.5",
-              }}
-              className="px-3 py-1 text-xs"
-            >
-              Save
-            </ContainedActionBtn>
-          ) : (
-            <ContainedActionBtn
-              containBtnType="submit"
-              isDisabled={postData.postText || postData.postImage}
-              btnStyle={{
-                cursor:
-                  postData.postText || postData.postImage
-                    ? "pointer"
-                    : "not-allowed",
-                opacity: postData.postText || postData.postImage ? "1" : "0.5",
-              }}
-              className="px-3 py-1 text-xs"
-            >
-              Post
-            </ContainedActionBtn>
-          )}
+          <div className="flex gap-3">
+            {postData.postText.trim().length == 300 && (
+              <Chip chipText="Character Limit Reached" />
+            )}
+            {postData.postText.trim().length > 0 && (
+              <CircularProgressDonut
+                value={
+                  postData.postText.trim().length !== 0 &&
+                  postData.postText.length
+                }
+              />
+            )}
+            {props.isEdit ? (
+              <ContainedActionBtn
+                containBtnType="submit"
+                isDisabled={
+                  postData.postImage || postData.postText.trim().length !== 0
+                }
+                btnStyle={{
+                  cursor:
+                    postData.postImage || postData.postText.trim().length !== 0
+                      ? "pointer"
+                      : "not-allowed",
+                  opacity:
+                    postData.postImage || postData.postText.trim().length !== 0
+                      ? "1"
+                      : "0.5",
+                }}
+                className="px-3 py-1 text-xs"
+              >
+                Save
+              </ContainedActionBtn>
+            ) : (
+              <ContainedActionBtn
+                containBtnType="submit"
+                isDisabled={
+                  postData.postImage || postData.postText.trim().length !== 0
+                }
+                btnStyle={{
+                  cursor:
+                    postData.postImage || postData.postText.trim().length !== 0
+                      ? "pointer"
+                      : "not-allowed",
+                  opacity:
+                    postData.postImage || postData.postText.trim().length !== 0
+                      ? "1"
+                      : "0.5",
+                }}
+                className="px-3 py-1 text-xs"
+              >
+                Post
+              </ContainedActionBtn>
+            )}
+          </div>
         </div>
       </form>
     </article>

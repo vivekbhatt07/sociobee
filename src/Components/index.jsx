@@ -43,6 +43,8 @@ import PostComment from "./PostComment";
 
 import Chip from "./Chip";
 
+import CircularProgressDonut from "./CircularProgressDonut";
+
 export {
   Header,
   Footer,
@@ -77,4 +79,5 @@ export {
   GlossyHeader,
   PostComment,
   Chip,
+  CircularProgressDonut,
 };

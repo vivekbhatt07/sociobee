@@ -27,6 +27,7 @@ import {
 } from "./ServicesUtility";
 
 import truncateUtility from "./TruncateUtitlity";
+import calculatePercentageUtility from "./CalculatePercentageUtility";
 
 export {
   emailValidation,
@@ -52,4 +53,5 @@ export {
   deleteCommentService,
   editCommentService,
   truncateUtility,
+  calculatePercentageUtility,
 };
