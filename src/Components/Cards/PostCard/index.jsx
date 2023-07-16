@@ -257,7 +257,7 @@ const PostCard = (props) => {
                       editPostModalClose();
                       handlePostMenuClose();
                     }}
-                    modalTitle="Add Post"
+                    modalTitle="Edit Post"
                     modalBtnVariant={
                       <MenuItem
                         onClick={() => {

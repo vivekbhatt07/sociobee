@@ -329,9 +329,9 @@ const AddPostCard = (props) => {
             )}
           </div>
           <div className="flex gap-3">
-            {postData.postText.trim().length == 300 && (
-              <Chip chipText="Character Limit Reached" />
-            )}
+            {postData.postText.trim().length == 300 &&
+              !props.isModal &&
+              !props.isEdit && <Chip chipText="Character Limit Reached" />}
             {postData.postText.trim().length > 0 && (
               <CircularProgressDonut
                 value={
