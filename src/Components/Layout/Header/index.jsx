@@ -72,6 +72,7 @@ const Header = (props) => {
         <img
           src={isDarkTheme ? SocialBeeDarkLogo : SocialBeeLightLogo}
           className="w-32"
+          alt="social bee logo"
         />
       </Link>
 
@@ -83,6 +84,7 @@ const Header = (props) => {
           <button
             className="text-stone-50 bg-stone-700 w-12 h-12 rounded-full transition-all duration-200 hover:bg-stone-950 active:scale-95 dark:bg-stone-600 dark:hover:bg-stone-800"
             onClick={searchUserModalOpen}
+            aria-label="Search User"
           >
             <SearchIcon />
           </button>
@@ -102,11 +104,12 @@ const Header = (props) => {
                 <IconActionBtn
                   iconBtnType="button"
                   handleClick={() => setUserSearchText("")}
+                  iconBtnLabel="Clear Search"
                 >
                   <ClearIcon className="dark:text-stone-950 dark:hover:text-stone-50" />
                 </IconActionBtn>
               ) : (
-                <IconActionBtn>
+                <IconActionBtn iconBtnLabel="Search User Button">
                   <SearchIcon className="dark:text-stone-950 dark:hover:text-stone-50" />
                 </IconActionBtn>
               )}
@@ -145,9 +148,10 @@ const Header = (props) => {
 
       <div className="flex items-center gap-4">
         <button
-          className={`mode ${props.headerMode}-mode`}
+          className={`mode ${isDarkTheme ? "dark" : "light"}-mode`}
           variant="contained"
           onClick={() => toggleTheme(!isDarkTheme)}
+          aria-label="Theme Toggle Button"
         >
           <span
             className={`circle ${isDarkTheme ? "dark" : "light"}-circle`}

@@ -377,6 +377,7 @@ const AddPostCard = (props) => {
                       : "0.5",
                 }}
                 className="px-3 py-1 text-xs"
+                containBtnLabel="Post Button"
               >
                 Post
               </ContainedActionBtn>

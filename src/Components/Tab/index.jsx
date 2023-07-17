@@ -98,6 +98,7 @@ function Tab() {
                 <button
                   className="tab_btn text-base flex w-14 h-14 justify-center items-center gap-4 no-underline font-sans font-semibold transition-colors duration-300 bg-stone-800 dark:text-stone-50 text-stone-50 border-0 dark:bg-stone-950 hover:bg-stone-400 hover:text-stone-950 md:w-full lg:justify-start"
                   onClick={addPostModalOpen}
+                  aria-label="Add Post Button"
                 >
                   <AddLogo />
                   <span className="tab_btn_label hidden lg:block">

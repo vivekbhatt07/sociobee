@@ -77,6 +77,7 @@ const Home = () => {
                 <OutlinedActionBtn
                   outlineBtnType="button"
                   className="flex items-center justify-center"
+                  outlineBtnLabel="Trending Filter Button"
                 >
                   <Whatshot /> <span>Trending</span>
                 </OutlinedActionBtn>
@@ -84,6 +85,7 @@ const Home = () => {
                 <ContainedActionBtn
                   containBtnType="button"
                   className="flex items-center justify-center"
+                  containBtnLabel="Trending Filter Button"
                   handleClick={() => {
                     dispatch({ type: "SET_SORT", payload: "isTrending" });
                   }}
@@ -95,6 +97,7 @@ const Home = () => {
                 <OutlinedActionBtn
                   outlineBtnType="button"
                   className="flex items-center justify-center"
+                  outlineBtnLabel="Latest Filter Button"
                 >
                   <SwapVert />
                   <span>Latest</span>
@@ -103,6 +106,7 @@ const Home = () => {
                 <ContainedActionBtn
                   containBtnType="button"
                   className="flex items-center justify-center"
+                  containBtnLabel="Latest Filter Button"
                   handleClick={() =>
                     dispatch({ type: "SET_SORT", payload: "isLatest" })
                   }
@@ -118,6 +122,7 @@ const Home = () => {
                 <ContainedActionBtn
                   containBtnType="button"
                   className="flex items-center justify-center"
+                  containBtnLabel="Trending Filter Button"
                 >
                   <Whatshot /> <span>Trending</span>
                 </ContainedActionBtn>
@@ -125,6 +130,7 @@ const Home = () => {
                 <OutlinedActionBtn
                   outlineBtnType="button"
                   className="flex items-center justify-center"
+                  outlineBtnLabel="Trending Filter Button"
                   handleClick={() => {
                     dispatch({ type: "SET_SORT", payload: "isTrending" });
                   }}
@@ -136,6 +142,7 @@ const Home = () => {
                 <ContainedActionBtn
                   containBtnType="button"
                   className="flex items-center justify-center"
+                  containBtnLabel="Latest Filter Button"
                 >
                   <SwapVert />
                   <span>Latest</span>
@@ -144,6 +151,7 @@ const Home = () => {
                 <OutlinedActionBtn
                   outlineBtnType="button"
                   className="flex items-center justify-center"
+                  outlineBtnLabel="Latest Filter Button"
                   handleClick={() =>
                     dispatch({ type: "SET_SORT", payload: "isLatest" })
                   }

@@ -8,6 +8,7 @@ const ContainedActionBtn = (props) => {
     handleClick,
     isDisabled = true,
     btnStyle,
+    containBtnLabel,
   } = props;
 
   const classes =
@@ -20,6 +21,7 @@ const ContainedActionBtn = (props) => {
       onClick={handleClick}
       disabled={!isDisabled}
       style={{ ...btnStyle }}
+      aria-label={containBtnLabel}
     >
       {children}
     </button>
