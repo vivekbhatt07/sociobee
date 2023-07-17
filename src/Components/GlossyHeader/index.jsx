@@ -13,7 +13,9 @@ const GlossyHeader = (props) => {
           <ArrowBackIcon className="text-stone-700" />
         </IconActionBtn>
       )}
-      <span className="text-lg text-stone-400 font-semibold">{title}</span>
+      <span className="text-lg text-stone-600 font-semibold dark:text-stone-400">
+        {title}
+      </span>
     </div>
   );
 };

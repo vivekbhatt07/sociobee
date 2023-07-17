@@ -11,6 +11,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { Skeleton } from "@mui/material";
 import {
   AvatarActionLink,
   IconActionBtn,
@@ -219,21 +220,54 @@ const PostCard = (props) => {
               );
             }}
           >
-            <div className="flex gap-2 items-center">
-              <span className="font-semibold">
-                {getUser?.firstName} {getUser?.lastName}
-              </span>
-              <span className="text-sm text-stone-400">{validPostDate}</span>
-            </div>
-            <div className="text-xs">{props?.username}</div>
+            {getUser ? (
+              <div className="flex gap-2 items-center">
+                <span className="font-semibold">
+                  {getUser?.firstName} {getUser?.lastName}
+                </span>
+                <span className="text-sm text-stone-600 dark:text-stone-400">
+                  {validPostDate}
+                </span>
+              </div>
+            ) : (
+              <Skeleton
+                animation="pulse"
+                variant="text"
+                width={300}
+                height={24}
+              />
+            )}
+            {getUser ? (
+              <div className="text-xs">{props?.username}</div>
+            ) : (
+              <Skeleton
+                animation="pulse"
+                variant="text"
+                width={150}
+                height={16}
+              />
+            )}
           </div>
         </div>
 
         {!props.isBook && !props.isLike && (
           <div>
-            <IconActionBtn handleClick={handlePostMenuOpen}>
-              <MoreHorizOutlined className="text-stone-950 dark:text-stone-50" />
-            </IconActionBtn>
+            {getUser ? (
+              <IconActionBtn
+                className="post_menu_btn"
+                handleClick={handlePostMenuOpen}
+                iconBtnLabel="Post Menu Button"
+              >
+                <MoreHorizOutlined className="post_menu_btn text-stone-950 dark:text-stone-50" />
+              </IconActionBtn>
+            ) : (
+              <Skeleton
+                animation="pulse"
+                variant="circular"
+                width={32}
+                height={32}
+              />
+            )}
             <Menu
               id="basic-menu"
               anchorEl={postMenu}
@@ -320,287 +354,366 @@ const PostCard = (props) => {
             </Menu>
           </div>
         )}
-        {props.isBook && (
-          <IconActionBtn
-            iconTitle="Remove"
-            handleClick={() => {
-              handleRemoveBookmark(props?._id, token);
-              ToastHandler("warn", "Removed from Bookmark");
-            }}
-          >
-            <BookmarkRemoveIcon />
-          </IconActionBtn>
-        )}
-        {props.isLike && (
-          <IconActionBtn
-            iconTitle="Remove"
-            handleClick={() => {
-              handlePostDislike(props?._id, token);
-            }}
-          >
-            <CloseIcon />
-          </IconActionBtn>
-        )}
+        {props.isBook &&
+          (getUser ? (
+            <IconActionBtn
+              iconTitle="Remove"
+              handleClick={() => {
+                handleRemoveBookmark(props?._id, token);
+                ToastHandler("warn", "Removed from Bookmark");
+              }}
+            >
+              <BookmarkRemoveIcon />
+            </IconActionBtn>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="circular"
+              width={32}
+              height={32}
+            />
+          ))}
+        {props.isLike &&
+          (getUser ? (
+            <IconActionBtn
+              iconTitle="Remove"
+              handleClick={() => {
+                handlePostDislike(props?._id, token);
+              }}
+            >
+              <CloseIcon />
+            </IconActionBtn>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="circular"
+              width={32}
+              height={32}
+            />
+          ))}
       </div>
       <div className="postCard_body flex flex-col gap-2">
-        <p>{props?.content}</p>
-        {props?.mediaURL && (
-          <div className="rounded-lg overflow-hidden border border-stone-400">
-            {props?.mediaAlt?.includes("mp4") ? (
-              <video controls>
-                <source src={props?.mediaURL} type="video/mp4" />
-              </video>
-            ) : (
-              <img
-                src={props?.mediaURL}
-                alt={props?.mediaAlt}
-                className="object-cover w-full"
-              />
-            )}
+        {getUser ? (
+          <p className="text-base">{props?.content}</p>
+        ) : (
+          <div>
+            <Skeleton
+              animation="pulse"
+              variant="text"
+              width="100%"
+              height={24}
+            />
+            <Skeleton
+              animation="pulse"
+              variant="text"
+              width="50%"
+              height={24}
+            />
           </div>
         )}
+        {props?.mediaURL &&
+          (getUser ? (
+            <div className="rounded-lg overflow-hidden border border-stone-400">
+              {props?.mediaAlt?.includes("mp4") ? (
+                <video controls>
+                  <source src={props?.mediaURL} type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src={props?.mediaURL}
+                  alt={props?.mediaAlt}
+                  className="object-cover w-full"
+                />
+              )}
+            </div>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="rectangular"
+              width="100%"
+              height={280}
+            />
+          ))}
       </div>
       <div className="postCard_footer flex items-center gap-2 justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1 items-center">
-            {isLiked ? (
-              <IconActionBtn
-                className="unlike_btn"
-                iconBtnLabel="Unlike Button"
-                handleClick={() => {
-                  handlePostDislike(props?._id, token);
-                }}
-              >
-                <Favorite />
-              </IconActionBtn>
-            ) : (
-              <IconActionBtn
-                className="like_btn"
-                iconBtnLabel="Like Button"
-                handleClick={() => {
-                  handlePostLike(props?._id, token);
-                }}
-              >
-                <FavoriteBorder />
-              </IconActionBtn>
-            )}
-            <span>{props?.likes?.likeCount}</span>
-          </div>
-          <div className="flex gap-1 items-center">
-            {isBookmarked ? (
-              <IconActionBtn
-                className="remove_bookmark_btn"
-                iconBtnLabel="Remove Bookmark Button"
-                handleClick={() => {
-                  handleRemoveBookmark(props?._id, token);
-                  ToastHandler("warn", "Removed from Bookmark");
-                }}
-              >
-                <Bookmark />
-              </IconActionBtn>
-            ) : (
-              <IconActionBtn
-                className="add_bookmark_button"
-                iconBtnLabel="Add Bookmark Button"
-                handleClick={() => {
-                  handleAddBookmark(props?._id, token);
-                  ToastHandler("success", "Added to Bookmark");
-                }}
-              >
-                <BookmarkBorder />
-              </IconActionBtn>
-            )}
-          </div>
-          <div className="flex gap-1 items-center">
-            <ModalProvider
-              isOpen={isCommentModalOpen}
-              closeModal={closeCommentModal}
-              modalTitle="Comments"
-              modalBtnVariant={
+          {getUser ? (
+            <div className="relative flex gap-1 items-center">
+              {isLiked ? (
                 <IconActionBtn
-                  iconBtnLabel="Comment Button"
-                  handleClick={openCommentModal}
-                  className="comment_btn"
+                  className="unlike_btn"
+                  iconBtnLabel="Unlike Button"
+                  handleClick={() => {
+                    handlePostDislike(props?._id, token);
+                  }}
                 >
-                  <Comment />
+                  <Favorite />
                 </IconActionBtn>
-              }
-            >
-              <div>
-                <PostComment
-                  {...props}
-                  isCommentEdit={isCommentEdit}
-                  editCommentHandler={setIsCommentEdit}
-                />
-                <div className="p-2 flex flex-col gap-2 h-[200px] overflow-y-scroll">
-                  {props.comments.length == 0 ? (
-                    isDarkTheme ? (
-                      <div className="flex flex-col mx-auto gap-3 items-center">
-                        <img
-                          className="w-16 h-16"
-                          src="https://res.cloudinary.com/duqsyuriy/image/upload/v1689340192/darkComment_wq01v4.svg"
-                        />
-                        <span>No Comments</span>
-                      </div>
+              ) : (
+                <IconActionBtn
+                  className="like_btn"
+                  iconBtnLabel="Like Button"
+                  handleClick={() => {
+                    handlePostLike(props?._id, token);
+                  }}
+                >
+                  <FavoriteBorder />
+                </IconActionBtn>
+              )}
+              <span className="absolute bg-stone-800 text-stone-100 text-xs rounded-full w-4 h-4 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2">
+                {props?.likes?.likeCount}
+              </span>
+            </div>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="circular"
+              width={32}
+              height={32}
+            />
+          )}
+          {getUser ? (
+            <div className="flex gap-1 items-center">
+              {isBookmarked ? (
+                <IconActionBtn
+                  className="remove_bookmark_btn"
+                  iconBtnLabel="Remove Bookmark Button"
+                  handleClick={() => {
+                    handleRemoveBookmark(props?._id, token);
+                    ToastHandler("warn", "Removed from Bookmark");
+                  }}
+                >
+                  <Bookmark />
+                </IconActionBtn>
+              ) : (
+                <IconActionBtn
+                  className="add_bookmark_button"
+                  iconBtnLabel="Add Bookmark Button"
+                  handleClick={() => {
+                    handleAddBookmark(props?._id, token);
+                    ToastHandler("success", "Added to Bookmark");
+                  }}
+                >
+                  <BookmarkBorder />
+                </IconActionBtn>
+              )}
+            </div>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="circular"
+              width={32}
+              height={32}
+            />
+          )}
+          {getUser ? (
+            <div className="relative flex gap-1 items-center">
+              <ModalProvider
+                isOpen={isCommentModalOpen}
+                closeModal={closeCommentModal}
+                modalTitle="Comments"
+                modalBtnVariant={
+                  <IconActionBtn
+                    iconBtnLabel="Comment Button"
+                    handleClick={openCommentModal}
+                    className="comment_btn"
+                  >
+                    <Comment />
+                  </IconActionBtn>
+                }
+              >
+                <div>
+                  <PostComment
+                    {...props}
+                    isCommentEdit={isCommentEdit}
+                    editCommentHandler={setIsCommentEdit}
+                  />
+                  <div className="p-2 flex flex-col gap-2 h-[200px] overflow-y-scroll">
+                    {props.comments.length == 0 ? (
+                      isDarkTheme ? (
+                        <div className="flex flex-col mx-auto gap-3 items-center">
+                          <img
+                            className="w-16 h-16"
+                            src="https://res.cloudinary.com/duqsyuriy/image/upload/v1689340192/darkComment_wq01v4.svg"
+                          />
+                          <span>No Comments</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col mx-auto gap-3 items-center">
+                          <img
+                            className="w-16 h-16"
+                            src="https://res.cloudinary.com/duqsyuriy/image/upload/v1689340191/lightComment_g2dqyj.svg"
+                          />
+                          <span>No Comments</span>
+                        </div>
+                      )
                     ) : (
-                      <div className="flex flex-col mx-auto gap-3 items-center">
-                        <img
-                          className="w-16 h-16"
-                          src="https://res.cloudinary.com/duqsyuriy/image/upload/v1689340191/lightComment_g2dqyj.svg"
-                        />
-                        <span>No Comments</span>
-                      </div>
-                    )
-                  ) : (
-                    props.comments.map((currentComment) => {
-                      return (
-                        <article
-                          key={currentComment._id}
-                          className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm"
-                        >
-                          <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
-                            <AvatarActionLink
-                              avatar={currentComment.profileAvatar}
-                            />
-                            <div className="flex flex-col flex-1">
-                              <div className="flex justify-between">
-                                <div className="flex flex-col">
-                                  <span className="font-medium">
-                                    {currentComment.firstName}{" "}
-                                    {currentComment.lastName}
-                                  </span>
-                                  <span className="text-xs">
-                                    {currentComment.username}
-                                  </span>
-                                </div>
-                                <div>
-                                  {activeUser.username ==
-                                  currentComment.username ? (
-                                    <div className="flex gap-2">
-                                      <IconActionBtn
-                                        iconBtnLabel="Comment Edit Button"
-                                        className="comment_edit_btn"
-                                        handleClick={() =>
-                                          setIsCommentEdit(currentComment)
-                                        }
-                                      >
-                                        <EditIcon />
-                                      </IconActionBtn>
-                                      <IconActionBtn
-                                        iconBtnLabel="Delete Comment"
-                                        className="delete_comment"
-                                        handleClick={() => {
-                                          handleDeleteComment(
-                                            props._id,
-                                            currentComment._id,
-                                            token
-                                          );
-                                          ToastHandler(
-                                            "warn",
-                                            "Comment Deleted"
-                                          );
-                                        }}
-                                      >
-                                        <DeleteIcon />
-                                      </IconActionBtn>
-                                    </div>
-                                  ) : activeUser.following.findIndex(
-                                      (currentFollowing) => {
-                                        return (
-                                          currentFollowing.username ==
-                                          currentComment.username
-                                        );
-                                      }
-                                    ) == -1 ? (
-                                    <IconActionBtn
-                                      className="follow_btn"
-                                      iconBtnLabel="Follow User Button"
-                                      handleClick={() =>
-                                        handleFollowUser(
-                                          currentComment._id,
-                                          token
-                                        )
-                                      }
-                                    >
-                                      <PersonAddIcon />
-                                    </IconActionBtn>
-                                  ) : (
-                                    <IconActionBtn
-                                      className="unfollow_btn"
-                                      iconBtnLabel="Unfollow User Button"
-                                      handleClick={() =>
-                                        handleUnfollowUser(
-                                          currentComment._id,
-                                          token
-                                        )
-                                      }
-                                    >
-                                      <PersonRemoveIcon />
-                                    </IconActionBtn>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="flex items-center mt-3 justify-between">
-                                <p className="text-sm">
-                                  {truncateUtility(
-                                    currentComment.commentData,
-                                    20
-                                  )}
-                                </p>
-                                {!(
-                                  truncateUtility(
-                                    currentComment.commentData,
-                                    20
-                                  ).length < 20
-                                ) && (
-                                  <ModalProvider
-                                    modalTitle="Read Comment"
-                                    isOpen={
-                                      currentComment.username ==
-                                        commentFullName &&
-                                      isCommentFullModalOpen
-                                    }
-                                    closeModal={closeCommentFullModal}
-                                    modalBtnVariant={
-                                      <button
-                                        aria-label="Read More Comment Button"
-                                        className="read_more_btn text-sm"
-                                        onClick={() => {
-                                          setCommentFullName(
+                      props.comments.map((currentComment) => {
+                        return (
+                          <article
+                            key={currentComment._id}
+                            className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm"
+                          >
+                            <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                              <AvatarActionLink
+                                avatar={currentComment.profileAvatar}
+                              />
+                              <div className="flex flex-col flex-1">
+                                <div className="flex justify-between">
+                                  <div className="flex flex-col">
+                                    <span className="font-medium">
+                                      {currentComment.firstName}{" "}
+                                      {currentComment.lastName}
+                                    </span>
+                                    <span className="text-xs">
+                                      {currentComment.username}
+                                    </span>
+                                  </div>
+                                  <div>
+                                    {activeUser.username ==
+                                    currentComment.username ? (
+                                      <div className="flex gap-2">
+                                        <IconActionBtn
+                                          iconBtnLabel="Comment Edit Button"
+                                          className="comment_edit_btn"
+                                          handleClick={() =>
+                                            setIsCommentEdit(currentComment)
+                                          }
+                                        >
+                                          <EditIcon />
+                                        </IconActionBtn>
+                                        <IconActionBtn
+                                          iconBtnLabel="Delete Comment"
+                                          className="delete_comment"
+                                          handleClick={() => {
+                                            handleDeleteComment(
+                                              props._id,
+                                              currentComment._id,
+                                              token
+                                            );
+                                            ToastHandler(
+                                              "warn",
+                                              "Comment Deleted"
+                                            );
+                                          }}
+                                        >
+                                          <DeleteIcon />
+                                        </IconActionBtn>
+                                      </div>
+                                    ) : activeUser.following.findIndex(
+                                        (currentFollowing) => {
+                                          return (
+                                            currentFollowing.username ==
                                             currentComment.username
                                           );
-                                          openCommentFullModal();
-                                        }}
+                                        }
+                                      ) == -1 ? (
+                                      <IconActionBtn
+                                        className="follow_btn"
+                                        iconBtnLabel="Follow User Button"
+                                        handleClick={() =>
+                                          handleFollowUser(
+                                            currentComment._id,
+                                            token
+                                          )
+                                        }
                                       >
-                                        Read More
-                                      </button>
-                                    }
-                                  >
-                                    <div className="p-3">
-                                      <p className="text-sm">
-                                        {currentComment.commentData}
-                                      </p>
-                                    </div>
-                                  </ModalProvider>
-                                )}
+                                        <PersonAddIcon />
+                                      </IconActionBtn>
+                                    ) : (
+                                      <IconActionBtn
+                                        className="unfollow_btn"
+                                        iconBtnLabel="Unfollow User Button"
+                                        handleClick={() =>
+                                          handleUnfollowUser(
+                                            currentComment._id,
+                                            token
+                                          )
+                                        }
+                                      >
+                                        <PersonRemoveIcon />
+                                      </IconActionBtn>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="flex items-center mt-3 justify-between">
+                                  <p className="text-sm">
+                                    {truncateUtility(
+                                      currentComment.commentData,
+                                      20
+                                    )}
+                                  </p>
+                                  {!(
+                                    truncateUtility(
+                                      currentComment.commentData,
+                                      20
+                                    ).length < 20
+                                  ) && (
+                                    <ModalProvider
+                                      modalTitle="Read Comment"
+                                      isOpen={
+                                        currentComment.username ==
+                                          commentFullName &&
+                                        isCommentFullModalOpen
+                                      }
+                                      closeModal={closeCommentFullModal}
+                                      modalBtnVariant={
+                                        <button
+                                          aria-label="Read More Comment Button"
+                                          className="read_more_btn text-sm"
+                                          onClick={() => {
+                                            setCommentFullName(
+                                              currentComment.username
+                                            );
+                                            openCommentFullModal();
+                                          }}
+                                        >
+                                          Read More
+                                        </button>
+                                      }
+                                    >
+                                      <div className="p-3">
+                                        <p className="text-sm">
+                                          {currentComment.commentData}
+                                        </p>
+                                      </div>
+                                    </ModalProvider>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </article>
-                      );
-                    })
-                  )}
+                          </article>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
-              </div>
-            </ModalProvider>
-            <span>
-              {props?.comments.length !== 0 && props?.comments.length}
-            </span>
-          </div>
+              </ModalProvider>
+              <span className="absolute bg-stone-800 text-stone-100 text-xs rounded-full w-4 h-4 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2">
+                {props?.comments.length !== 0 && props?.comments.length}
+              </span>
+            </div>
+          ) : (
+            <Skeleton
+              animation="pulse"
+              variant="circular"
+              width={32}
+              height={32}
+            />
+          )}
         </div>
-        <IconActionBtn iconBtnLabel="Share Button" className="share_btn">
-          <Share />
-        </IconActionBtn>
+        {getUser ? (
+          <IconActionBtn iconBtnLabel="Share Button" className="share_btn">
+            <Share />
+          </IconActionBtn>
+        ) : (
+          <Skeleton
+            animation="pulse"
+            variant="circular"
+            width={32}
+            height={32}
+          />
+        )}
       </div>
     </article>
   );
