@@ -211,6 +211,8 @@ const AddPostCard = (props) => {
               handleClick={handleAddEmojiOpen}
               iconBtnType="button"
               iconTitle="Emojis"
+              iconBtnLabel="Add Emoji Button"
+              className="emoji_btn"
             >
               <SmileIcon />
             </IconActionBtn>
@@ -287,8 +289,9 @@ const AddPostCard = (props) => {
                 <div className="flex justify-between items-center">
                   <span className="font-medium">Media Preview</span>
                   <IconActionBtn
+                    iconBtnLabel="Close Media Preview Button"
                     handleClick={handleImageMenuClose}
-                    className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
+                    className="close_media_preview_btn text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
                   >
                     <CloseIcon />
                   </IconActionBtn>
@@ -310,6 +313,8 @@ const AddPostCard = (props) => {
             </Menu>
             {postData.postImage && (
               <IconActionBtn
+                className="remove_media_btn"
+                iconBtnLabel="Remove Media Button"
                 iconBtnType="button"
                 handleClick={() => {
                   setPostData((prevPostData) => {
@@ -342,6 +347,7 @@ const AddPostCard = (props) => {
             )}
             {props.isEdit ? (
               <ContainedActionBtn
+                containBtnLabel="Save Post Button"
                 containBtnType="submit"
                 isDisabled={
                   postData.postImage || postData.postText.trim().length !== 0
@@ -356,7 +362,7 @@ const AddPostCard = (props) => {
                       ? "1"
                       : "0.5",
                 }}
-                className="px-3 py-1 text-xs"
+                className="save_post_btn px-3 py-1 text-xs"
               >
                 Save
               </ContainedActionBtn>
@@ -376,8 +382,8 @@ const AddPostCard = (props) => {
                       ? "1"
                       : "0.5",
                 }}
-                className="px-3 py-1 text-xs"
-                containBtnLabel="Post Button"
+                className="add_post_button px-3 py-1 text-xs"
+                containBtnLabel="Add Post Button"
               >
                 Post
               </ContainedActionBtn>

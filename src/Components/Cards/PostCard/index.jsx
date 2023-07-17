@@ -365,6 +365,8 @@ const PostCard = (props) => {
           <div className="flex gap-1 items-center">
             {isLiked ? (
               <IconActionBtn
+                className="unlike_btn"
+                iconBtnLabel="Unlike Button"
                 handleClick={() => {
                   handlePostDislike(props?._id, token);
                 }}
@@ -373,6 +375,8 @@ const PostCard = (props) => {
               </IconActionBtn>
             ) : (
               <IconActionBtn
+                className="like_btn"
+                iconBtnLabel="Like Button"
                 handleClick={() => {
                   handlePostLike(props?._id, token);
                 }}
@@ -385,6 +389,8 @@ const PostCard = (props) => {
           <div className="flex gap-1 items-center">
             {isBookmarked ? (
               <IconActionBtn
+                className="remove_bookmark_btn"
+                iconBtnLabel="Remove Bookmark Button"
                 handleClick={() => {
                   handleRemoveBookmark(props?._id, token);
                   ToastHandler("warn", "Removed from Bookmark");
@@ -394,6 +400,8 @@ const PostCard = (props) => {
               </IconActionBtn>
             ) : (
               <IconActionBtn
+                className="add_bookmark_button"
+                iconBtnLabel="Add Bookmark Button"
                 handleClick={() => {
                   handleAddBookmark(props?._id, token);
                   ToastHandler("success", "Added to Bookmark");
@@ -409,7 +417,11 @@ const PostCard = (props) => {
               closeModal={closeCommentModal}
               modalTitle="Comments"
               modalBtnVariant={
-                <IconActionBtn handleClick={openCommentModal}>
+                <IconActionBtn
+                  iconBtnLabel="Comment Button"
+                  handleClick={openCommentModal}
+                  className="comment_btn"
+                >
                   <Comment />
                 </IconActionBtn>
               }
@@ -466,6 +478,8 @@ const PostCard = (props) => {
                                   currentComment.username ? (
                                     <div className="flex gap-2">
                                       <IconActionBtn
+                                        iconBtnLabel="Comment Edit Button"
+                                        className="comment_edit_btn"
                                         handleClick={() =>
                                           setIsCommentEdit(currentComment)
                                         }
@@ -473,6 +487,8 @@ const PostCard = (props) => {
                                         <EditIcon />
                                       </IconActionBtn>
                                       <IconActionBtn
+                                        iconBtnLabel="Delete Comment"
+                                        className="delete_comment"
                                         handleClick={() => {
                                           handleDeleteComment(
                                             props._id,
@@ -497,6 +513,8 @@ const PostCard = (props) => {
                                       }
                                     ) == -1 ? (
                                     <IconActionBtn
+                                      className="follow_btn"
+                                      iconBtnLabel="Follow User Button"
                                       handleClick={() =>
                                         handleFollowUser(
                                           currentComment._id,
@@ -508,6 +526,8 @@ const PostCard = (props) => {
                                     </IconActionBtn>
                                   ) : (
                                     <IconActionBtn
+                                      className="unfollow_btn"
+                                      iconBtnLabel="Unfollow User Button"
                                       handleClick={() =>
                                         handleUnfollowUser(
                                           currentComment._id,
@@ -543,7 +563,8 @@ const PostCard = (props) => {
                                     closeModal={closeCommentFullModal}
                                     modalBtnVariant={
                                       <button
-                                        className="text-sm"
+                                        aria-label="Read More Comment Button"
+                                        className="read_more_btn text-sm"
                                         onClick={() => {
                                           setCommentFullName(
                                             currentComment.username
@@ -577,7 +598,7 @@ const PostCard = (props) => {
             </span>
           </div>
         </div>
-        <IconActionBtn>
+        <IconActionBtn iconBtnLabel="Share Button" className="share_btn">
           <Share />
         </IconActionBtn>
       </div>
