@@ -11,7 +11,9 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { Skeleton } from "@mui/material";
+import "./PostCard.css";
 import {
   AvatarActionLink,
   IconActionBtn,
@@ -436,11 +438,12 @@ const PostCard = (props) => {
           ))}
       </div>
       <div className="postCard_footer flex items-center gap-2 justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           {getUser ? (
             <div className="relative flex gap-1 items-center">
               {isLiked ? (
                 <IconActionBtn
+                  iconTitle="Remove Like"
                   className="unlike_btn"
                   iconBtnLabel="Unlike Button"
                   handleClick={() => {
@@ -451,6 +454,7 @@ const PostCard = (props) => {
                 </IconActionBtn>
               ) : (
                 <IconActionBtn
+                  iconTitle="Like"
                   className="like_btn"
                   iconBtnLabel="Like Button"
                   handleClick={() => {
@@ -460,7 +464,7 @@ const PostCard = (props) => {
                   <FavoriteBorder />
                 </IconActionBtn>
               )}
-              <span className="absolute bg-stone-800 text-stone-100 text-xs rounded-full w-4 h-4 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2">
+              <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
                 {props?.likes?.likeCount}
               </span>
             </div>
@@ -476,6 +480,7 @@ const PostCard = (props) => {
             <div className="flex gap-1 items-center">
               {isBookmarked ? (
                 <IconActionBtn
+                  iconTitle="Remove Bookmark"
                   className="remove_bookmark_btn"
                   iconBtnLabel="Remove Bookmark Button"
                   handleClick={() => {
@@ -487,6 +492,7 @@ const PostCard = (props) => {
                 </IconActionBtn>
               ) : (
                 <IconActionBtn
+                  iconTitle="Add Bookmark"
                   className="add_bookmark_button"
                   iconBtnLabel="Add Bookmark Button"
                   handleClick={() => {
@@ -507,18 +513,19 @@ const PostCard = (props) => {
             />
           )}
           {getUser ? (
-            <div className="relative flex gap-1 items-center">
+            <div className="relative flex gap-1 items-center mt-1">
               <ModalProvider
                 isOpen={isCommentModalOpen}
                 closeModal={closeCommentModal}
                 modalTitle="Comments"
                 modalBtnVariant={
                   <IconActionBtn
+                    iconTitle="Comment"
                     iconBtnLabel="Comment Button"
                     handleClick={openCommentModal}
                     className="comment_btn"
                   >
-                    <Comment />
+                    <ModeCommentOutlinedIcon />
                   </IconActionBtn>
                 }
               >
@@ -552,7 +559,7 @@ const PostCard = (props) => {
                         return (
                           <article
                             key={currentComment._id}
-                            className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm"
+                            className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm dark:bg-stone-600"
                           >
                             <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
                               <AvatarActionLink
@@ -561,7 +568,7 @@ const PostCard = (props) => {
                               <div className="flex flex-col flex-1">
                                 <div className="flex justify-between">
                                   <div className="flex flex-col">
-                                    <span className="font-medium">
+                                    <span className="font-medium text-sm">
                                       {currentComment.firstName}{" "}
                                       {currentComment.lastName}
                                     </span>
@@ -572,8 +579,9 @@ const PostCard = (props) => {
                                   <div>
                                     {activeUser.username ==
                                     currentComment.username ? (
-                                      <div className="flex gap-2">
+                                      <div className="flex gap-1">
                                         <IconActionBtn
+                                          iconTitle="Edit Comment"
                                           iconBtnLabel="Comment Edit Button"
                                           className="comment_edit_btn"
                                           handleClick={() =>
@@ -583,6 +591,7 @@ const PostCard = (props) => {
                                           <EditIcon />
                                         </IconActionBtn>
                                         <IconActionBtn
+                                          iconTitle="Delete Comment"
                                           iconBtnLabel="Delete Comment"
                                           className="delete_comment"
                                           handleClick={() => {
@@ -609,6 +618,7 @@ const PostCard = (props) => {
                                         }
                                       ) == -1 ? (
                                       <IconActionBtn
+                                        iconTitle="Follow"
                                         className="follow_btn"
                                         iconBtnLabel="Follow User Button"
                                         handleClick={() =>
@@ -622,6 +632,7 @@ const PostCard = (props) => {
                                       </IconActionBtn>
                                     ) : (
                                       <IconActionBtn
+                                        iconTitle="Unfollow"
                                         className="unfollow_btn"
                                         iconBtnLabel="Unfollow User Button"
                                         handleClick={() =>
@@ -637,7 +648,7 @@ const PostCard = (props) => {
                                   </div>
                                 </div>
                                 <div className="flex items-center mt-3 justify-between">
-                                  <p className="text-sm">
+                                  <p className="text-xs">
                                     {truncateUtility(
                                       currentComment.commentData,
                                       20
@@ -660,7 +671,7 @@ const PostCard = (props) => {
                                       modalBtnVariant={
                                         <button
                                           aria-label="Read More Comment Button"
-                                          className="read_more_btn text-sm"
+                                          className="read_more_btn text-xs"
                                           onClick={() => {
                                             setCommentFullName(
                                               currentComment.username
@@ -689,7 +700,7 @@ const PostCard = (props) => {
                   </div>
                 </div>
               </ModalProvider>
-              <span className="absolute bg-stone-800 text-stone-100 text-xs rounded-full w-4 h-4 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2">
+              <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
                 {props?.comments.length !== 0 && props?.comments.length}
               </span>
             </div>

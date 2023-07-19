@@ -179,7 +179,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 445,
+      likeCount: 45,
       likedBy: [],
       dislikedBy: [],
     },
@@ -287,7 +287,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 500,
+      likeCount: 50,
       likedBy: [],
       dislikedBy: [],
     },
@@ -400,7 +400,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 197,
+      likeCount: 17,
       likedBy: [],
       dislikedBy: [],
     },
@@ -512,7 +512,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 158,
+      likeCount: 18,
       likedBy: [],
       dislikedBy: [],
     },
@@ -540,7 +540,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 25,
+      likeCount: 9,
       likedBy: [],
       dislikedBy: [],
     },
@@ -710,7 +710,7 @@ export const posts = [
     mediaURL: "",
     mediaAlt: "",
     likes: {
-      likeCount: 147,
+      likeCount: 14,
       likedBy: [],
       dislikedBy: [],
     },
