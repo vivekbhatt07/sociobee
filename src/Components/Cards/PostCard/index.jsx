@@ -195,7 +195,7 @@ const PostCard = (props) => {
   });
 
   return (
-    <article className="postCard border-b p-3 flex flex-col gap-4">
+    <article className="postCard border-b p-3 flex flex-col gap-6">
       <div className="postCard_head flex justify-between items-center">
         <div className="flex gap-4">
           {getUser?.username == activeUser?.username ? (
@@ -437,7 +437,7 @@ const PostCard = (props) => {
             />
           ))}
       </div>
-      <div className="postCard_footer flex items-center gap-2 justify-between">
+      <div className="postCard_footer flex items-center gap-2 justify-between mt-4">
         <div className="flex items-center gap-4">
           {getUser ? (
             <div className="relative flex gap-1 items-center">
@@ -555,147 +555,149 @@ const PostCard = (props) => {
                         </div>
                       )
                     ) : (
-                      props.comments.map((currentComment) => {
-                        return (
-                          <article
-                            key={currentComment._id}
-                            className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm dark:bg-stone-600"
-                          >
-                            <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
-                              <AvatarActionLink
-                                avatar={currentComment.profileAvatar}
-                              />
-                              <div className="flex flex-col flex-1">
-                                <div className="flex justify-between">
-                                  <div className="flex flex-col">
-                                    <span className="font-medium text-sm">
-                                      {currentComment.firstName}{" "}
-                                      {currentComment.lastName}
-                                    </span>
-                                    <span className="text-xs">
-                                      {currentComment.username}
-                                    </span>
-                                  </div>
-                                  <div>
-                                    {activeUser.username ==
-                                    currentComment.username ? (
-                                      <div className="flex gap-1">
-                                        <IconActionBtn
-                                          iconTitle="Edit Comment"
-                                          iconBtnLabel="Comment Edit Button"
-                                          className="comment_edit_btn"
-                                          handleClick={() =>
-                                            setIsCommentEdit(currentComment)
-                                          }
-                                        >
-                                          <EditIcon />
-                                        </IconActionBtn>
-                                        <IconActionBtn
-                                          iconTitle="Delete Comment"
-                                          iconBtnLabel="Delete Comment"
-                                          className="delete_comment"
-                                          handleClick={() => {
-                                            handleDeleteComment(
-                                              props._id,
-                                              currentComment._id,
-                                              token
-                                            );
-                                            ToastHandler(
-                                              "warn",
-                                              "Comment Deleted"
-                                            );
-                                          }}
-                                        >
-                                          <DeleteIcon />
-                                        </IconActionBtn>
-                                      </div>
-                                    ) : activeUser.following.findIndex(
-                                        (currentFollowing) => {
-                                          return (
-                                            currentFollowing.username ==
-                                            currentComment.username
-                                          );
-                                        }
-                                      ) == -1 ? (
-                                      <IconActionBtn
-                                        iconTitle="Follow"
-                                        className="follow_btn"
-                                        iconBtnLabel="Follow User Button"
-                                        handleClick={() =>
-                                          handleFollowUser(
-                                            currentComment._id,
-                                            token
-                                          )
-                                        }
-                                      >
-                                        <PersonAddIcon />
-                                      </IconActionBtn>
-                                    ) : (
-                                      <IconActionBtn
-                                        iconTitle="Unfollow"
-                                        className="unfollow_btn"
-                                        iconBtnLabel="Unfollow User Button"
-                                        handleClick={() =>
-                                          handleUnfollowUser(
-                                            currentComment._id,
-                                            token
-                                          )
-                                        }
-                                      >
-                                        <PersonRemoveIcon />
-                                      </IconActionBtn>
-                                    )}
-                                  </div>
-                                </div>
-                                <div className="flex items-center mt-3 justify-between">
-                                  <p className="text-xs">
-                                    {truncateUtility(
-                                      currentComment.commentData,
-                                      20
-                                    )}
-                                  </p>
-                                  {!(
-                                    truncateUtility(
-                                      currentComment.commentData,
-                                      20
-                                    ).length < 20
-                                  ) && (
-                                    <ModalProvider
-                                      modalTitle="Read Comment"
-                                      isOpen={
-                                        currentComment.username ==
-                                          commentFullName &&
-                                        isCommentFullModalOpen
-                                      }
-                                      closeModal={closeCommentFullModal}
-                                      modalBtnVariant={
-                                        <button
-                                          aria-label="Read More Comment Button"
-                                          className="read_more_btn text-xs"
-                                          onClick={() => {
-                                            setCommentFullName(
+                      props.comments
+                        .map((currentComment) => {
+                          return (
+                            <article
+                              key={currentComment._id}
+                              className="flex p-2 lg:flex-col lg:items-start lg:gap-2 xl:flex-row xl:justify-between xl:items-center bg-stone-200 h-[100px] rounded-sm dark:bg-stone-600"
+                            >
+                              <div className="flex gap-3 lg:justify-start lg:w-full xl:justify-start xl:gap-3">
+                                <AvatarActionLink
+                                  avatar={currentComment.profileAvatar}
+                                />
+                                <div className="flex flex-col flex-1">
+                                  <div className="flex justify-between">
+                                    <div className="flex flex-col">
+                                      <span className="font-medium text-sm">
+                                        {currentComment.firstName}{" "}
+                                        {currentComment.lastName}
+                                      </span>
+                                      <span className="text-xs">
+                                        {currentComment.username}
+                                      </span>
+                                    </div>
+                                    <div>
+                                      {activeUser.username ==
+                                      currentComment.username ? (
+                                        <div className="flex gap-1">
+                                          <IconActionBtn
+                                            iconTitle="Edit Comment"
+                                            iconBtnLabel="Comment Edit Button"
+                                            className="comment_edit_btn"
+                                            handleClick={() =>
+                                              setIsCommentEdit(currentComment)
+                                            }
+                                          >
+                                            <EditIcon />
+                                          </IconActionBtn>
+                                          <IconActionBtn
+                                            iconTitle="Delete Comment"
+                                            iconBtnLabel="Delete Comment"
+                                            className="delete_comment"
+                                            handleClick={() => {
+                                              handleDeleteComment(
+                                                props._id,
+                                                currentComment._id,
+                                                token
+                                              );
+                                              ToastHandler(
+                                                "warn",
+                                                "Comment Deleted"
+                                              );
+                                            }}
+                                          >
+                                            <DeleteIcon />
+                                          </IconActionBtn>
+                                        </div>
+                                      ) : activeUser.following.findIndex(
+                                          (currentFollowing) => {
+                                            return (
+                                              currentFollowing.username ==
                                               currentComment.username
                                             );
-                                            openCommentFullModal();
-                                          }}
+                                          }
+                                        ) == -1 ? (
+                                        <IconActionBtn
+                                          iconTitle="Follow"
+                                          className="follow_btn"
+                                          iconBtnLabel="Follow User Button"
+                                          handleClick={() =>
+                                            handleFollowUser(
+                                              currentComment._id,
+                                              token
+                                            )
+                                          }
                                         >
-                                          Read More
-                                        </button>
-                                      }
-                                    >
-                                      <div className="p-3">
-                                        <p className="text-sm">
-                                          {currentComment.commentData}
-                                        </p>
-                                      </div>
-                                    </ModalProvider>
-                                  )}
+                                          <PersonAddIcon />
+                                        </IconActionBtn>
+                                      ) : (
+                                        <IconActionBtn
+                                          iconTitle="Unfollow"
+                                          className="unfollow_btn"
+                                          iconBtnLabel="Unfollow User Button"
+                                          handleClick={() =>
+                                            handleUnfollowUser(
+                                              currentComment._id,
+                                              token
+                                            )
+                                          }
+                                        >
+                                          <PersonRemoveIcon />
+                                        </IconActionBtn>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center mt-3 justify-between">
+                                    <p className="text-xs">
+                                      {truncateUtility(
+                                        currentComment.commentData,
+                                        20
+                                      )}
+                                    </p>
+                                    {!(
+                                      truncateUtility(
+                                        currentComment.commentData,
+                                        20
+                                      ).length < 20
+                                    ) && (
+                                      <ModalProvider
+                                        modalTitle="Read Comment"
+                                        isOpen={
+                                          currentComment.username ==
+                                            commentFullName &&
+                                          isCommentFullModalOpen
+                                        }
+                                        closeModal={closeCommentFullModal}
+                                        modalBtnVariant={
+                                          <button
+                                            aria-label="Read More Comment Button"
+                                            className="read_more_btn text-xs"
+                                            onClick={() => {
+                                              setCommentFullName(
+                                                currentComment.username
+                                              );
+                                              openCommentFullModal();
+                                            }}
+                                          >
+                                            Read More
+                                          </button>
+                                        }
+                                      >
+                                        <div className="p-3">
+                                          <p className="text-sm">
+                                            {currentComment.commentData}
+                                          </p>
+                                        </div>
+                                      </ModalProvider>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </article>
-                        );
-                      })
+                            </article>
+                          );
+                        })
+                        .reverse()
                     )}
                   </div>
                 </div>

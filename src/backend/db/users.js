@@ -29,14 +29,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
       {
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
@@ -52,6 +52,14 @@ export const users = [
         username: "Abhishek12703",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+      },
+      {
+        _id: "79Gksh9otl",
+        firstName: "Vivek",
+        lastName: "Kushal",
+        username: "vivekkushal",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1688955653/vivekK_dtekd1.jpg",
       },
     ],
     followers: [
@@ -116,78 +124,78 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
     ],
     bookmarks: [],
   },
-  {
-    _id: "1T6Be1QpLm",
-    firstName: "Niharika",
-    lastName: "Kesarwani",
-    password: "HelloWorld07@",
-    username: "Niharika_twt",
-    bio: "Web Developer | @neogcamp'23 | @girlscriptsoc'23 | #100DaysofCode | Ex-@oyorooms | CSE @MIT_Manipal'22",
-    website: "https://niharikakesarwani.netlify.app/",
-    profileAvatar:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-    backgroundImage:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352338/socialbee/niharikaBg_awatx2.jpg",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    join: "March, 2020",
-    following: [
-      {
-        _id: "LCrc9f0Zl0",
-        firstName: "Pranita",
-        lastName: "Fulsundar",
-        username: "pranita0709",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
-      },
-      {
-        _id: "o5gzWjEeX_",
-        firstName: "Shraddha",
-        lastName: "Vishwakarma",
-        username: "Shraddha_228",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
-      },
-      {
-        _id: "t7cZfWIp-q",
-        firstName: "Vivek",
-        lastName: "Bhatt",
-        username: "vivekbhatt07",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
-      },
-    ],
-    followers: [
-      {
-        _id: "qq8zWjEeXd",
-        firstName: "Vikas",
-        lastName: "Lodh",
-        username: "VikasLodh",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
-      },
-      {
-        _id: "79Gksh9otl",
-        firstName: "Abhishek",
-        lastName: "Gupta",
-        username: "Abhishek12703",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
-      },
-    ],
-    bookmarks: [],
-  },
+  // {
+  //   _id: "1T6Be1QpLm",
+  //   firstName: "Niharika",
+  //   lastName: "Kesarwani",
+  //   password: "HelloWorld07@",
+  //   username: "Niharika_twt",
+  //   bio: "Web Developer | @neogcamp'23 | @girlscriptsoc'23 | #100DaysofCode | Ex-@oyorooms | CSE @MIT_Manipal'22",
+  //   website: "https://niharikakesarwani.netlify.app/",
+  //   profileAvatar:
+  //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+  //   backgroundImage:
+  //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687352338/socialbee/niharikaBg_awatx2.jpg",
+  //   createdAt: formatDate(),
+  //   updatedAt: formatDate(),
+  //   join: "March, 2020",
+  //   following: [
+  //     {
+  //       _id: "LCrc9f0Zl0",
+  //       firstName: "Pranita",
+  //       lastName: "Fulsundar",
+  //       username: "pranita0709",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
+  //     },
+  //     {
+  //       _id: "o5gzWjEeX_",
+  //       firstName: "Shraddha",
+  //       lastName: "Vishwakarma",
+  //       username: "Shraddha_228",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
+  //     },
+  //     {
+  //       _id: "t7cZfWIp-q",
+  //       firstName: "Vivek",
+  //       lastName: "Bhatt",
+  //       username: "vivekbhatt07",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
+  //     },
+  //   ],
+  //   followers: [
+  //     {
+  //       _id: "qq8zWjEeXd",
+  //       firstName: "Vikas",
+  //       lastName: "Lodh",
+  //       username: "VikasLodh",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351819/socialbee/vikas_qa4vdp.jpg",
+  //     },
+  //     {
+  //       _id: "79Gksh9otl",
+  //       firstName: "Abhishek",
+  //       lastName: "Gupta",
+  //       username: "Abhishek12703",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+  //     },
+  //   ],
+  //   bookmarks: [],
+  // },
   {
     _id: "LCrc9f0Zl0",
     firstName: "Pranita",
@@ -212,14 +220,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351662/socialbee/anushka_uxvyys.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
     ],
     followers: [
       {
@@ -257,14 +265,14 @@ export const users = [
     updatedAt: formatDate(),
     join: "January, 2022",
     following: [
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
       {
         _id: "LCrc9f0Zl0",
         firstName: "Pranita",
@@ -318,14 +326,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
     ],
     followers: [
       {
@@ -397,14 +405,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
     ],
     bookmarks: [],
   },
@@ -432,14 +440,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
       {
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",
@@ -494,14 +502,14 @@ export const users = [
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      // },
       {
         _id: "o5gzWjEeX_",
         firstName: "Shraddha",

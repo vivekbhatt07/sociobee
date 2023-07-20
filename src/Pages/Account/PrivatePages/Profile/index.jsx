@@ -143,6 +143,11 @@ const Profile = () => {
   });
   const isFollowing = followingList?.includes(userId);
 
+  const followersList = activeUser.followers.map((currentFollower) => {
+    return currentFollower.username;
+  });
+  const isFollower = followersList?.includes(userId);
+
   return (
     <div
       className={`${
@@ -182,7 +187,7 @@ const Profile = () => {
                         {activeUserProfile?.username}
                       </span>
                       {activeUserProfile?.username !== activeUser?.username &&
-                        isFollowing && <Chip chipText="Follows you" />}
+                        isFollower && <Chip chipText="Follows you" />}
                     </div>
                   </div>
                   {userId ? (

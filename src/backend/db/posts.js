@@ -108,32 +108,59 @@ export const posts = [
         createdAt: formatDate(),
         updatedAt: formatDate(),
       },
-      {
-        _id: "1T6Be1QpLm",
-        firstName: "Niharika",
-        lastName: "Kesarwani",
-        username: "Niharika_twt",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
-        commentData: "So beautiful! 🥹",
-        createdAt: formatDate(),
-        updatedAt: formatDate(),
-      },
+      // {
+      //   _id: "1T6Be1QpLm",
+      //   firstName: "Niharika",
+      //   lastName: "Kesarwani",
+      //   username: "Niharika_twt",
+      //   profileAvatar:
+      //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351197/socialbee/niharika_gmwh05.jpg",
+      //   commentData: "So beautiful! 🥹",
+      //   createdAt: formatDate(),
+      //   updatedAt: formatDate(),
+      // },
     ],
   },
+  // {
+  //   _id: uuid(),
+  //   content:
+  //     "I just completed READHAVEN, my first React e-commerce web app dedicated to books! Kindly spread the word & share your love for books! Feedback suggestions are highly appreciated! ",
+  //   mediaURL:
+  //     "https://res.cloudinary.com/duqsyuriy/video/upload/v1687363887/socialbee/NiharikaEcommerce_v53n6z.mp4",
+  //   mediaAlt: "ecommerce.mp4",
+  //   likes: {
+  //     likeCount: 5,
+  //     likedBy: [],
+  //     dislikedBy: [],
+  //   },
+  //   username: "Niharika_twt",
+  //   createdAt: "2023-06-03T01:06:00+05:30",
+  //   updatedAt: formatDate(),
+  //   comments: [
+  //     {
+  //       _id: "79Gksh9otl",
+  //       firstName: "Abhishek",
+  //       lastName: "Gupta",
+  //       username: "Abhishek12703",
+  //       commentData: "Looks awesome! Improve design.",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+  //       createdAt: formatDate(),
+  //       updatedAt: formatDate(),
+  //     },
   {
     _id: uuid(),
     content:
-      "I just completed READHAVEN, my first React e-commerce web app dedicated to books! Kindly spread the word & share your love for books! Feedback suggestions are highly appreciated! ",
+      "Here it is: @NASAWebb’s one-year anniversary image. Called Rho Ophiuchi, this area shows about 50 young stars in a cocoon of gas and dust. At 390 light-years away, it's the closest star-forming region to Earth",
     mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/video/upload/v1687363887/socialbee/NiharikaEcommerce_v53n6z.mp4",
-    mediaAlt: "ecommerce.mp4",
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1689808197/galaxy_lqy0ua.jpg",
+    mediaAlt: "space",
     likes: {
       likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "Niharika_twt",
+    username: "vivekkushal",
     createdAt: "2023-06-03T01:06:00+05:30",
     updatedAt: formatDate(),
     comments: [
@@ -142,7 +169,7 @@ export const posts = [
         firstName: "Abhishek",
         lastName: "Gupta",
         username: "Abhishek12703",
-        commentData: "Looks awesome! Improve design.",
+        commentData: "My favorite star is Sagittarius",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
         createdAt: formatDate(),
@@ -153,7 +180,7 @@ export const posts = [
         firstName: "Shraddha",
         lastName: "Vishwakarma",
         username: "Shraddha_228",
-        commentData: "Great work Niharika 👏👏🔥🔥",
+        commentData: "This is very beautiful.",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
         createdAt: formatDate(),
@@ -164,7 +191,62 @@ export const posts = [
         firstName: "Pranita",
         lastName: "Fulsundar",
         username: "pranita0709",
-        commentData: "Awesome Work 🔥, nice UI",
+        commentData:
+          "The things humanity can accomplish when we put aside our petty differences and work together for the common good is truly remarkable. Hopefully one day war will be nothing but a fleeting memory as we all work together to reach out and explore strange new worlds...together.",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
+  },
+
+  {
+    _id: uuid(),
+    content:
+      "The Quesst for quiet supersonic commercial flight over land moves to the next stage for @NASAaero’s X-59. The aircraft moved to the space between the hanger & the runway which marks the start of a series of ground tests to ensure the X-59 is safe to fly",
+    mediaURL:
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1689808982/Jet_yh2mhc.jpg",
+    mediaAlt: "space",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "vivekkushal",
+    createdAt: "2023-06-03T01:06:00+05:30",
+    updatedAt: formatDate(),
+    comments: [
+      {
+        _id: "79Gksh9otl",
+        firstName: "Abhishek",
+        lastName: "Gupta",
+        username: "Abhishek12703",
+        commentData: "Great idea. Stick to this flat plane we are on. :)",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "o5gzWjEeX_",
+        firstName: "Shraddha",
+        lastName: "Vishwakarma",
+        username: "Shraddha_228",
+        commentData:
+          "Hum, what fuel is it using? You do realise we are within an existential climate crises?",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351410/socialbee/shraddha_hldbxa.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "LCrc9f0Zl0",
+        firstName: "Pranita",
+        lastName: "Fulsundar",
+        username: "pranita0709",
+        commentData:
+          "Brilliant piece of engineering, coming up with a way to break the sound barrier without the noise pollution, could open up fast transcontinental travel for the masses from metropolitan airports, instead of limited to large coastal airports transatlantic, like concord",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
         createdAt: formatDate(),
@@ -244,6 +326,46 @@ export const posts = [
         lastName: "Bhatt",
         username: "vivekbhatt07",
         commentData: "Give some tips in the next post so that we can get hired",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+    ],
+  },
+  {
+    _id: uuid(),
+    content:
+      "Hello friends, I am thrilled to unveil my latest project Funk Feed, a social media platform built with ReactJS!",
+    mediaURL:
+      "https://res.cloudinary.com/duqsyuriy/image/upload/v1689809749/abhishekProject_ae70vh.png",
+    mediaAlt: "funkfeed",
+    likes: {
+      likeCount: 9,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Abhishek12703",
+    createdAt: "2023-03-15T01:06:00+05:30",
+    updatedAt: formatDate(),
+    comments: [
+      {
+        _id: "LCrc9f0Zl0",
+        firstName: "Pranita",
+        lastName: "Fulsundar",
+        username: "pranita0709",
+        commentData: "UI is looking amazing bro 👏",
+        profileAvatar:
+          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350712/socialbee/pranita_mylipt.jpg",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      },
+      {
+        _id: "t7cZfWIp-q",
+        firstName: "Vivek",
+        lastName: "Bhatt",
+        username: "vivekbhatt07",
+        commentData: "Amazing UI 🔥, merese review karaoge toh aisa hi hoga 😎",
         profileAvatar:
           "https://res.cloudinary.com/duqsyuriy/image/upload/v1687350921/socialbee/vivek_e4z4pq.jpg",
         createdAt: formatDate(),
@@ -450,34 +572,34 @@ export const posts = [
       },
     ],
   },
-  {
-    _id: uuid(),
-    content:
-      "One of the best all-night coding days with pranita, where almost 7 hours went by in a breeze! 🥹 Felt so rewarding and satisfying at the end!😭🤗",
-    mediaURL: "",
-    mediaAlt: "",
-    likes: {
-      likeCount: 22,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "Niharika_twt",
-    createdAt: "2023-05-23T01:06:00+05:30",
-    updatedAt: formatDate(),
-    comments: [
-      {
-        _id: "79Gksh9otl",
-        firstName: "Abhishek",
-        lastName: "Gupta",
-        username: "Abhishek12703",
-        commentData: "This is Awesome 🔥",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
-        createdAt: formatDate(),
-        updatedAt: formatDate(),
-      },
-    ],
-  },
+  // {
+  //   _id: uuid(),
+  //   content:
+  //     "One of the best all-night coding days with pranita, where almost 7 hours went by in a breeze! 🥹 Felt so rewarding and satisfying at the end!😭🤗",
+  //   mediaURL: "",
+  //   mediaAlt: "",
+  //   likes: {
+  //     likeCount: 22,
+  //     likedBy: [],
+  //     dislikedBy: [],
+  //   },
+  //   username: "Niharika_twt",
+  //   createdAt: "2023-05-23T01:06:00+05:30",
+  //   updatedAt: formatDate(),
+  //   comments: [
+  //     {
+  //       _id: "79Gksh9otl",
+  //       firstName: "Abhishek",
+  //       lastName: "Gupta",
+  //       username: "Abhishek12703",
+  //       commentData: "This is Awesome 🔥",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+  //       createdAt: formatDate(),
+  //       updatedAt: formatDate(),
+  //     },
+  //   ],
+  // },
   {
     _id: uuid(),
     content: "I still believe this 😆",
@@ -731,32 +853,32 @@ export const posts = [
       },
     ],
   },
-  {
-    _id: uuid(),
-    content: "Chills. Literal chills. Thank you for this.",
-    mediaURL:
-      "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243960/cssBattleNiharika_nyj9gf.jpg",
-    mediaAlt: "css Battle",
-    likes: {
-      likeCount: 5,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "Niharika_twt",
-    createdAt: "2023-06-03T01:06:00+05:30",
-    updatedAt: formatDate(),
-    comments: [
-      {
-        _id: "79Gksh9otl",
-        firstName: "Abhishek",
-        lastName: "Gupta",
-        username: "Abhishek12703",
-        commentData: "This is Awesome 🔥",
-        profileAvatar:
-          "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
-        createdAt: formatDate(),
-        updatedAt: formatDate(),
-      },
-    ],
-  },
+  // {
+  //   _id: uuid(),
+  //   content: "Chills. Literal chills. Thank you for this.",
+  //   mediaURL:
+  //     "https://res.cloudinary.com/duqsyuriy/image/upload/v1688243960/cssBattleNiharika_nyj9gf.jpg",
+  //   mediaAlt: "css Battle",
+  //   likes: {
+  //     likeCount: 5,
+  //     likedBy: [],
+  //     dislikedBy: [],
+  //   },
+  //   username: "Niharika_twt",
+  //   createdAt: "2023-06-03T01:06:00+05:30",
+  //   updatedAt: formatDate(),
+  //   comments: [
+  //     {
+  //       _id: "79Gksh9otl",
+  //       firstName: "Abhishek",
+  //       lastName: "Gupta",
+  //       username: "Abhishek12703",
+  //       commentData: "This is Awesome 🔥",
+  //       profileAvatar:
+  //         "https://res.cloudinary.com/duqsyuriy/image/upload/v1687351501/socialbee/abhishek_bpp5dq.jpg",
+  //       createdAt: formatDate(),
+  //       updatedAt: formatDate(),
+  //     },
+  //   ],
+  // },
 ];
