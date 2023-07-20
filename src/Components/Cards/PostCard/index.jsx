@@ -464,9 +464,11 @@ const PostCard = (props) => {
                   <FavoriteBorder />
                 </IconActionBtn>
               )}
-              <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
-                {props?.likes?.likeCount}
-              </span>
+              {props?.comments.length !== 0 && (
+                <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
+                  {props?.likes?.likeCount}
+                </span>
+              )}
             </div>
           ) : (
             <Skeleton
@@ -702,9 +704,11 @@ const PostCard = (props) => {
                   </div>
                 </div>
               </ModalProvider>
-              <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
-                {props?.comments.length !== 0 && props?.comments.length}
-              </span>
+              {props?.comments.length !== 0 && (
+                <span className="absolute bg-stone-800 text-stone-100 text-[10px] rounded-full w-5 h-5 p-2 flex justify-center items-center right-0 top-0 -translate-y-1/2 translate-x-1/2 dark:bg-stone-500">
+                  {props?.comments.length !== 0 && props?.comments.length}
+                </span>
+              )}
             </div>
           ) : (
             <Skeleton
