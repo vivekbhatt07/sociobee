@@ -1,7 +1,13 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-const TextActionLink = (props) => {
+interface TextActionLinkType {
+  children: ReactNode;
+  className: string;
+  reach: string;
+}
+
+const TextActionLink: FC<TextActionLinkType> = (props) => {
   const { children, className, reach } = props;
   const classes =
     className +
