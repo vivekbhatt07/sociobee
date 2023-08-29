@@ -1,6 +1,14 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 
-const OutlinedActionBtn = (props) => {
+interface OutlinedActionBtnType {
+  className: string;
+  children: ReactNode;
+  outlineBtnType: "button" | "submit" | "reset";
+  handleClick: () => void;
+  outlineBtnLabel: string;
+}
+
+const OutlinedActionBtn: FC<OutlinedActionBtnType> = (props) => {
   const { className, children, outlineBtnType, handleClick, outlineBtnLabel } =
     props;
   const classes =
