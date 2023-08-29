@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import {
   AvatarActionLink,
   OutlinedActionBtn,
@@ -11,9 +11,6 @@ import {
   PostCard,
   SuggestionSidebar,
   ContainedActionBtn,
-  Loader,
-  DarkLoader,
-  PostComment,
   Chip,
 } from "../../../../Components";
 
@@ -564,14 +561,20 @@ const Profile = () => {
                 isDarkTheme ? (
                   <div className="mx-auto flex flex-col gap-4">
                     <div>
-                      <img src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688975502/Untitled_design_2_wjrtlg.svg" />
+                      <img
+                        src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688975502/Untitled_design_2_wjrtlg.svg"
+                        alt="no post"
+                      />
                     </div>
                     <span>No Posts Yet!</span>
                   </div>
                 ) : (
                   <div className="mx-auto flex flex-col gap-4">
                     <div>
-                      <img src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688974681/Untitled_design_1_m6z7vp.svg" />
+                      <img
+                        src="https://res.cloudinary.com/duqsyuriy/image/upload/v1688974681/Untitled_design_1_m6z7vp.svg"
+                        alt="no post"
+                      />
                     </div>
                     <span>No Posts Yet</span>
                   </div>

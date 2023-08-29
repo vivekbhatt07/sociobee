@@ -1,8 +1,17 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FC, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 
-const AvatarActionLink = (props) => {
+interface AvatarActionLinkType {
+  className: string;
+  avatar: string;
+  reach: string;
+  children: ReactNode;
+  onClick: () => void;
+  isLink: boolean;
+}
+
+const AvatarActionLink: FC<AvatarActionLinkType> = (props) => {
   const { className, avatar, reach, children, onClick, isLink = true } = props;
   const navigate = useNavigate();
   const classes =

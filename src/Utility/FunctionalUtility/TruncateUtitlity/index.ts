@@ -1,7 +1,4 @@
-import React from "react";
-
-const truncateUtility = (text, countLength) => {
-  // return text.length > countLength ? `${(text.slice(0, countLength))}...` : text;
+const truncateUtility = (text: string, countLength: number): string => {
   if (text.length > countLength) {
     const nonEmojiText = text
       .replace(

@@ -13,7 +13,6 @@ import {
   IconActionBtn,
   TextInput,
   ModalProvider,
-  OutlinedActionBtn,
 } from "../../../Components";
 
 const Header = (props) => {
