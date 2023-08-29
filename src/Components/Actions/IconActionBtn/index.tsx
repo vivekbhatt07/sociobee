@@ -1,6 +1,15 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 
-const IconActionBtn = (props) => {
+interface IconActionBtnType {
+  className: string;
+  children: ReactNode;
+  iconBtnType: "button" | "submit" | "reset";
+  handleClick: () => void;
+  iconTitle: string;
+  iconBtnLabel: string;
+}
+
+const IconActionBtn: FC<IconActionBtnType> = (props) => {
   const {
     className,
     children,

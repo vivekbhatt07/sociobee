@@ -1,6 +1,16 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 
-const ContainedActionBtn = (props) => {
+interface ContainedActionBtnType {
+  className: string;
+  children: ReactNode;
+  containBtnType: "button" | "submit" | "reset";
+  handleClick: () => void;
+  isDisabled: boolean;
+  btnStyle: {};
+  containBtnLabel: string;
+}
+
+const ContainedActionBtn: FC<ContainedActionBtnType> = (props) => {
   const {
     className,
     children,
