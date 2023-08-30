@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -21,7 +21,7 @@ import {
 } from "@mui/icons-material";
 import { useAuth, usePost, useTheme } from "../../../Context";
 import { TextField } from "@mui/material";
-import { sendPostService, calculatePercentageUtility } from "../../../Utility";
+import { sendPostService } from "../../../Utility";
 import CircularProgressDonut from "../../CircularProgressDonut";
 import Chip from "../../Chip";
 
@@ -306,6 +306,7 @@ const AddPostCard = (props) => {
                     <img
                       src={postData.postImage}
                       className="object-cover w-full"
+                      alt="post"
                     />
                   )}
                 </div>

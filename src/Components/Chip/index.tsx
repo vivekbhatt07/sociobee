@@ -1,6 +1,11 @@
-import React from "react";
+import { FC } from "react";
 
-const Chip = (props) => {
+interface ChipType {
+  chipText: string;
+  className: string;
+}
+
+const Chip: FC<ChipType> = (props) => {
   const { chipText, className } = props;
   const classes =
     className +
