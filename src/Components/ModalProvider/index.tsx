@@ -1,9 +1,17 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 import { Modal } from "@mui/material";
+import { Close } from "@mui/icons-material";
 import { IconActionBtn } from "../Actions";
-import CloseIcon from "@mui/icons-material/Close";
 
-const ModalProvider = (props) => {
+interface ModalProviderType {
+  children: ReactNode;
+  modalBtnVariant: ReactNode;
+  isOpen: boolean;
+  closeModal: () => void;
+  modalTitle: string;
+}
+
+const ModalProvider: FC<ModalProviderType> = (props) => {
   const { children, modalBtnVariant, isOpen, closeModal, modalTitle } = props;
   return (
     <div>
@@ -13,10 +21,13 @@ const ModalProvider = (props) => {
           <div className="flex justify-between items-center">
             <span className="font-medium">{modalTitle}</span>
             <IconActionBtn
+              iconBtnType="button"
+              iconTitle="Close"
+              iconBtnLabel="close modal"
               handleClick={() => closeModal()}
               className="text-stone-950 dark:text-stone-50 hover:text-stone-950 hover:dark:text-stone-950"
             >
-              <CloseIcon className="dark:text-stone-50" />
+              <Close className="dark:text-stone-50" />
             </IconActionBtn>
           </div>
           <div className="bg-stone-50 rounded-md dark:bg-stone-900 overflow-hidden">
